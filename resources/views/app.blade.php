@@ -52,7 +52,7 @@
                 <a href="/konseling" class="flex items-center p-2 rounded-lg hover:bg-blue-100">
                     <span class="material-icons mr-2">gavel</span> Tindak Lanjut & Konseling
                 </a>
-                <a href="#" class="flex items-center p-2 rounded-lg hover:bg-blue-100">
+                <a href="/" class="flex items-center p-2 rounded-lg hover:bg-blue-100">
                     <span class="material-icons mr-2">manage_accounts</span> Manajemen Pengguna
                 </a>
                 <a href="#" class="flex items-center p-2 rounded-lg hover:bg-blue-100">

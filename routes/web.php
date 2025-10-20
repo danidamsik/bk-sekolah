@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('app');
+<<<<<<< HEAD
 });
 
 Route::get('/dashboard', function () {
     return view('page-content.dashboard');
+=======
+>>>>>>> 700bc09670598c7c4c3be64c6cbd77fa4fa992e3
 });

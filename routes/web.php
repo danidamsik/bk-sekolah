@@ -10,6 +10,10 @@ Route::get('/dashboard', function () {
     return view('page-content.dashboard');
 });
 
+Route::get('/note', function () {
+    return view('page-content.note');
+});
+
 
 
 

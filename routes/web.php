@@ -10,8 +10,8 @@ Route::get('/dashboard', function () {
     return view('page-content.dashboard');
 });
 
-Route::get('/note', function () {
-    return view('page-content.note');
+Route::get('/pelanggaran', function () {
+    return view('page-content.pelanggaran');
 });
 
 Route::get('/management', function () {

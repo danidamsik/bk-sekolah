@@ -26,7 +26,7 @@ Route::get('/konseling', function () {
     return view('page-content.konseling');
 });
 
-Route::get('/manage-user', function () {
+Route::get('/management-user', function () {
     return view('page-content.manage-user');
 });
 

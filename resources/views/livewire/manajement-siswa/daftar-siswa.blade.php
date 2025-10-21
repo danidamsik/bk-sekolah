@@ -1,7 +1,3 @@
-@extends('app')
-
-@section('content')
-    <section class="space-y-8 pb-8" x-data="{ activeDetail: null }">
         <!-- Daftar Semua Siswa -->
         <div class="bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl shadow-2xl border border-gray-100">
             <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
@@ -69,4 +65,3 @@
             </div>
         </div>
         </div>
-    @endsection

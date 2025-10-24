@@ -8,10 +8,6 @@
                         <span class="material-icons text-blue-500">supervisor_account</span>
                         Manajemen Pengguna & Hak Akses
                     </h2>
-                    <button id="addUserBtn"
-                        class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow transition">
-                        + Tambah Pengguna
-                    </button>
                 </div>
 
                 <div class="overflow-x-auto rounded-xl border border-gray-100">

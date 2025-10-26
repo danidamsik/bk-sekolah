@@ -10,7 +10,7 @@ class TopKelas extends Component
 {
     public $topKelas;
     public function mount() {
-        $this->topKelas = Classes::select(
+        $this->topKelas =Classroom::select(
                 'classes.id',
                 'classes.name as nama_kelas',
                 'teachers.name as wali_kelas',

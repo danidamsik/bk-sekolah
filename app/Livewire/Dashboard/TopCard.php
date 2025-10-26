@@ -14,29 +14,23 @@ class TopCard extends Component
     public function mount() {
         $this->totalSiswa = Student::count();
 
-        // 2. Pelanggaran Bulan Ini
         $this->pelanggaranBulanIni = ViolationReport::whereMonth('date', Carbon::now()->month)
             ->whereYear('date', Carbon::now()->year)
             ->count();
 
-        // 3. Siswa dengan Poin di Atas 50
         $this->siswaPoinTinggi = Student::where('total_points', '>', 50)->count();
 
-        // Atau jika ingin menampilkan detail siswa:
         $this->siswaPoinTinggiDetail = Student::where('total_points', '>', 50)
             ->with(['class', 'teacher'])
             ->get();
 
-        // 4. Kasus Selesai
         $this->kasusSelesai = ViolationReport::where('status', 'Selesai')->count();
 
-        // Atau jika ingin kasus selesai bulan ini:
         $this->kasusSelesaiBulanIni = ViolationReport::where('status', 'Selesai')
             ->whereMonth('date', Carbon::now()->month)
             ->whereYear('date', Carbon::now()->year)
             ->count();
 
-        // 5. Kasus Terbaru (misal 10 kasus terakhir)
         $this->kasusTerbaru = ViolationReport::with([
                 'student',
                 'violation',
@@ -46,7 +40,6 @@ class TopCard extends Component
             ->limit(10)
             ->get();
 
-        // Atau kasus terbaru hari ini:
         $this->kasusTerbaruHariIni = ViolationReport::with([
                 'student',
                 'violation',

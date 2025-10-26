@@ -36,15 +36,7 @@ class TopCard extends Component
             ->whereYear('date', Carbon::now()->year)
             ->count();
 
-        // 5. Kasus Terbaru (misal 10 kasus terakhir)
-        $this->kasusTerbaru = ViolationReport::with([
-                'student',
-                'violation',
-                'reporter'
-            ])
-            ->orderBy('created_at', 'desc')
-            ->limit(10)
-            ->get();
+       $this->kasusTerbaru = ViolationReport::whereDate('date', Carbon::today())->count();
 
         // Atau kasus terbaru hari ini:
         $this->kasusTerbaruHariIni = ViolationReport::with([

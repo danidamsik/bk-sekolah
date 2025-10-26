@@ -6,7 +6,7 @@
         <div class="flex justify-between items-center">
             <div>
                 <h2 class="text-sm font-medium text-gray-500">Total Siswa</h2>
-                <p class="text-3xl font-bold text-gray-800 mt-1">320</p>
+                <p class="text-3xl font-bold text-gray-800 mt-1">{{$totalSiswa}}</p>
             </div>
             <div
                 class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white shadow-lg">
@@ -21,7 +21,7 @@
         <div class="flex justify-between items-center">
             <div>
                 <h2 class="text-sm font-medium text-gray-500">Pelanggaran Bulan Ini</h2>
-                <p class="text-3xl font-bold text-gray-800 mt-1">45</p>
+                <p class="text-3xl font-bold text-gray-800 mt-1">{{$pelanggaranBulanIni}}</p>
             </div>
             <div
                 class="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-500 to-pink-600 flex items-center justify-center text-white shadow-lg">
@@ -36,7 +36,7 @@
         <div class="flex justify-between items-center">
             <div>
                 <h2 class="text-sm font-medium text-gray-500">Siswa Poin > 50</h2>
-                <p class="text-3xl font-bold text-gray-800 mt-1">18</p>
+                <p class="text-3xl font-bold text-gray-800 mt-1">{{$siswaPoinTinggi}}</p>
             </div>
             <div
                 class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-400 to-amber-500 flex items-center justify-center text-white shadow-lg">
@@ -51,7 +51,7 @@
         <div class="flex justify-between items-center">
             <div>
                 <h2 class="text-sm font-medium text-gray-500">Kasus Selesai</h2>
-                <p class="text-3xl font-bold text-gray-800 mt-1">32</p>
+                <p class="text-3xl font-bold text-gray-800 mt-1">{{$kasusSelesai}}</p>
             </div>
             <div
                 class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-white shadow-lg">
@@ -66,7 +66,7 @@
         <div class="flex justify-between items-center">
             <div>
                 <h2 class="text-sm font-medium text-gray-500">Kasus Terbaru</h2>
-                <p class="text-3xl font-bold text-gray-800 mt-1">5</p>
+                <p class="text-3xl font-bold text-gray-800 mt-1">{{$kasusTerbaru}}</p>
             </div>
             <div
                 class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-sky-600 flex items-center justify-center text-white shadow-lg">

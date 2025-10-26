@@ -14,41 +14,18 @@ class TopCard extends Component
     public function mount() {
         $this->totalSiswa = Student::count();
 
+        // 2. Pelanggaran Bulan Ini
         $this->pelanggaranBulanIni = ViolationReport::whereMonth('date', Carbon::now()->month)
             ->whereYear('date', Carbon::now()->year)
             ->count();
 
+        // 3. Siswa dengan Poin di Atas 50
         $this->siswaPoinTinggi = Student::where('total_points', '>', 50)->count();
 
-        $this->siswaPoinTinggiDetail = Student::where('total_points', '>', 50)
-            ->with(['class', 'teacher'])
-            ->get();
-
+        // 4. Kasus Selesai
         $this->kasusSelesai = ViolationReport::where('status', 'Selesai')->count();
 
-        $this->kasusSelesaiBulanIni = ViolationReport::where('status', 'Selesai')
-            ->whereMonth('date', Carbon::now()->month)
-            ->whereYear('date', Carbon::now()->year)
-            ->count();
-
-        // 5. Kasus Terbaru (misal 10 kasus terakhir)
-        $this->kasusTerbaru = ViolationReport::with([
-                'student',
-                'violation',
-                'reporter'
-            ])
-            ->orderBy('created_at', 'desc')
-            ->limit(10)
-            ->get();
-
-        $this->kasusTerbaruHariIni = ViolationReport::with([
-                'student',
-                'violation',
-                'reporter'
-            ])
-            ->whereDate('date', Carbon::today())
-            ->orderBy('time', 'desc')
-            ->get();
+       $this->kasusTerbaru = ViolationReport::whereDate('date', Carbon::today())->count();
 
     }
     public function render()
@@ -57,11 +34,8 @@ class TopCard extends Component
             'totalSiswa' => $this->totalSiswa,
             'pelanggaranBulanIni' => $this->pelanggaranBulanIni,
             'siswaPoinTinggi' => $this->siswaPoinTinggi,
-            'siswaPoinTinggiDetail' => $this->siswaPoinTinggiDetail,
             'kasusSelesai' => $this->kasusSelesai,
-            'kasusSelesaiBulanIni' => $this->kasusSelesaiBulanIni,
             'kasusTerbaru' => $this->kasusTerbaru,
-            'kasusTerbaruHariIni' => $this->kasusTerbaruHariIni,
         ]);
     }
 }

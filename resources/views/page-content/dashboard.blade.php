@@ -44,60 +44,10 @@
         }
     </style>
 
-    <!-- ApexCharts + Script -->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // LINE CHART
-            const lineChart = new ApexCharts(document.querySelector("#lineChart"), {
-                chart: {
-                    type: 'line',
-                    height: 320,
-                    toolbar: {
-                        show: false
-                    }
-                },
-                series: [{
-                    name: 'Total Pelanggaran',
-                    data: [10, 22, 18, 30, 26, 40, 35, 25, 44, 50, 62, 58]
-                }],
-                xaxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt',
-                        'Nov', 'Des'
-                    ]
-                },
-                stroke: {
-                    curve: 'smooth',
-                    width: 3
-                },
-                colors: ['#6366f1'],
-                grid: {
-                    borderColor: '#f3f4f6'
-                },
-                markers: {
-                    size: 4
-                }
-            });
-            lineChart.render();
-
-            // PIE CHART
-            const pieChart = new ApexCharts(document.querySelector("#pieChart"), {
-                chart: {
-                    type: 'pie',
-                    height: 320
-                },
-                series: [44, 33, 22, 11],
-                labels: ['Terlambat', 'Tidak Seragam', 'Bolos', 'Melawan Guru'],
-                colors: ['#6366f1', '#f59e0b', '#ef4444', '#10b981'],
-                legend: {
-                    position: 'bottom'
-                },
-                dataLabels: {
-                    enabled: true
-                }
-            });
-            pieChart.render();
-
+          
             // TABLE SISWA
             const siswaBody = document.querySelector("#tableSiswa tbody");
             for (let i = 1; i <= 10; i++) {

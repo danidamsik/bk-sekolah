@@ -49,39 +49,9 @@
             // LINE CHART
           
             // TABLE SISWA
-            const siswaBody = document.querySelector("#tableSiswa tbody");
-            for (let i = 1; i <= 10; i++) {
-                siswaBody.innerHTML += `
-                <tr class="hover:bg-gray-50 transition">
-                    <td class="py-2 px-3">${i}</td>
-                    <td class="py-2 px-3">Siswa ${i}</td>
-                    <td class="py-2 px-3">XII IPA ${i}</td>
-                    <td class="py-2 px-3 text-rose-600 font-semibold">${Math.floor(Math.random() * 100)}</td>
-                    <td class="py-2 px-3">${Math.floor(Math.random() * 10 + 1)}</td>
-                    <td class="py-2 px-3 text-center">
-                        <button class="px-3 py-1 bg-indigo-600 text-white rounded-lg text-xs hover:bg-indigo-700 transition">Detail</button>
-                    </td>
-                </tr>
-            `;
-            }
+           
 
             // TABLE KELAS
-            const kelasBody = document.querySelector("#tableKelas tbody");
-            for (let i = 1; i <= 10; i++) {
-                kelasBody.innerHTML += `
-                <tr class="hover:bg-gray-50 transition">
-                    <td class="py-2 px-3">${i}</td>
-                    <td class="py-2 px-3">XII IPA ${i}</td>
-                    <td class="py-2 px-3">Budi Santoso</td>
-                    <td class="py-2 px-3">${Math.floor(Math.random() * 30 + 20)}</td>
-                    <td class="py-2 px-3 text-rose-600 font-semibold">${Math.floor(Math.random() * 50 + 10)}</td>
-                    <td class="py-2 px-3">${Math.floor(Math.random() * 10 + 5)}</td>
-                    <td class="py-2 px-3 text-center">
-                        <button class="px-3 py-1 bg-blue-600 text-white rounded-lg text-xs hover:bg-blue-700 transition">Detail</button>
-                    </td>
-                </tr>
-            `;
-            }
 
             // REFRESH BUTTON
             document.getElementById("refreshBtn").addEventListener("click", () => location.reload());

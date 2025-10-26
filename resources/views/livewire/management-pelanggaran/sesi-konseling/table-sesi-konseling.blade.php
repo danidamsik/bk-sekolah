@@ -1,0 +1,106 @@
+<div class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300">
+    {{-- Header & Filter --}}
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+        <h2 class="text-xl font-bold text-gray-700 flex items-center gap-2">
+            <i class="fas fa-comments text-green-600"></i>
+            Data Sesi Konseling
+        </h2>
+
+        <div class="flex flex-wrap gap-3 items-center">
+            <select
+                class="p-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-green-400 outline-none transition-all duration-200">
+                <option value="">Semua Status</option>
+                <option value="Baru">Baru</option>
+                <option value="Proses">Proses</option>
+                <option value="Selesai">Selesai</option>
+            </select>
+            <button
+                class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center gap-2 transition-all duration-300 shadow-sm">
+                <i class="fas fa-filter"></i> Filter
+            </button>
+        </div>
+    </div>
+
+    {{-- Table --}}
+    <div class="overflow-x-auto border border-gray-100 rounded-xl">
+        <table class="min-w-full border-collapse text-left">
+            <thead class="bg-gray-50 text-gray-700 uppercase text-sm font-semibold">
+                <tr>
+                    <th class="py-3 px-4">No</th>
+                    <th class="py-3 px-4">Nama Siswa</th>
+                    <th class="py-3 px-4">Guru BK</th>
+                    <th class="py-3 px-4">Tanggal Sesi</th>
+                    <th class="py-3 px-4">Status</th>
+                    <th class="py-3 px-4 text-center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="konselingTable" class="text-gray-600 divide-y divide-gray-100">
+                @php
+                    $konselingList = [
+                        ['nama' => 'Rasya Ahmad', 'guru' => 'Bu Siti', 'tanggal' => '2025-10-26', 'status' => 'Proses'],
+                        [
+                            'nama' => 'Alya Putri',
+                            'guru' => 'Pak Budi',
+                            'tanggal' => '2025-10-24',
+                            'status' => 'Selesai',
+                        ],
+                        ['nama' => 'Dimas Yoga', 'guru' => 'Bu Siti', 'tanggal' => '2025-10-22', 'status' => 'Baru'],
+                        [
+                            'nama' => 'Fauzan Rahman',
+                            'guru' => 'Pak Tono',
+                            'tanggal' => '2025-10-20',
+                            'status' => 'Proses',
+                        ],
+                        [
+                            'nama' => 'Salsa Nabila',
+                            'guru' => 'Bu Rini',
+                            'tanggal' => '2025-10-18',
+                            'status' => 'Selesai',
+                        ],
+                        ['nama' => 'Adit Prasetyo', 'guru' => 'Bu Wati', 'tanggal' => '2025-10-16', 'status' => 'Baru'],
+                    ];
+                @endphp
+
+                @foreach ($konselingList as $i => $item)
+                    <tr class="hover:bg-gray-50 transition-all duration-200">
+                        <td class="py-3 px-4">{{ $i + 1 }}</td>
+                        <td class="py-3 px-4">{{ $item['nama'] }}</td>
+                        <td class="py-3 px-4">{{ $item['guru'] }}</td>
+                        <td class="py-3 px-4">{{ $item['tanggal'] }}</td>
+                        <td class="py-3 px-4">
+                            @if ($item['status'] === 'Baru')
+                                <span
+                                    class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">Baru</span>
+                            @elseif ($item['status'] === 'Proses')
+                                <span
+                                    class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-medium">Proses</span>
+                            @else
+                                <span
+                                    class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Selesai</span>
+                            @endif
+                        </td>
+                        <td class="py-3 px-4 text-center space-x-3">
+                            <button class="text-blue-600 hover:text-blue-800 transition-all duration-200"><i
+                                    class="fas fa-eye"></i></button>
+                            <button class="text-green-600 hover:text-green-800 transition-all duration-200"><i
+                                    class="fas fa-edit"></i></button>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    {{-- Pagination --}}
+    <div class="flex justify-end items-center mt-6 space-x-2">
+        <button id="prevPage"
+            class="px-3 py-1 rounded-lg border border-gray-200 text-gray-600 hover:bg-green-100 hover:text-green-700 transition-all duration-200">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <span id="pageNumber" class="px-3 py-1 text-gray-700 font-medium bg-green-50 rounded-lg">1</span>
+        <button id="nextPage"
+            class="px-3 py-1 rounded-lg border border-gray-200 text-gray-600 hover:bg-green-100 hover:text-green-700 transition-all duration-200">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</div>

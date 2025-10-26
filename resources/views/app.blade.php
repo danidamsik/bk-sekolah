@@ -2,14 +2,6 @@
 <html lang="id">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistem Pencatatan Pelanggaran</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Sistem Pelanggaran Siswa</title>
@@ -17,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
     {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body class="bg-gray-50">
@@ -171,56 +163,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
-
-    <div class="flex flex-1">
-        <!-- Sidebar -->
-        <aside
-            class="bg-white top-16 w-64 border-r border-gray-200 p-4 space-y-2 fixed inset-y-0 left-0 transform md:translate-x-0 transition-transform duration-200 ease-in-out z-40"
-            :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" @click.away="sidebarOpen = false">
-            <nav aria-label="Sidebar utama" class="space-y-2">
-                <a href="/dashboard" class="flex items-center p-2 rounded-lg hover:bg-blue-100">
-                    <span class="material-icons mr-2">dashboard</span> Dashboard
-                </a>
-                <a href="/pelanggaran" class="flex items-center p-2 rounded-lg hover:bg-blue-100">
-                    <span class="material-icons mr-2">note_add</span> Pencatatan Pelanggaran
-                </a>
-                <a href="/management-siswa" class="flex items-center p-2 rounded-lg hover:bg-blue-100">
-                    <span class="material-icons mr-2">people</span> Manajemen Siswa
-                </a>
-                <a href="/konseling" class="flex items-center p-2 rounded-lg hover:bg-blue-100">
-                    <span class="material-icons mr-2">gavel</span> Tindak Lanjut & Konseling
-                </a>
-                <a href="management-user" class="flex items-center p-2 rounded-lg hover:bg-blue-100">
-                    <span class="material-icons mr-2">manage_accounts</span> Manajemen Pengguna
-                </a>
-                <a href="/settings" class="flex items-center p-2 rounded-lg hover:bg-blue-100">
-                <a href="/dashboard" wire:navigate
-                    class="flex items-center p-2 rounded-lg {{ request()->is('dashboard') ? 'bg-blue-100 text-blue-600 font-semibold' : 'hover:bg-blue-100' }}">
-                    <span class="material-icons mr-2">dashboard</span> Dashboard
-                </a>
-                <a href="/pelanggaran" wire:navigate
-                    class="flex items-center p-2 rounded-lg {{ request()->is('pelanggaran*') ? 'bg-blue-100 text-blue-600 font-semibold' : 'hover:bg-blue-100' }}">
-                    <span class="material-icons mr-2">note_add</span> Pencatatan Pelanggaran
-                </a>
-                <a href="/management-siswa" wire:navigate
-                    class="flex items-center p-2 rounded-lg {{ request()->is('management-siswa*') ? 'bg-blue-100 text-blue-600 font-semibold' : 'hover:bg-blue-100' }}">
-                    <span class="material-icons mr-2">people</span> Manajemen Siswa
-                </a>
-                <a href="/konseling" wire:navigate
-                    class="flex items-center p-2 rounded-lg {{ request()->is('konseling*') ? 'bg-blue-100 text-blue-600 font-semibold' : 'hover:bg-blue-100' }}">
-                    <span class="material-icons mr-2">gavel</span> Tindak Lanjut & Konseling
-                </a>
-                <a href="/management-user" wire:navigate
-                    class="flex items-center p-2 rounded-lg {{ request()->is('management-user*') ? 'bg-blue-100 text-blue-600 font-semibold' : 'hover:bg-blue-100' }}">
-                    <span class="material-icons mr-2">manage_accounts</span> Manajemen Pengguna
-                </a>
-                <a href="/settings" wire:navigate
-                    class="flex items-center p-2 rounded-lg {{ request()->is('settings*') ? 'bg-blue-100 text-blue-600 font-semibold' : 'hover:bg-blue-100' }}">
-                    <span class="material-icons mr-2">settings</span> Pengaturan
-                </a>
-            </nav>
         </aside>
 
         <!-- Main Content Area (Placeholder) -->

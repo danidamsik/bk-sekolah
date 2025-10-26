@@ -2,7 +2,6 @@
 <html lang="id" x-data="{ sidebarOpen: false }" class="h-full bg-gray-100">
 
 <head>
-<<<<<<< HEAD
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistem Pencatatan Pelanggaran</title>
@@ -11,7 +10,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-=======
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Pencatatan Pelanggaran</title>
@@ -20,7 +18,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
->>>>>>> b7ffc4b7914645d005886f7fc5b31e89ed7b0076
 </head>
 
 <body class="h-full flex flex-col">
@@ -51,7 +48,6 @@
             class="bg-white top-16 w-64 border-r border-gray-200 p-4 space-y-2 fixed inset-y-0 left-0 transform md:translate-x-0 transition-transform duration-200 ease-in-out z-40"
             :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" @click.away="sidebarOpen = false">
             <nav aria-label="Sidebar utama" class="space-y-2">
-<<<<<<< HEAD
                 <a href="/dashboard" class="flex items-center p-2 rounded-lg hover:bg-blue-100">
                     <span class="material-icons mr-2">dashboard</span> Dashboard
                 </a>
@@ -68,7 +64,6 @@
                     <span class="material-icons mr-2">manage_accounts</span> Manajemen Pengguna
                 </a>
                 <a href="/settings" class="flex items-center p-2 rounded-lg hover:bg-blue-100">
-=======
                 <a href="/dashboard" wire:navigate
                     class="flex items-center p-2 rounded-lg {{ request()->is('dashboard') ? 'bg-blue-100 text-blue-600 font-semibold' : 'hover:bg-blue-100' }}">
                     <span class="material-icons mr-2">dashboard</span> Dashboard
@@ -91,7 +86,6 @@
                 </a>
                 <a href="/settings" wire:navigate
                     class="flex items-center p-2 rounded-lg {{ request()->is('settings*') ? 'bg-blue-100 text-blue-600 font-semibold' : 'hover:bg-blue-100' }}">
->>>>>>> b7ffc4b7914645d005886f7fc5b31e89ed7b0076
                     <span class="material-icons mr-2">settings</span> Pengaturan
                 </a>
             </nav>

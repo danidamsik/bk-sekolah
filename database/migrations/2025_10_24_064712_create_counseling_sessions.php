@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('counseling_sessions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
-            $table->foreignId('report_id')->unique()->constrained('violation_reports')->onDelete('cascade');
-            $table->foreignId('counselor_id')->constrained('teachers')->onDelete('cascade');
+            $table->foreignId('violation_report_id')->unique()->constrained('violation_reports')->onDelete('cascade');
+            $table->foreignId('teacher_id')->constrained('teachers')->onDelete('cascade');
             $table->text('notes')->nullable();
             $table->text('recommendation')->nullable();
             $table->text('follow_up_plan')->nullable();
-            $table->enum('status', ['Baru', 'Diproses', 'Selesai', 'Butuh Konseling Lanjutan'])->default('Baru');
             $table->date('session_date');
             $table->timestamps();
         });

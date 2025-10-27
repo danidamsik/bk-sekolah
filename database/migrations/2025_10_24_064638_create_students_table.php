@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreignId('teacher_id')->constrained('teachers')->onDelete('cascade');
             $table->string('parent_name');
             $table->string('parent_contact');
-            $table->integer('total_points')->default(0);
             $table->timestamps();
         });
     }

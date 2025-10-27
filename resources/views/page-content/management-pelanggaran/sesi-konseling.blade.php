@@ -43,40 +43,4 @@
             animation: fade-in 0.4s ease-out;
         }
     </style>
-
-    {{-- JS Pagination --}}
-    <script>
-        const rowsPerPage = 3;
-        const table = document.getElementById("konselingTable");
-        const rows = table.getElementsByTagName("tr");
-        const totalRows = rows.length;
-        let currentPage = 1;
-
-        function showPage(page) {
-            const start = (page - 1) * rowsPerPage;
-            const end = start + rowsPerPage;
-
-            for (let i = 0; i < totalRows; i++) {
-                rows[i].style.display = i >= start && i < end ? "" : "none";
-            }
-
-            document.getElementById("pageNumber").innerText = page;
-        }
-
-        document.getElementById("prevPage").addEventListener("click", () => {
-            if (currentPage > 1) {
-                currentPage--;
-                showPage(currentPage);
-            }
-        });
-
-        document.getElementById("nextPage").addEventListener("click", () => {
-            if (currentPage * rowsPerPage < totalRows) {
-                currentPage++;
-                showPage(currentPage);
-            }
-        });
-
-        showPage(currentPage);
-    </script>
 @endsection

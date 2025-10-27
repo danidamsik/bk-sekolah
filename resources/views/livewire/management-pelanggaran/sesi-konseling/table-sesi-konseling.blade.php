@@ -21,11 +21,13 @@
         </div>
     </div>
 
-    {{-- Table --}}
+
+
+
     <div class="overflow-x-auto border border-gray-100 rounded-xl">
         <table class="min-w-full border-collapse text-left">
             <thead class="bg-gray-50 text-gray-700 uppercase text-sm font-semibold">
-                <tr>
+                <tr class="text-center">
                     <th class="py-3 px-4">No</th>
                     <th class="py-3 px-4">Nama Siswa</th>
                     <th class="py-3 px-4">Guru BK</th>
@@ -34,39 +36,13 @@
                     <th class="py-3 px-4 text-center">Aksi</th>
                 </tr>
             </thead>
-            <tbody id="konselingTable" class="text-gray-600 divide-y divide-gray-100">
-                @php
-                    $konselingList = [
-                        ['nama' => 'Rasya Ahmad', 'guru' => 'Bu Siti', 'tanggal' => '2025-10-26', 'status' => 'Proses'],
-                        [
-                            'nama' => 'Alya Putri',
-                            'guru' => 'Pak Budi',
-                            'tanggal' => '2025-10-24',
-                            'status' => 'Selesai',
-                        ],
-                        ['nama' => 'Dimas Yoga', 'guru' => 'Bu Siti', 'tanggal' => '2025-10-22', 'status' => 'Baru'],
-                        [
-                            'nama' => 'Fauzan Rahman',
-                            'guru' => 'Pak Tono',
-                            'tanggal' => '2025-10-20',
-                            'status' => 'Proses',
-                        ],
-                        [
-                            'nama' => 'Salsa Nabila',
-                            'guru' => 'Bu Rini',
-                            'tanggal' => '2025-10-18',
-                            'status' => 'Selesai',
-                        ],
-                        ['nama' => 'Adit Prasetyo', 'guru' => 'Bu Wati', 'tanggal' => '2025-10-16', 'status' => 'Baru'],
-                    ];
-                @endphp
-
-                @foreach ($konselingList as $i => $item)
+            <tbody id="konselingTable" class="text-gray-600 divide-y divide-gray-100 text-center">
+                @foreach ($dataKonseling as $i => $item)
                     <tr class="hover:bg-gray-50 transition-all duration-200">
-                        <td class="py-3 px-4">{{ $i + 1 }}</td>
-                        <td class="py-3 px-4">{{ $item['nama'] }}</td>
-                        <td class="py-3 px-4">{{ $item['guru'] }}</td>
-                        <td class="py-3 px-4">{{ $item['tanggal'] }}</td>
+                        <td class="py-3 px-4 font-medium">{{ $loop->iteration }}</td>
+                        <td class="py-3 px-4">{{ $item['name'] }}</td>
+                        <td class="py-3 px-4">{{ $item['nama_guru'] }}</td>
+                        <td class="py-3 px-4">{{ $item['session_date'] }}</td>
                         <td class="py-3 px-4">
                             @if ($item['status'] === 'Baru')
                                 <span
@@ -80,10 +56,12 @@
                             @endif
                         </td>
                         <td class="py-3 px-4 text-center space-x-3">
-                            <button class="text-blue-600 hover:text-blue-800 transition-all duration-200"><i
-                                    class="fas fa-eye"></i></button>
-                            <button class="text-green-600 hover:text-green-800 transition-all duration-200"><i
-                                    class="fas fa-edit"></i></button>
+                            <button class="text-blue-600 hover:text-blue-800 transition-all duration-200">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="text-green-600 hover:text-green-800 transition-all duration-200">
+                                <i class="fas fa-edit"></i>
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -91,16 +69,8 @@
         </table>
     </div>
 
-    {{-- Pagination --}}
-    <div class="flex justify-end items-center mt-6 space-x-2">
-        <button id="prevPage"
-            class="px-3 py-1 rounded-lg border border-gray-200 text-gray-600 hover:bg-green-100 hover:text-green-700 transition-all duration-200">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <span id="pageNumber" class="px-3 py-1 text-gray-700 font-medium bg-green-50 rounded-lg">1</span>
-        <button id="nextPage"
-            class="px-3 py-1 rounded-lg border border-gray-200 text-gray-600 hover:bg-green-100 hover:text-green-700 transition-all duration-200">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-    </div>
+    <!-- Pagination -->
+    {{-- <div class="mt-6">
+        {{ $dataKonseling->links('vendor.pagination.custom-white') }}
+    </div> --}}
 </div>

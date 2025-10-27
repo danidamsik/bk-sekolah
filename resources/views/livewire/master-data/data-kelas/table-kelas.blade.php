@@ -15,59 +15,54 @@
         </div>
     </div>
 
-    <!-- Table -->
     <div class="overflow-x-auto">
         <table class="min-w-full border border-gray-200 rounded-xl overflow-hidden">
             <thead class="bg-blue-600 text-white">
                 <tr>
-                    <th class="py-3 px-4 text-left">No</th>
+                    <th class="py-3 px-4 text-center w-12">No</th>
                     <th class="py-3 px-4 text-left">Nama Kelas</th>
                     <th class="py-3 px-4 text-left">Wali Kelas</th>
-                    <th class="py-3 px-4 text-left">Jumlah Siswa</th>
+                    <th class="py-3 px-4 text-center">Jumlah Siswa</th>
                     <th class="py-3 px-4 text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody id="kelasTable" class="divide-y divide-gray-100">
-                @php
-                    $kelasList = [
-                        ['nama' => 'XII IPA 1', 'wali' => 'Bu Rini', 'jumlah' => 32],
-                        ['nama' => 'XII IPA 2', 'wali' => 'Pak Dedi', 'jumlah' => 30],
-                        ['nama' => 'XI IPA 1', 'wali' => 'Bu Rina', 'jumlah' => 28],
-                        ['nama' => 'XI IPA 2', 'wali' => 'Pak Arif', 'jumlah' => 31],
-                        ['nama' => 'X IPS 1', 'wali' => 'Bu Dini', 'jumlah' => 29],
-                        ['nama' => 'X IPS 2', 'wali' => 'Pak Raka', 'jumlah' => 33],
-                        ['nama' => 'XII IPS 1', 'wali' => 'Bu Sari', 'jumlah' => 35],
-                        ['nama' => 'XII IPS 2', 'wali' => 'Pak Bambang', 'jumlah' => 30],
-                        ['nama' => 'XI IPS 1', 'wali' => 'Bu Tika', 'jumlah' => 27],
-                        ['nama' => 'X IPA 1', 'wali' => 'Pak Rudi', 'jumlah' => 34],
-                    ];
-                @endphp
-
-                @foreach ($kelasList as $i => $kelas)
+                @forelse ($dataKelas as $i => $kelas)
                     <tr class="hover:bg-gray-50 transition">
-                        <td class="py-3 px-4">{{ $i + 1 }}</td>
-                        <td class="py-3 px-4 font-medium text-gray-800">{{ $kelas['nama'] }}</td>
-                        <td class="py-3 px-4">{{ $kelas['wali'] }}</td>
-                        <td class="py-3 px-4">{{ $kelas['jumlah'] }}</td>
+                        <td class="py-3 px-4 text-center">{{ $loop->iteration }}</td>
+                        <td class="py-3 px-4 font-medium text-gray-800 text-left">
+                            {{ $kelas['nama_kelas'] ?? ($kelas->nama_kelas ?? '-') }}
+                        </td>
+                        <td class="py-3 px-4 text-left">
+                            {{ $kelas['wali_kelas'] ?? ($kelas->wali_kelas ?? '-') }}
+                        </td>
+                        <td class="py-3 px-4 text-center">
+                            {{ $kelas['jumlah_siswa'] ?? ($kelas->jumlah_siswa ?? 0) }}
+                        </td>
                         <td class="py-3 px-4 text-center">
                             <div class="flex justify-center gap-3 text-gray-600">
-                                <button class="hover:text-blue-600 transition" title="Edit">
+                                <button wire:click="edit({{ $kelas['id'] ?? ($kelas->id ?? 'null') }})"
+                                    class="hover:text-blue-600 transition" title="Edit">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="hover:text-red-600 transition" title="Hapus" onclick="hapusBaris(this)">
+                                <button wire:click="hapus({{ $kelas['id'] ?? ($kelas->id ?? 'null') }})"
+                                    class="hover:text-red-600 transition" title="Hapus">
                                     <i class="fas fa-trash"></i>
                                 </button>
-                                <button class="hover:text-green-600 transition" title="Lihat Detail">
+                                <button wire:click="lihatDetail({{ $kelas['id'] ?? ($kelas->id ?? 'null') }})"
+                                    class="hover:text-green-600 transition" title="Lihat Detail">
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </div>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="5" class="py-4 text-center text-gray-500">Tidak ada data kelas</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
 
-    <!-- Pagination -->
-    <div class="flex justify-center items-center space-x-2 mt-6" id="pagination"></div>
 </div>

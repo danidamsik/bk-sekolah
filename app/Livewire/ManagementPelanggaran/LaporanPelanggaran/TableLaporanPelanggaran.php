@@ -15,7 +15,7 @@ class TableLaporanPelanggaran extends Component
         $violationReport = ViolationReport::select(
             'students.name as nama_siswa',
             'classes.name as class_name',
-            'violations.name as name_pelanggran',
+            'violations.name as name_pelanggaran',
             'teachers.name as name_teacher',
             'violation_reports.date',
             'violation_reports.status'

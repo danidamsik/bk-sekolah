@@ -16,74 +16,42 @@
 
     <!-- Table -->
     <div class="overflow-x-auto">
-        <table class="min-w-full border border-gray-200 rounded-xl overflow-hidden">
+        <table class="min-w-full table-fixed border border-gray-200 rounded-xl overflow-hidden">
             <thead class="bg-blue-600 text-white">
                 <tr>
-                    <th class="py-3 px-4 text-left">No</th>
-                    <th class="py-3 px-4 text-left">Nama Pelanggaran</th>
-                    <th class="py-3 px-4 text-left">Poin</th>
-                    <th class="py-3 px-4 text-left">Deskripsi</th>
-                    <th class="py-3 px-4 text-center">Aksi</th>
+                    <th class="py-3 px-4 text-center w-16">No</th>
+                    <th class="py-3 px-4 text-center">Nama Pelanggaran</th>
+                    <th class="py-3 px-4 text-center w-24">Poin</th>
+                    <th class="py-3 px-4 text-center">Deskripsi</th>
+                    <th class="py-3 px-4 text-center w-28">Aksi</th>
                 </tr>
             </thead>
-            <tbody id="pelanggaranTable" class="divide-y divide-gray-100">
-                @php
-                    $pelanggaranList = [
-                        [
-                            'nama' => 'Datang Terlambat',
-                            'poin' => 5,
-                            'deskripsi' => 'Siswa datang lebih dari jam masuk sekolah.',
-                        ],
-                        [
-                            'nama' => 'Tidak Memakai Seragam Lengkap',
-                            'poin' => 3,
-                            'deskripsi' => 'Siswa tidak mengenakan atribut sekolah.',
-                        ],
-                        [
-                            'nama' => 'Bolos Pelajaran',
-                            'poin' => 10,
-                            'deskripsi' => 'Siswa tidak mengikuti pelajaran tanpa izin.',
-                        ],
-                        [
-                            'nama' => 'Merokok di Area Sekolah',
-                            'poin' => 15,
-                            'deskripsi' => 'Siswa kedapatan merokok di lingkungan sekolah.',
-                        ],
-                        [
-                            'nama' => 'Membawa HP Saat Pelajaran',
-                            'poin' => 7,
-                            'deskripsi' => 'Siswa menggunakan HP tanpa izin guru.',
-                        ],
-                        [
-                            'nama' => 'Tidak Mengerjakan Tugas',
-                            'poin' => 4,
-                            'deskripsi' => 'Siswa tidak mengumpulkan tugas tepat waktu.',
-                        ],
-                    ];
-                @endphp
 
-                @foreach ($pelanggaranList as $i => $item)
-                    <tr class="hover:bg-gray-50 transition">
-                        <td class="py-3 px-4">{{ $i + 1 }}</td>
-                        <td class="py-3 px-4 font-medium text-gray-800">{{ $item['nama'] }}</td>
-                        <td class="py-3 px-4 text-blue-600 font-semibold">{{ $item['poin'] }}</td>
-                        <td class="py-3 px-4 text-gray-700">{{ $item['deskripsi'] }}</td>
+            <tbody id="pelanggaranTable" class="divide-y divide-gray-100">
+                @forelse ($dataViolation as $i => $item)
+                    <tr class="hover:bg-gray-50 transition text-center">
+                        <td class="py-3 px-4">{{ $loop->iteration }}</td>
+                        <td class="py-3 px-4 font-medium text-gray-800">{{ $item->name }}</td>
+                        <td class="py-3 px-4 text-blue-600 font-semibold">{{ $item->point }}</td>
+                        <td class="py-3 px-4 text-gray-700">{{ $item->description }}</td>
                         <td class="py-3 px-4 text-center">
-                            <div class="flex justify-center gap-3 text-gray-600">
-                                <button class="hover:text-blue-600 transition" title="Edit">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="hover:text-red-600 transition" title="Hapus" onclick="hapusBaris(this)">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
+                            <div class="flex justify-center gap-3 text-gray-600"> <button
+                                    class="hover:text-blue-600 transition" title="Edit"> <i class="fas fa-edit"></i>
+                                </button> <button class="hover:text-red-600 transition" title="Hapus"
+                                    onclick="hapusBaris(this)"> <i class="fas fa-trash"></i> </button> <button
+                                    class="hover:text-green-600 transition" title="Lihat Detail"> <i
+                                        class="fas fa-eye"></i> </button> </div>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="5" class="py-4 text-center text-gray-500">
+                            Tidak ada data pelanggaran
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
 
-    <!-- Pagination -->
-    <div class="flex justify-center items-center space-x-2 mt-6" id="pagination"></div>
 </div>

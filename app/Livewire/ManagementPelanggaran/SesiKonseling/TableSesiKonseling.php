@@ -4,6 +4,7 @@ namespace App\Livewire\ManagementPelanggaran\SesiKonseling;
 
 use App\Models\CounselingSession;
 use Livewire\Component;
+// use Livewire\WithPagination;
 
 class TableSesiKonseling extends Component
 {

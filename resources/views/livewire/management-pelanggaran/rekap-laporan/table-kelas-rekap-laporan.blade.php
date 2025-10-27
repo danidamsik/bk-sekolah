@@ -42,7 +42,4 @@
             </tbody>
         </table>
     </div>
-
-    <!-- Pagination -->
-    <div class="flex justify-center items-center space-x-2 mt-6" id="paginationKelas"></div>
 </div>

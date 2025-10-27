@@ -13,6 +13,7 @@ class TableGuru extends Component
         $this->dataGuru = Teacher::select(
             'teachers.id',
             'teachers.name',
+            'teachers.nip',
             'users.email', 
             'users.role',
             'teachers.phone'

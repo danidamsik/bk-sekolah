@@ -1,7 +1,17 @@
 @extends('app')
 
 @section('content')
-    <div class="p-6 space-y-8 animate-fadeIn">
+    <div x-data="{
+        dataSiswa: { 
+        nisn:'',
+        name: '', 
+        nama_kelas: '', 
+        wali_kelas: '', 
+        total_point: '', 
+        parent_name: '', 
+        parent_contact: '', 
+        }
+    }" class="p-6 space-y-8 animate-fadeIn">
 
         <!-- 🔹 COMPONENT 1: Input Pencarian + Table Data Siswa -->
         @livewire('master-data.data-siswa.table-siswa')

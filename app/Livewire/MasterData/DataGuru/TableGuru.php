@@ -19,6 +19,7 @@ class TableGuru extends Component
             'teachers.phone'
         )->join('users', 'teachers.id', '=', 'users.teacher_id')->limit(10)->get();
     }
+
     public function render()
     {
         return view('livewire.master-data.data-guru.table-guru', ['dataGuru' => $this->dataGuru]);

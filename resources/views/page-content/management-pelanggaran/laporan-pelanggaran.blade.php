@@ -1,7 +1,16 @@
 @extends('app')
 
 @section('content')
-    <div class="p-6 space-y-8 animate-fade-in">
+    <div x-data="{
+        laporanPelanggaran: { 
+        nama_siswa: '', 
+        class_name: '', 
+        nama_pelanggaran: '', 
+        nama_teacher: '', 
+        date: '', 
+        status: '', 
+        }
+    }" class="p-6 space-y-8 animate-fade-in">
 
         {{-- ======================================================
         COMPONENT 1 : FILTER + TABEL DATA LAPORAN PELANGGARAN

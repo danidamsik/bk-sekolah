@@ -12,16 +12,17 @@
          {{-- Input Nama Kelas --}}
          <div>
              <label class="block text-gray-600 text-sm mb-1">Nama Kelas</label>
-             <input type="text" placeholder="Masukkan nama kelas"
+             <input x-model="dataKelas.nama_kelas" type="text" placeholder="Masukkan nama kelas"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 outline-none" />
          </div>
 
          {{-- Select Wali Kelas --}}
          <div>
              <label class="block text-gray-600 text-sm mb-1">Wali Kelas</label>
-             <select
+             <select x-model="dataKelas.wali_kelas"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 outline-none">
                  <option value="">Pilih Wali Kelas</option>
+                 <option value="Siti Nurhaliza, S.Pd">Siti Nurhaliza, S.Pd</option>
                  <option value="Bu Rini">Bu Rini</option>
                  <option value="Pak Agus">Pak Agus</option>
                  <option value="Bu Sinta">Bu Sinta</option>
@@ -31,7 +32,7 @@
          {{-- Input Jumlah Siswa --}}
          <div>
              <label class="block text-gray-600 text-sm mb-1">Jumlah Siswa</label>
-             <input type="number" placeholder="Masukkan jumlah siswa"
+             <input x-model="dataKelas.jumlah_siswa" type="number" placeholder="Masukkan jumlah siswa"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 outline-none" />
          </div>
 

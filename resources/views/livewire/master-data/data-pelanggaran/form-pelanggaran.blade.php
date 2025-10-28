@@ -6,19 +6,19 @@
     <form id="formPelanggaran" class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
             <label class="text-sm text-gray-600">Nama Pelanggaran</label>
-            <input type="text" id="namaPelanggaran" placeholder="Masukkan nama pelanggaran"
+            <input x-model="dataPelanggaran.name" type="text" id="namaPelanggaran" placeholder="Masukkan nama pelanggaran"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 outline-none" />
         </div>
 
         <div>
             <label class="text-sm text-gray-600">Poin</label>
-            <input type="number" id="poinPelanggaran" placeholder="Masukkan poin pelanggaran"
+            <input x-model="dataPelanggaran.point" type="number" id="poinPelanggaran" placeholder="Masukkan poin pelanggaran"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 outline-none" />
         </div>
 
         <div class="md:col-span-2">
             <label class="text-sm text-gray-600">Deskripsi</label>
-            <textarea id="deskripsiPelanggaran" placeholder="Masukkan deskripsi pelanggaran"
+            <textarea x-model="dataPelanggaran.description" id="deskripsiPelanggaran" placeholder="Masukkan deskripsi pelanggaran"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
                 rows="3"></textarea>
         </div>

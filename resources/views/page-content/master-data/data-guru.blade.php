@@ -1,7 +1,15 @@
 @extends('app')
 
 @section('content')
-    <div class="p-8 bg-gray-50 min-h-screen space-y-8 animate-fadeIn">
+    <div x-data="{
+        dataGuru: { 
+        name: '', 
+        nip: '', 
+        email: '', 
+        role: '', 
+        phone: '', 
+        }
+    }" class="p-8 bg-gray-50 min-h-screen space-y-8 animate-fadeIn">
 
         <!-- === COMPONENT DATA GURU (input, filter, table) === -->
         @livewire('master-data.data-guru.table-guru')

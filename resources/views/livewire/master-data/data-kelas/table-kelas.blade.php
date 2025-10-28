@@ -41,11 +41,15 @@
                         </td>
                         <td class="py-3 px-4 text-center">
                             <div class="flex justify-center gap-3 text-gray-600">
-                                <button wire:click="edit({{ $kelas['id'] ?? ($kelas->id ?? 'null') }})"
+                                <button @click="dataKelas = {
+                                                    nama_kelas: '{{$kelas['nama_kelas']}}',
+                                                    wali_kelas: '{{$kelas['wali_kelas']}}',
+                                                    jumlah_siswa: '{{$kelas['jumlah_siswa']}}',
+                                                    }" 
                                     class="hover:text-blue-600 transition" title="Edit">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button wire:click="hapus({{ $kelas['id'] ?? ($kelas->id ?? 'null') }})"
+                                <button
                                     class="hover:text-red-600 transition" title="Hapus">
                                     <i class="fas fa-trash"></i>
                                 </button>

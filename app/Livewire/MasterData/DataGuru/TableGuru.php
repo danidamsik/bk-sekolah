@@ -10,17 +10,43 @@ class TableGuru extends Component
 {
     use WithPagination;
 
+    public $search = '';
+    public $roleFilter = '';
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingRoleFilter()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
-        $dataGuru = Teacher::select(
+        $query = Teacher::select(
             'teachers.id',
             'teachers.name',
             'teachers.nip',
-            'users.email', 
+            'users.email',
             'users.role',
             'teachers.phone'
-        )->join('users', 'teachers.id', '=', 'users.teacher_id')->paginate(10);
+        )
+        ->join('users', 'teachers.id', '=', 'users.teacher_id');
 
-        return view('livewire.master-data.data-guru.table-guru', ['dataGuru' => $dataGuru]);
+        if (!empty($this->search)) {
+            $query->where('teachers.name', 'like', '%' . $this->search . '%');
+        }
+        
+        if (!empty($this->roleFilter)) {
+            $query->where('users.role', $this->roleFilter);
+        }
+
+        $dataGuru = $query->paginate(10);
+
+        return view('livewire.master-data.data-guru.table-guru', [
+            'dataGuru' => $dataGuru,
+        ]);
     }
 }

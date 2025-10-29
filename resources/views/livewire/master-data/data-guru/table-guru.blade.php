@@ -19,8 +19,8 @@
                 class="border border-gray-300 rounded-xl py-2 px-3 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200">
                 <option value="">Semua Role</option>
                 <option value="Admin">Admin</option>
-                <option value="Guru BK">Guru BK</option>
-                <option value="Wali Kelas">Wali Kelas</option>
+                <option value="GuruBK">Guru BK</option>
+                <option value="WaliKelas">Wali Kelas</option>
             </select>
         </div>
     </div>

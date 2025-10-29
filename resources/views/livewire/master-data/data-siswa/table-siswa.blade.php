@@ -7,10 +7,6 @@
         <div class="flex gap-3">
             <input type="text" wire:model.live="search" placeholder="Cari berdasarkan NISN / Nama..."
                 class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none w-72" />
-            <button wire:click="searchSiswa"
-                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition">
-                <i class="fas fa-search"></i> Cari
-            </button>
         </div>
     </div>
 

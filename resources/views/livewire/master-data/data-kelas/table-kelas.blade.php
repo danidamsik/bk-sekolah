@@ -5,13 +5,9 @@
             <i class="fas fa-chalkboard-teacher text-blue-500"></i> Data Kelas
         </h2>
         <div class="flex gap-3">
-            <input type="text" id="searchInput" onkeyup="filterTable()"
+            <input wire:model.live="search" type="text" id="searchInput"
                 placeholder="Cari berdasarkan nama kelas / wali..."
                 class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none w-72" />
-            <button
-                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition">
-                <i class="fas fa-search"></i> Cari
-            </button>
         </div>
     </div>
 

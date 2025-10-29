@@ -10,10 +10,25 @@ class TablePelanggaran extends Component
 {
     use WithPagination;
 
+    public $search = '';
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
-        $dataViolation = Violation::select('id', 'name', 'point', 'description')->paginate(10);
-        
-        return view('livewire.master-data.data-pelanggaran.table-pelanggaran', ['dataViolation' => $dataViolation]);
+        $query = Violation::select('id', 'name', 'point', 'description');
+
+        if (!empty($this->search)) {
+            $query->where('name', 'like', '%' . $this->search . '%');
+        }
+
+        $dataViolation = $query->paginate(10);
+
+        return view('livewire.master-data.data-pelanggaran.table-pelanggaran', [
+            'dataViolation' => $dataViolation,
+        ]);
     }
 }

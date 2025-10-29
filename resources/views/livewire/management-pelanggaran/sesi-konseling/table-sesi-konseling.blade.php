@@ -7,17 +7,14 @@
         </h2>
 
         <div class="flex flex-wrap gap-3 items-center">
-            <select
+            <select wire:model.live="status"
                 class="p-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-green-400 outline-none transition-all duration-200">
                 <option value="">Semua Status</option>
                 <option value="Baru">Baru</option>
-                <option value="Proses">Proses</option>
+                <option value="Diproses">Di Proses</option>
                 <option value="Selesai">Selesai</option>
+                <option value="Konseling">Konseling</option>
             </select>
-            <button
-                class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center gap-2 transition-all duration-300 shadow-sm">
-                <i class="fas fa-filter"></i> Filter
-            </button>
         </div>
     </div>
 
@@ -40,17 +37,20 @@
                 @foreach ($dataKonseling as $i => $item)
                     <tr class="hover:bg-gray-50 transition-all duration-200">
                         <td class="py-3 px-4 font-medium">{{ $loop->iteration }}</td>
-                        <td class="py-3 px-4">{{ $item['name'] }}</td>
+                        <td class="py-3 px-4">{{ $item['nama_siswa'] }}</td>
                         <td class="py-3 px-4">{{ $item['nama_guru'] }}</td>
                         <td class="py-3 px-4">{{ $item['session_date'] }}</td>
                         <td class="py-3 px-4">
                             @if ($item['status'] === 'Baru')
                                 <span
                                     class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">Baru</span>
-                            @elseif ($item['status'] === 'Proses')
+                            @elseif ($item['status'] === 'Diproses')
                                 <span
-                                    class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-medium">Proses</span>
-                            @else
+                                    class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Diproses</span>
+                            @elseif ($item['status'] === 'Konseling')
+                                <span
+                                    class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Konseling</span>
+                            @elseif ($item['status'] === 'Selesai')
                                 <span
                                     class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Selesai</span>
                             @endif

@@ -5,12 +5,8 @@
             <i class="fa-solid fa-triangle-exclamation text-blue-500"></i> Data Pelanggaran
         </h2>
         <div class="flex gap-3">
-            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Cari nama pelanggaran..."
+            <input wire:model.live="search" type="text" id="searchInput" placeholder="Cari nama pelanggaran..."
                 class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none w-72" />
-            <button
-                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition">
-                <i class="fas fa-search"></i> Cari
-            </button>
         </div>
     </div>
 

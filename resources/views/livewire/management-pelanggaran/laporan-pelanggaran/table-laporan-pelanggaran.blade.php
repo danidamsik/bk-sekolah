@@ -6,14 +6,16 @@
         </h2>
 
         <div class="flex flex-wrap gap-3 items-center">
-            <select
+            <select wire:model.live="kelas"
                 class="p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:outline-none transition-all">
                 <option value="">Pilih Kelas</option>
-                <option value="X">X</option>
-                <option value="XI">XI</option>
-                <option value="XII">XII</option>
+                <option value="X IPA 1">X IPA 1</option>
+                <option value="X IPA 2">X IPA 2</option>
+                <option value="XI IPS 1">XI IPS 1</option>
+                <option value="XI IPA 1">XI IPA 1</option>
+                <option value="XII IPA 1">XII IPA 1</option>
             </select>
-            <select
+            <select wire:model.live="status"
                 class="p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:outline-none transition-all">
                 <option value="">Status</option>
                 <option value="Baru">Baru</option>
@@ -21,14 +23,10 @@
                 <option value="Selesai">Selesai</option>
                 <option value="Konseling">Konseling</option>
             </select>
-            <input type="date"
+            <input wire:model.live="date" type="date"
                 class="p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:outline-none transition-all">
-            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Cari nama siswa..."
+            <input wire:model.live="search" type="text" id="searchInput" placeholder="Cari nama siswa..."
                 class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-400 focus:outline-none w-72" />
-            <button
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition">
-                <i class="fas fa-search"></i> Filter
-            </button>
         </div>
     </div>
 

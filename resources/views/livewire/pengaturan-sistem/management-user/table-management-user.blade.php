@@ -29,7 +29,7 @@
             <tbody class="divide-y divide-gray-200 text-center">
                 @foreach ($user as $i => $item)
                     <tr class="hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 transition-all duration-300">
-                        <td class="py-4 px-6">{{ $i + 1 }}</td>
+                        <td class="py-3 px-4"> {{ $user->firstItem() + $loop->index }}</td>
                         <td class="py-4 px-6 font-medium">{{ $item['nama_user'] }}</td>
                         <td class="py-4 px-6">{{ $item['email'] }}</td>
                         <td class="py-4 px-6">
@@ -43,7 +43,12 @@
                         </td>
                         <td class="py-4 px-6">{{ $item['nama_guru'] }}</td>
                         <td class="py-4 px-6 flex justify-center gap-3">
-                            <button
+                            <button  @click="user = {
+                                                    nama_user: '{{$item['nama_user']}}',
+                                                    email: '{{$item['email']}}',
+                                                    role: '{{$item['role']}}',
+                                                    nama_guru: '{{$item['nama_guru']}}',
+                                                    }" 
                                 class="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg text-sm flex items-center gap-2 transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
                                 <i class="fa-solid fa-pen-to-square"></i> Edit
                             </button>
@@ -56,5 +61,10 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-6">
+        {{ $user->links('vendor.pagination.custom-white') }}
     </div>
 </div>

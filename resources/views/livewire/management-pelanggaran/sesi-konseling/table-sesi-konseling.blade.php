@@ -49,7 +49,7 @@
                                     class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Diproses</span>
                             @elseif ($item['status'] === 'Konseling')
                                 <span
-                                    class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Konseling</span>
+                                    class="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-xs font-medium">Konseling</span>
                             @elseif ($item['status'] === 'Selesai')
                                 <span
                                     class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Selesai</span>
@@ -59,7 +59,14 @@
                             <button class="text-blue-600 hover:text-blue-800 transition-all duration-200">
                                 <i class="fas fa-eye"></i>
                             </button>
-                            <button class="text-green-600 hover:text-green-800 transition-all duration-200">
+                            <button
+                                @click="dataKonseling = {
+                                                    nama_siswa: '{{ $item['nama_siswa'] }}',
+                                                    nama_guru: '{{ $item['nama_guru'] }}',
+                                                    session_date: '{{ $item['session_date'] }}'.split(' ')[0],
+                                                    status: '{{ $item['status'] }}',
+                                                    }"
+                                class="text-green-600 hover:text-green-800 transition-all duration-200">
                                 <i class="fas fa-edit"></i>
                             </button>
                         </td>
@@ -70,7 +77,7 @@
     </div>
 
     <!-- Pagination -->
-    {{-- <div class="mt-6">
+    <div class="mt-6">
         {{ $dataKonseling->links('vendor.pagination.custom-white') }}
-    </div> --}}
+    </div>
 </div>

@@ -12,31 +12,32 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Nama Siswa</label>
-                        <input type="text" name="nama_siswa"
+                        <input x-model="dataKonseling.nama_siswa" type="text" name="nama_siswa"
                             class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
                             placeholder="Masukkan nama siswa">
                     </div>
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Guru BK</label>
-                        <input type="text" name="guru_bk"
+                        <input x-model="dataKonseling.nama_guru" type="text" name="guru_bk"
                             class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
                             placeholder="Masukkan nama guru BK">
                     </div>
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Tanggal Sesi</label>
-                        <input type="date" name="tanggal"
+                        <input x-model="dataKonseling.session_date" type="date" name="tanggal"
                             class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200">
                     </div>
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Status</label>
-                        <select name="status"
+                        <select name="status" x-model="dataKonseling.status"
                             class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200">
                             <option value="Baru">Baru</option>
                             <option value="Proses">Proses</option>
                             <option value="Selesai">Selesai</option>
+                            <option value="Konseling">Konseling</option>
                         </select>
                     </div>
                 </div>

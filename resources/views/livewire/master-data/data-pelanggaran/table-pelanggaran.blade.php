@@ -26,16 +26,17 @@
             <tbody id="pelanggaranTable" class="divide-y divide-gray-100">
                 @forelse ($dataViolation as $i => $item)
                     <tr class="hover:bg-gray-50 transition text-center">
-                        <td class="py-3 px-4">{{ $loop->iteration }}</td>
+                        <td class="py-3 px-4"> {{ $dataViolation->firstItem() + $loop->index }}</td>
                         <td class="py-3 px-4 font-medium text-gray-800">{{ $item->name }}</td>
                         <td class="py-3 px-4 text-blue-600 font-semibold">{{ $item->point }}</td>
                         <td class="py-3 px-4 text-gray-700">{{ $item->description }}</td>
                         <td class="py-3 px-4 text-center">
-                            <div class="flex justify-center gap-3 text-gray-600"> <button @click="dataPelanggaran = {
-                                                    name: '{{$item['name']}}',
-                                                    point: '{{$item['point']}}',
-                                                    description: '{{$item['description']}}',
-                                                    }" 
+                            <div class="flex justify-center gap-3 text-gray-600"> <button
+                                    @click="dataPelanggaran = {
+                                                    name: '{{ $item['name'] }}',
+                                                    point: '{{ $item['point'] }}',
+                                                    description: '{{ $item['description'] }}',
+                                                    }"
                                     class="hover:text-blue-600 transition" title="Edit"> <i class="fas fa-edit"></i>
                                 </button> <button class="hover:text-red-600 transition" title="Hapus"
                                     onclick="hapusBaris(this)"> <i class="fas fa-trash"></i> </button> <button
@@ -52,6 +53,11 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-6">
+        {{ $dataViolation->links('vendor.pagination.custom-white') }}
     </div>
 
 </div>

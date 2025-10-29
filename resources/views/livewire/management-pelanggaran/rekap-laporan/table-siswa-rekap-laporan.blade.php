@@ -33,4 +33,8 @@
         </table>
     </div>
 
+    <!-- Pagination -->
+    <div class="mt-6">
+        {{ $recapPerStudent->links('vendor.pagination.custom-white') }}
+    </div>
 </div>

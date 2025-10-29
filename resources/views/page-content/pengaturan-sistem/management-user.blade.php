@@ -1,7 +1,15 @@
 @extends('app')
 
 @section('content')
-    <div class="p-6 space-y-8 animate-fade-in bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <div x-data="{
+        user: {
+            nama_user: '',
+            email: '',
+            role: '',
+            nama_guru: '',
+        }
+    }"
+        class="p-6 space-y-8 animate-fade-in bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
 
         {{-- ========================= Start Component 1 : Table User ========================= --}}
         @livewire('pengaturan-sistem.management-user.table-management-user')

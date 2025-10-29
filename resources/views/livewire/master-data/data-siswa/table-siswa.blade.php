@@ -29,7 +29,7 @@
             <tbody class="divide-y divide-gray-100">
                 @forelse ($dataSiswa as $index => $siswa)
                     <tr class="hover:bg-gray-50 transition">
-                        <td class="py-3 px-4">{{ $loop->iteration }}</td>
+                        <td class="py-3 px-4"> {{ $dataSiswa->firstItem() + $loop->index }}</td>
                         <td class="py-3 px-4">{{ $siswa->nisn }}</td>
                         <td class="py-3 px-4 font-medium text-gray-800">{{ $siswa->name }}</td>
                         <td class="py-3 px-4">{{ $siswa->nama_kelas }}</td>
@@ -40,17 +40,17 @@
                         <td class="py-3 px-4 text-center">
                             <div class="flex justify-center gap-3 text-gray-600"> <button
                                     @click="dataSiswa = {
-                                        nisn : '{{$siswa['nisn']}}',
-                                        name : '{{$siswa['name']}}',
-                                        nama_kelas : '{{$siswa['nama_kelas']}}',
-                                        wali_kelas : '{{$siswa['wali_kelas']}}',
-                                        total_point : '{{$siswa['total_point']}}',
-                                        parent_name : '{{$siswa['parent_name']}}',
-                                        parent_contact : '{{$siswa['parent_contact']}}',
+                                        nisn : '{{ $siswa['nisn'] }}',
+                                        name : '{{ $siswa['name'] }}',
+                                        nama_kelas : '{{ $siswa['nama_kelas'] }}',
+                                        wali_kelas : '{{ $siswa['wali_kelas'] }}',
+                                        total_point : '{{ $siswa['total_point'] }}',
+                                        parent_name : '{{ $siswa['parent_name'] }}',
+                                        parent_contact : '{{ $siswa['parent_contact'] }}',
                                     }"
                                     class="hover:text-blue-600 transition" title="Edit"> <i class="fas fa-edit"></i>
-                                </button> <button class="hover:text-red-600 transition" title="Hapus"
-                                    > <i class="fas fa-trash"></i> </button> <button
+                                </button> <button class="hover:text-red-600 transition" title="Hapus"> <i
+                                        class="fas fa-trash"></i> </button> <button
                                     class="hover:text-green-600 transition" title="Lihat Detail"> <i
                                         class="fas fa-eye"></i> </button> </div>
                         </td>
@@ -62,5 +62,10 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-6">
+        {{ $dataSiswa->links('vendor.pagination.custom-white') }}
     </div>
 </div>

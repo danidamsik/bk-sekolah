@@ -23,13 +23,19 @@
                     <tr class="hover:bg-gray-50 transition">
                         <td class="py-3 px-4 text-center">{{ $i + 1 }}</td>
                         <td class="py-3 px-4 text-center font-medium text-gray-800">{{ $item['kelas'] }}</td>
-                        <td class="py-3 px-4 text-center text-blue-600 font-semibold">{{ $item['jumlah_siswa_melanggar'] }}</td>
+                        <td class="py-3 px-4 text-center text-blue-600 font-semibold">
+                            {{ $item['jumlah_siswa_melanggar'] }}</td>
                         <td class="py-3 px-4 text-center">{{ $item['total_pelanggaran'] }}</td>
                         <td class="py-3 px-4 text-center">{{ $item['total_point'] }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-6">
+        {{ $recapPerClass->links('vendor.pagination.custom-white') }}
     </div>
 
 </div>

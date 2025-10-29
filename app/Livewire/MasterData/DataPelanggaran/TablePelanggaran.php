@@ -25,7 +25,7 @@ class TablePelanggaran extends Component
             $query->where('name', 'like', '%' . $this->search . '%');
         }
 
-        $dataViolation = $query->paginate(10);
+        $dataViolation = $query->paginate(5);
 
         return view('livewire.master-data.data-pelanggaran.table-pelanggaran', [
             'dataViolation' => $dataViolation,

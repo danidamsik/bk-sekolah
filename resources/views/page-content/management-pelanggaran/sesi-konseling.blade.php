@@ -1,7 +1,14 @@
 @extends('app')
 
 @section('content')
-    <div class="p-6 space-y-8 animate-fade-in">
+    <div x-data="{
+        dataKonseling: { 
+        nama_siswa: '', 
+        nama_guru: '', 
+        session_date: '', 
+        status: '',
+        }
+    }" class="p-6 space-y-8 animate-fade-in">
 
         {{-- ======================================================
         COMPONENT 1 : FILTER + TABEL SESI KONSELING
@@ -43,4 +50,4 @@
             animation: fade-in 0.4s ease-out;
         }
     </style>
-@endsection
+@endsection 

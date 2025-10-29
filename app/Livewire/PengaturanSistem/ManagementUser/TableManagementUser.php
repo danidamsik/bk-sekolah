@@ -19,7 +19,7 @@ class TableManagementUser extends Component
         ->leftJoin('teachers', 'users.teacher_id', '=', 'teachers.id')
         ->orderBy('users.role')
         ->orderBy('users.name')
-        ->paginate(10);
+        ->paginate(3);
 
         return view('livewire.pengaturan-sistem.management-user.table-management-user', ['user' => $user]);
     }

@@ -9,30 +9,30 @@
         <div class="grid md:grid-cols-2 gap-6">
             <div>
                 <label class="block text-gray-700 text-sm mb-2 font-semibold">Nama</label>
-                <input type="text" placeholder="Masukkan nama"
+                <input x-model="user.nama_user" type="text" placeholder="Masukkan nama"
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md">
             </div>
 
             <div>
                 <label class="block text-gray-700 text-sm mb-2 font-semibold">Email</label>
-                <input type="email" placeholder="Masukkan email"
+                <input x-model="user.email" type="email" placeholder="Masukkan email"
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md">
             </div>
 
             <div>
                 <label class="block text-gray-700 text-sm mb-2 font-semibold">Role</label>
-                <select
+                <select x-model="user.role"
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md">
                     <option value="">Pilih Role</option>
-                    <option value="admin">Admin</option>
-                    <option value="guru">Guru</option>
-                    <option value="siswa">Siswa</option>
+                    <option value="Admin">Admin</option>
+                    <option value="WaliKelas">Wali Kelas</option>
+                    <option value="GuruBK">Guru BK</option>
                 </select>
             </div>
 
             <div>
                 <label class="block text-gray-700 text-sm mb-2 font-semibold">Nama Guru</label>
-                <input type="text" placeholder="Masukkan nama guru"
+                <input x-model="user.nama_guru" type="text" placeholder="Masukkan nama guru"
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md">
             </div>
         </div>

@@ -87,7 +87,7 @@
             <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-2">
 
                 <!-- Dashboard -->
-                <a href="/dashboard" @click="setActiveMenu('dashboard')"
+                <a href="/dashboard" wire:navigate @click="setActiveMenu('dashboard')"
                     :class="activeMenu === 'dashboard' ? 'bg-indigo-700 shadow-lg' : 'hover:bg-indigo-700/50'"
                     class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all group">
                     <i class="fas fa-chart-line text-amber-400 text-lg w-6"></i>

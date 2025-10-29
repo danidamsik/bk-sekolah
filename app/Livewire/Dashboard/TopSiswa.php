@@ -9,6 +9,7 @@ use App\Models\Student;
 class TopSiswa extends Component
 {
     public $topSiswa;
+    
     public function mount() {
         $this->topSiswa = Student::select(
         'students.name',

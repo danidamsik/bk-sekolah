@@ -4,17 +4,16 @@ namespace App\Livewire\MasterData\DataPelanggaran;
 
 use App\Models\Violation;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class TablePelanggaran extends Component
 {
-    public $dataViolation;
+    use WithPagination;
 
-    public function mount()
-    {
-        $this->dataViolation = Violation::select('id', 'name', 'point', 'description')->get();
-    }
     public function render()
     {
-        return view('livewire.master-data.data-pelanggaran.table-pelanggaran', ['dataViolation' => $this->dataViolation]);
+        $dataViolation = Violation::select('id', 'name', 'point', 'description')->paginate(10);
+        
+        return view('livewire.master-data.data-pelanggaran.table-pelanggaran', ['dataViolation' => $dataViolation]);
     }
 }

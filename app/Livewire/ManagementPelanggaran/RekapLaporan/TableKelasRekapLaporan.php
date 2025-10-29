@@ -5,14 +5,15 @@ namespace App\Livewire\ManagementPelanggaran\RekapLaporan;
 use Livewire\Component;
 use App\Models\ClassRoom;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 
 class TableKelasRekapLaporan extends Component
 {
-    public $recapPerClass;
+    use WithPagination;
 
-    public function mount() 
+    public function render()
     {
-        $this->recapPerClass = ClassRoom::select(
+        $recapPerClass = ClassRoom::select(
         'classes.id',
         'classes.name as kelas',
         DB::raw('COUNT(DISTINCT violation_reports.student_id) as jumlah_siswa_melanggar'),
@@ -24,11 +25,8 @@ class TableKelasRekapLaporan extends Component
         ->leftJoin('violations', 'violation_reports.violation_id', '=', 'violations.id')
         ->groupBy('classes.id', 'classes.name')
         ->orderBy('total_point', 'DESC')
-        ->get();
+        ->paginate(10);
 
-    }
-    public function render()
-    {
-        return view('livewire.management-pelanggaran.rekap-laporan.table-kelas-rekap-laporan', ['recapPerClass' => $this->recapPerClass]);
+        return view('livewire.management-pelanggaran.rekap-laporan.table-kelas-rekap-laporan', ['recapPerClass' => $recapPerClass]);
     }
 }

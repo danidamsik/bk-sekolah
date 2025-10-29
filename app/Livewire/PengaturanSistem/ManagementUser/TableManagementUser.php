@@ -7,11 +7,9 @@ use Livewire\Component;
 
 class TableManagementUser extends Component
 {
-    public $user;
-
-    public function mount()
+    public function render()
     {
-        $this->user = User::select(
+        $user = User::select(
             'users.id',
             'users.name as nama_user',
             'users.email',
@@ -21,10 +19,8 @@ class TableManagementUser extends Component
         ->leftJoin('teachers', 'users.teacher_id', '=', 'teachers.id')
         ->orderBy('users.role')
         ->orderBy('users.name')
-        ->get();
-    }
-    public function render()
-    {
-        return view('livewire.pengaturan-sistem.management-user.table-management-user', ['users' => $this->user]);
+        ->paginate(10);
+
+        return view('livewire.pengaturan-sistem.management-user.table-management-user', ['user' => $user]);
     }
 }

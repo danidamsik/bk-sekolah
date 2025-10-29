@@ -4,24 +4,23 @@ namespace App\Livewire\MasterData\DataGuru;
 
 use App\Models\Teacher;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class TableGuru extends Component
 {
-    public $dataGuru;
+    use WithPagination;
 
-    public function mount() {
-        $this->dataGuru = Teacher::select(
+    public function render()
+    {
+        $dataGuru = Teacher::select(
             'teachers.id',
             'teachers.name',
             'teachers.nip',
             'users.email', 
             'users.role',
             'teachers.phone'
-        )->join('users', 'teachers.id', '=', 'users.teacher_id')->limit(10)->get();
-    }
+        )->join('users', 'teachers.id', '=', 'users.teacher_id')->paginate(10);
 
-    public function render()
-    {
-        return view('livewire.master-data.data-guru.table-guru', ['dataGuru' => $this->dataGuru]);
+        return view('livewire.master-data.data-guru.table-guru', ['dataGuru' => $dataGuru]);
     }
 }

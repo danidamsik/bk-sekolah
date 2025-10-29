@@ -5,14 +5,15 @@ namespace App\Livewire\ManagementPelanggaran\RekapLaporan;
 use App\Models\Student;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 
 class TableSiswaRekapLaporan extends Component
 {
-    public $recapPerStudent;
+    use WithPagination;
     
-    public function mount()
+    public function render()
     {
-        $this->recapPerStudent = Student::select(
+        $recapPerStudent = Student::select(
         'students.id',
         'students.name as nama_siswa',
         'classes.name as kelas',
@@ -24,11 +25,8 @@ class TableSiswaRekapLaporan extends Component
         ->leftJoin('violations', 'violation_reports.violation_id', '=', 'violations.id')
         ->groupBy('students.id', 'students.name', 'students.nisn', 'classes.name')
         ->orderBy('total_point', 'DESC')
-        ->get();
-        }
-    
-    public function render()
-    {
-        return view('livewire.management-pelanggaran.rekap-laporan.table-siswa-rekap-laporan', ['recapPerStudent' => $this->recapPerStudent]);
+        ->paginate(10);
+
+        return view('livewire.management-pelanggaran.rekap-laporan.table-siswa-rekap-laporan', ['recapPerStudent' => $recapPerStudent]);
     }
 }

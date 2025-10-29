@@ -4,15 +4,16 @@ namespace App\Livewire\MasterData\DataSiswa;
 
 use App\Models\Student;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
 
 class TableSiswa extends Component
 {
-    public $dataSiswa;
+    use WithPagination;
 
-    public function mount() {
-
-        $this->dataSiswa = Student::select(
+    public function render()
+    {
+        $dataSiswa = Student::select(
             'students.id',
             'students.nisn',
             'students.name',
@@ -34,12 +35,8 @@ class TableSiswa extends Component
             'teachers.name',
             'students.parent_name',
             'students.parent_contact'
-        )
-        ->get();
-    }
+        )->paginate(10);
 
-    public function render()
-    {
-        return view('livewire.master-data.data-siswa.table-siswa', ['dataSiswa' => $this->dataSiswa]);
+        return view('livewire.master-data.data-siswa.table-siswa', ['dataSiswa' => $dataSiswa]);
     }
 }

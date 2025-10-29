@@ -10,6 +10,7 @@ use Carbon\Carbon;
 class TopCard extends Component
 {
     public $totalSiswa, $pelanggaranBulanIni, $siswaPoinTinggi, $kasusSelesai, $kasusTerbaru;
+    
     public function mount() {
         $this->totalSiswa = Student::count();
 

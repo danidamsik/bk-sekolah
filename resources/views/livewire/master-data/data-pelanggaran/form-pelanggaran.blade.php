@@ -1,4 +1,10 @@
-<div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 space-y-4 animate-slideUp">
+<div @edit-pelanggaran.window="
+        $wire.id = $event.detail.id;
+        $wire.name = $event.detail.name;
+        $wire.point = $event.detail.point;
+        $wire.description = $event.detail.description;
+        " 
+     class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 space-y-4 animate-slideUp">
     <h2 class="text-lg font-semibold text-gray-800 flex items-center gap-2">
         <i class="fa-solid fa-plus text-blue-600"></i> Form Tambah Pelanggaran
     </h2>
@@ -6,19 +12,19 @@
     <form id="formPelanggaran" class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
             <label class="text-sm text-gray-600">Nama Pelanggaran</label>
-            <input x-model="dataPelanggaran.name" type="text" id="namaPelanggaran" placeholder="Masukkan nama pelanggaran"
+            <input wire:model="name" type="text" id="namaPelanggaran" placeholder="Masukkan nama pelanggaran"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 outline-none" />
         </div>
 
         <div>
             <label class="text-sm text-gray-600">Poin</label>
-            <input x-model="dataPelanggaran.point" type="number" id="poinPelanggaran" placeholder="Masukkan poin pelanggaran"
+            <input wire:model="point" type="number" id="poinPelanggaran" placeholder="Masukkan poin pelanggaran"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 outline-none" />
         </div>
 
         <div class="md:col-span-2">
             <label class="text-sm text-gray-600">Deskripsi</label>
-            <textarea x-model="dataPelanggaran.description" id="deskripsiPelanggaran" placeholder="Masukkan deskripsi pelanggaran"
+            <textarea wire:model="description" id="deskripsiPelanggaran" placeholder="Masukkan deskripsi pelanggaran"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
                 rows="3"></textarea>
         </div>

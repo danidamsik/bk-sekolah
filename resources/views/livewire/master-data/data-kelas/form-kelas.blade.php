@@ -1,4 +1,10 @@
- <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-100 animate-slideUp">
+ <div @edit-kelas.window="
+        $wire.id = $event.detail.id;
+        $wire.nama_kelas = $event.detail.nama_kelas;
+        $wire.wali_kelas = $event.detail.wali_kelas;
+        $wire.jumlah_siswa = $event.detail.jumlah_siswa;
+        " 
+        class="bg-white shadow-lg rounded-2xl p-6 border border-gray-100 animate-slideUp">
 
      {{-- START: Header Form --}}
      <h3 class="text-xl font-semibold text-gray-700 mb-6 flex items-center gap-2">
@@ -12,14 +18,14 @@
          {{-- Input Nama Kelas --}}
          <div>
              <label class="block text-gray-600 text-sm mb-1">Nama Kelas</label>
-             <input type="text" placeholder="Masukkan nama kelas"
+             <input wire:model="nama_kelas" type="text" placeholder="Masukkan nama kelas"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 outline-none" />
          </div>
 
          {{-- Select Wali Kelas --}}
          <div>
              <label class="block text-gray-600 text-sm mb-1">Wali Kelas</label>
-             <select 
+             <select  wire:model="wali_kelas"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 outline-none">
                  <option value="">Pilih Wali Kelas</option>
                  <option value="Siti Nurhaliza, S.Pd">Siti Nurhaliza, S.Pd</option>
@@ -32,7 +38,7 @@
          {{-- Input Jumlah Siswa --}}
          <div>
              <label class="block text-gray-600 text-sm mb-1">Jumlah Siswa</label>
-             <input type="number" placeholder="Masukkan jumlah siswa"
+             <input wire:model="jumlah_siswa" type="number" placeholder="Masukkan jumlah siswa"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 outline-none" />
          </div>
 

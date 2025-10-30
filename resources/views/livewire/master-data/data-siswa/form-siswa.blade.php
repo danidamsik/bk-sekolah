@@ -1,4 +1,13 @@
-<div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-100 animate-slideUp">
+<div @edit-siswa.window="
+        $wire.nisn = $event.detail.nisn;
+        $wire.name = $event.detail.name;
+        $wire.nama_kelas = $event.detail.nama_kelas;
+        $wire.wali_kelas = $event.detail.wali_kelas;
+        $wire.total_point = $event.detail.total_point;
+        $wire.parent_name = $event.detail.parent_name;
+        $wire.parent_contact = $event.detail.parent_contact;
+        $wire.id = $event.detail.id;
+        " class="bg-white shadow-lg rounded-2xl p-6 border border-gray-100 animate-slideUp">
     <h3 class="text-xl font-semibold text-gray-700 flex items-center gap-2 mb-4">
         <i class="fas fa-user-plus text-blue-600"></i> Tambah Data Siswa
     </h3>
@@ -6,19 +15,19 @@
     <form class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
             <label class="text-sm text-gray-600">NISN</label>
-            <input x-model="dataSiswa.nisn" type="text" placeholder="Masukkan NISN"
+            <input wire:model="nisn" type="text" placeholder="Masukkan NISN"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none">
         </div>
 
         <div>
             <label class="text-sm text-gray-600">Nama Siswa</label>
-            <input x-model="dataSiswa.name" type="text" placeholder="Masukkan Nama Siswa"
+            <input wire:model="name" type="text" placeholder="Masukkan Nama Siswa"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none">
         </div>
 
         <div>
             <label class="text-sm text-gray-600">Kelas</label>
-            <select x-model="dataSiswa.nama_kelas"
+            <select wire:model="nama_kelas"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none">
                 <option value="">Pilih Kelas</option>
                 <option value="X IPA 1">X IPA 1</option>
@@ -29,11 +38,11 @@
 
         <div>
             <label class="text-sm text-gray-600">Wali Kelas</label>
-            <select x-model="dataSiswa.wali_kelas"
+            <select wire:model="wali_kelas"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none">
                 <option value="">Pilih Wali Kelas</option>
                 <option value="Siti Nurhaliza, S.Pd">Siti Nurhaliza, S.Pd</option>
-                <option value="Bu Rini">Bu Rini</option>
+                <option value="Drs. Ahmad Fauzi">Bu Rini</option>
                 <option value="Pak Budi">Pak Budi</option>
                 <option value="Bu Sinta">Bu Sinta</option>
             </select>
@@ -41,13 +50,13 @@
 
         <div>
             <label class="text-sm text-gray-600">Orang Tua</label>
-            <input x-model="dataSiswa.parent_name" type="text" placeholder="Masukkan Nama Orang Tua"
+            <input wire:model="parent_name" type="text" placeholder="Masukkan Nama Orang Tua"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none">
         </div>
 
         <div>
             <label class="text-sm text-gray-600">Kontak Orang Tua</label>
-            <input x-model="dataSiswa.parent_contact" type="text" placeholder="Masukkan Nomor HP Orang Tua"
+            <input wire:model="parent_contact" type="text" placeholder="Masukkan Nomor HP Orang Tua"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none">
         </div>
     </form>

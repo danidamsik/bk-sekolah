@@ -75,14 +75,15 @@
                                     title="Lihat">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button @click="laporanPelanggaran = {
-                                        nama_siswa: '{{$laporan['nama_siswa']}}',
-                                        class_name: '{{$laporan['class_name']}}',
-                                        name_pelanggaran: '{{$laporan['name_pelanggaran']}}',
-                                        name_teacher: '{{$laporan['name_teacher']}}',
-                                        date: '{{$laporan['date']}}'.split(' ')[0],
-                                        status: '{{$laporan['status']}}',
-                                    }"
+                                <button @click="$dispatch('laporan-pelanggaran', {
+                                            id: {{ $laporan['id'] }},
+                                            nama_siswa: '{{ $laporan['nama_siswa'] }}',
+                                            class_name: '{{ $laporan['class_name'] }}',
+                                            name_pelanggaran: '{{ $laporan['name_pelanggaran'] }}',
+                                            name_teacher: '{{ $laporan['name_teacher'] }}',
+                                            date: '{{ $laporan['date'] }}'.split(' ')[0],
+                                            status: '{{ $laporan['status'] }}'
+                                    })"
 
                                  class="hover:text-green-600 transition"
                                     title="Edit">

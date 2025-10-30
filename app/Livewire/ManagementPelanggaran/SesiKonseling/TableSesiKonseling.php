@@ -20,6 +20,7 @@ class TableSesiKonseling extends Component
     public function render()
     {
         $query = CounselingSession::select(
+            'counseling_sessions.id',
             'students.name as nama_siswa',
             'teachers.name as nama_guru',
             'counseling_sessions.session_date',

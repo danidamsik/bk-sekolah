@@ -1,13 +1,7 @@
 @extends('app')
 
 @section('content')
-    <div x-data="{
-        dataPelanggaran: { 
-        name: '', 
-        point: '', 
-        description: '', 
-        }
-    }" class="p-8 bg-gray-50 min-h-screen space-y-8 animate-fadeIn">
+    <div  class="p-8 bg-gray-50 min-h-screen space-y-8 animate-fadeIn">
         <!-- START COMPONENT DATA PELANGGARAN -->
         @livewire('master-data.data-pelanggaran.table-pelanggaran')
         <!-- END COMPONENT DATA PELANGGARAN -->

@@ -17,7 +17,7 @@
                 class="w-full border @error('namaGuru') border-red-500 @else border-gray-300 @enderror rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 outline-none">
 
             {{-- Pesan error --}}
-            @error('namaGuru')
+            @error('name')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
@@ -39,7 +39,7 @@
             <input type="email" id="emailGuru" wire:model="email" placeholder="Masukkan email guru"
                 class="w-full border @error('emailGuru') border-red-500 @else border-gray-300 @enderror rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 outline-none">
 
-            @error('emailGuru')
+            @error('email')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
@@ -50,7 +50,7 @@
             <input type="text" id="noHpGuru" wire:model="phone" placeholder="Masukkan nomor HP"
                 class="w-full border @error('noHpGuru') border-red-500 @else border-gray-300 @enderror rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 outline-none">
 
-            @error('noHpGuru')
+            @error('phone')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>

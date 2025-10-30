@@ -23,6 +23,7 @@ class TableLaporanPelanggaran extends Component
     public function render()
     {
         $query = ViolationReport::select(
+            'violation_reports.id',
             'students.name as nama_siswa',
             'classes.name as class_name',
             'violations.name as name_pelanggaran',

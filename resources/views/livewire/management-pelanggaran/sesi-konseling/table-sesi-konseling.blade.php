@@ -60,12 +60,13 @@
                                 <i class="fas fa-eye"></i>
                             </button>
                             <button
-                                @click="dataKonseling = {
-                                                    nama_siswa: '{{ $item['nama_siswa'] }}',
-                                                    nama_guru: '{{ $item['nama_guru'] }}',
-                                                    session_date: '{{ $item['session_date'] }}'.split(' ')[0],
-                                                    status: '{{ $item['status'] }}',
-                                                    }"
+                                @click="$dispatch('sesi-konseling', {
+                                            id: {{ $item['id'] }},
+                                            nama_siswa: '{{ $item['nama_siswa'] }}',
+                                            nama_guru: '{{ $item['nama_guru'] }}',
+                                            session_date: '{{ $item['session_date'] }}'.split(' ')[0],
+                                            status: '{{ $item['status'] }}',
+                                    })"
                                 class="text-green-600 hover:text-green-800 transition-all duration-200">
                                 <i class="fas fa-edit"></i>
                             </button>

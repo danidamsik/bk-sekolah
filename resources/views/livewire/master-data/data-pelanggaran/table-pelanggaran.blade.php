@@ -32,11 +32,12 @@
                         <td class="py-3 px-4 text-gray-700">{{ $item->description }}</td>
                         <td class="py-3 px-4 text-center">
                             <div class="flex justify-center gap-3 text-gray-600"> <button
-                                    @click="dataPelanggaran = {
-                                                    name: '{{ $item['name'] }}',
-                                                    point: '{{ $item['point'] }}',
-                                                    description: '{{ $item['description'] }}',
-                                                    }"
+                                     @click="$dispatch('edit-pelanggaran', {
+                                            id: {{ $item['id'] }},
+                                            name: '{{ $item['name'] }}',
+                                            point: '{{ $item['point'] }}',
+                                            description: '{{ $item['description'] }}',
+                                    })"
                                     class="hover:text-blue-600 transition" title="Edit"> <i class="fas fa-edit"></i>
                                 </button> <button class="hover:text-red-600 transition" title="Hapus"
                                     onclick="hapusBaris(this)"> <i class="fas fa-trash"></i> </button> <button

@@ -1,4 +1,11 @@
-        <div
+        <div @sesi-konseling.window=
+                    "
+                        $wire.nama_siswa = $event.detail.nama_siswa;
+                        $wire.nama_guru = $event.detail.nama_guru;
+                        $wire.session_date = $event.detail.session_date;
+                        $wire.status = $event.detail.status;
+                        $wire.id = $event.detail.id;
+                    "
             class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-xl font-bold text-gray-700 flex items-center gap-2">
@@ -12,27 +19,27 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Nama Siswa</label>
-                        <input x-model="dataKonseling.nama_siswa" type="text" name="nama_siswa"
+                        <input wire:model="nama_siswa" type="text" name="nama_siswa"
                             class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
                             placeholder="Masukkan nama siswa">
                     </div>
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Guru BK</label>
-                        <input x-model="dataKonseling.nama_guru" type="text" name="guru_bk"
+                        <input wire:model="nama_guru" type="text" name="guru_bk"
                             class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
                             placeholder="Masukkan nama guru BK">
                     </div>
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Tanggal Sesi</label>
-                        <input x-model="dataKonseling.session_date" type="date" name="tanggal"
+                        <input wire:model="session_date" type="date" name="tanggal"
                             class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200">
                     </div>
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Status</label>
-                        <select name="status" x-model="dataKonseling.status"
+                        <select name="status" wire:model="status"
                             class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200">
                             <option value="Baru">Baru</option>
                             <option value="Proses">Proses</option>

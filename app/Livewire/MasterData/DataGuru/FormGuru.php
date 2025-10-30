@@ -23,23 +23,23 @@ class FormGuru extends Component
 
     public function createOrUpdate()
     {
-        dd($this->guruId, $this->namaGuru, $this->nip, $this->emailGuru, $this->noHpGuru);
+        // dd($this->guruId, $this->namaGuru, $this->nip, $this->emailGuru, $this->noHpGuru);
         $this->validate();
     }
 
     protected function messages()
     {
         return [
-            'namaGuru.required' => 'Nama guru wajib diisi.',
-            'namaGuru.min' => 'Nama guru minimal 3 karakter.',
+            'name.required' => 'Nama guru wajib diisi.',
+            'name.min' => 'Nama guru minimal 3 karakter.',
             'nip.required' => 'NIP wajib diisi.',
             'nip.numeric' => 'NIP hanya boleh berupa angka.',
-            'emailGuru.required' => 'Email guru wajib diisi.',
-            'emailGuru.email' => 'Format email tidak valid.',
-            'noHpGuru.required' => 'Nomor HP wajib diisi.',
-            'noHpGuru.regex' => 'Nomor HP hanya boleh angka.',
-            'noHpGuru.min' => 'Nomor HP minimal 10 digit.',
-            'noHpGuru.max' => 'Nomor HP maksimal 15 digit.',
+            'email.required' => 'Email guru wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'phone.required' => 'Nomor HP wajib diisi.',
+            'phone.regex' => 'Nomor HP hanya boleh angka.',
+            'phone.min' => 'Nomor HP minimal 10 digit.',
+            'phone.max' => 'Nomor HP maksimal 15 digit.',
         ];
     }
 

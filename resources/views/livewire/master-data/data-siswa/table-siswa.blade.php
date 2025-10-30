@@ -39,15 +39,16 @@
                         <td class="py-3 px-4">{{ $siswa->parent_contact }}</td>
                         <td class="py-3 px-4 text-center">
                             <div class="flex justify-center gap-3 text-gray-600"> <button
-                                    @click="dataSiswa = {
-                                        nisn : '{{ $siswa['nisn'] }}',
-                                        name : '{{ $siswa['name'] }}',
-                                        nama_kelas : '{{ $siswa['nama_kelas'] }}',
-                                        wali_kelas : '{{ $siswa['wali_kelas'] }}',
-                                        total_point : '{{ $siswa['total_point'] }}',
-                                        parent_name : '{{ $siswa['parent_name'] }}',
-                                        parent_contact : '{{ $siswa['parent_contact'] }}',
-                                    }"
+                                    @click="$dispatch('edit-siswa', {
+                                        id: {{ $siswa['id'] }},
+                                        nisn: '{{ $siswa['nisn'] }}',
+                                        name: '{{ $siswa['name'] }}',
+                                        nama_kelas: '{{ $siswa['nama_kelas'] }}',
+                                        wali_kelas: '{{ $siswa['wali_kelas'] }}',
+                                        total_point: '{{ $siswa['total_point'] }}',
+                                        parent_name: '{{ $siswa['parent_name'] }}',
+                                        parent_contact: '{{ $siswa['parent_contact'] }}'
+                                    })"
                                     class="hover:text-blue-600 transition" title="Edit"> <i class="fas fa-edit"></i>
                                 </button> <button class="hover:text-red-600 transition" title="Hapus"> <i
                                         class="fas fa-trash"></i> </button> <button

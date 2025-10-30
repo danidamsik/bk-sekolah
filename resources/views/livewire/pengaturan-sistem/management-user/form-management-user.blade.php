@@ -1,4 +1,11 @@
-<div
+<div @edit-user.window = 
+            "
+                $wire.nama_user = $event.detail.nama_user;
+                $wire.email = $event.detail.email;
+                $wire.role = $event.detail.role;
+                $wire.nama_guru = $event.detail.nama_guru;
+                $wire.id = $event.detail.id;
+            "
     class="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 transition-all duration-500 hover:shadow-2xl backdrop-blur-sm">
     <h2 class="text-3xl font-extrabold text-gray-800 mb-6 flex items-center gap-3">
         <i class="fa-solid fa-user-plus text-indigo-600 text-4xl"></i>
@@ -9,19 +16,19 @@
         <div class="grid md:grid-cols-2 gap-6">
             <div>
                 <label class="block text-gray-700 text-sm mb-2 font-semibold">Nama</label>
-                <input x-model="user.nama_user" type="text" placeholder="Masukkan nama"
+                <input wire:model="nama_user" type="text" placeholder="Masukkan nama"
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md">
             </div>
 
             <div>
                 <label class="block text-gray-700 text-sm mb-2 font-semibold">Email</label>
-                <input x-model="user.email" type="email" placeholder="Masukkan email"
+                <input wire:model="email" type="email" placeholder="Masukkan email"
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md">
             </div>
 
             <div>
                 <label class="block text-gray-700 text-sm mb-2 font-semibold">Role</label>
-                <select x-model="user.role"
+                <select wire:model="role"
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md">
                     <option value="">Pilih Role</option>
                     <option value="Admin">Admin</option>
@@ -32,7 +39,7 @@
 
             <div>
                 <label class="block text-gray-700 text-sm mb-2 font-semibold">Nama Guru</label>
-                <input x-model="user.nama_guru" type="text" placeholder="Masukkan nama guru"
+                <input wire:model="nama_guru" type="text" placeholder="Masukkan nama guru"
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md">
             </div>
         </div>

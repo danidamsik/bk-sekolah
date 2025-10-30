@@ -23,7 +23,7 @@ class FormGuru extends Component
 
     public function createOrUpdate()
     {
-        // dd($this->guruId, $this->namaGuru, $this->nip, $this->emailGuru, $this->noHpGuru);
+    
         $this->validate();
     }
 

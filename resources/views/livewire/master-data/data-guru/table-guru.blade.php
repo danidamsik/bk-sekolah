@@ -56,13 +56,14 @@
                         <td class="py-3 px-4 text-gray-600">{{ $guru['phone'] }}</td>
                         <td class="py-3 px-4 text-center">
                             <button class="text-blue-500 hover:text-blue-700 transition duration-150 mx-1"
-                                @click="dataGuru = {
-                                                    name: '{{ $guru['name'] }}',
-                                                    nip: '{{ $guru['nip'] }}',
-                                                    email: '{{ $guru['email'] }}',
-                                                    role: '{{ $guru['role'] }}',
-                                                    phone: '{{ $guru['phone'] }}',
-                                                    }"
+                                @click="$dispatch('edit-guru', {
+                                        id: {{ $guru['id'] }},
+                                        name: '{{ $guru['name'] }}',
+                                        nip: '{{ $guru['nip'] }}',
+                                        email: '{{ $guru['email'] }}',
+                                        role: '{{ $guru['role'] }}',
+                                        phone: '{{ $guru['phone'] }}'
+                                    })"
                                 title="Edit">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>

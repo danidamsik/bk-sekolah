@@ -1,13 +1,7 @@
 @extends('app')
 
 @section('content')
-    <div  x-data="{
-        dataKelas: { 
-        nama_kelas: '', 
-        wali_kelas: '', 
-        jumlah_siswa: '', 
-        }
-    }"class="p-6 space-y-8 animate-fadeIn">
+    <div class="p-6 space-y-8 animate-fadeIn">
         {{-- START COMPONENT: Table Data Kelas --}}
         @livewire('master-data.data-kelas.table-kelas')
         {{-- END COMPONENT --}}

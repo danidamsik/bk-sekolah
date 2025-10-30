@@ -15,7 +15,7 @@ class FormPelanggaran extends Component
     #[Validate('required|integer|min:1|max:100')]
     public $point;
 
-    #[Validate('nullable|string|max:255')]
+    #[Validate('required|nullable|string|max:255')]
     public $description;
 
     public function createOrUpdate()
@@ -33,6 +33,7 @@ class FormPelanggaran extends Component
             'point.min' => 'Poin pelanggaran minimal 1.',
             'point.max' => 'Poin pelanggaran maksimal 100.',
             'description.string' => 'Deskripsi harus berupa teks.',
+            'description.required' => 'Deskripsi tidak boleh kosong.',
             'description.max' => 'Deskripsi maksimal 255 karakter.',
         ];
     }

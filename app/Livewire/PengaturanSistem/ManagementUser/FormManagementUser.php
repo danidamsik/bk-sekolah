@@ -15,10 +15,10 @@ class FormManagementUser extends Component
     #[Validate('required|email')]
     public $email;
 
-    #[Validate('required|in:admin,guru,siswa')]
+    #[Validate('required|in:Admin,WaliKelas,GuruBK')]
     public $role;
 
-    #[Validate('nullable|string|min:3')]
+    #[Validate('required|nullable|string|min:3')]
     public $nama_guru;
 
     public function createOrUpdate()
@@ -36,10 +36,11 @@ class FormManagementUser extends Component
             'email.email' => 'Format email tidak valid.',
 
             'role.required' => 'Role wajib diisi.',
-            'role.in' => 'Role hanya boleh bernilai admin, guru, atau siswa.',
+            'role.in' => 'Role hanya boleh bernilai admin, guruBK, atau wali kelas.',
 
             'nama_guru.string' => 'Nama guru harus berupa teks.',
             'nama_guru.min' => 'Nama guru minimal 3 karakter.',
+            'nama_guru.required' => 'Nama guru wajib di isi.',
         ];
     }
 

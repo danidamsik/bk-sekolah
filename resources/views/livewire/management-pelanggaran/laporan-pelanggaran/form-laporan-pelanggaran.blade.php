@@ -6,7 +6,7 @@
         $wire.date = $event.detail.date;
         $wire.status = $event.detail.status;
         $wire.Id = $event.detail.id;"
-        class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300">
+    class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300">
     <div class="flex items-center justify-between mb-6">
         <h2 class="text-xl font-bold text-gray-700 flex items-center gap-2">
             <i class="fas fa-clipboard-list text-blue-600"></i>
@@ -14,7 +14,7 @@
         </h2>
     </div>
 
-    <form action="#" method="POST" class="space-y-5">
+    <form wire:submit.prevent="createOrUpdate" class="space-y-5">
         @csrf
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
@@ -22,6 +22,9 @@
                 <input wire:model="nama_siswa" type="text" name="nama_siswa"
                     class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
                     placeholder="Masukkan nama siswa">
+                @error('nama_siswa')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>
@@ -29,6 +32,9 @@
                 <input wire:model="class_name" type="text" name="kelas"
                     class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
                     placeholder="Masukkan kelas">
+                @error('class_name')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>
@@ -36,6 +42,9 @@
                 <input wire:model="name_pelanggaran" type="text" name="jenis_pelanggaran"
                     class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
                     placeholder="Contoh: Tidak memakai seragam">
+                @error('name_pelanggaran')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>
@@ -43,24 +52,32 @@
                 <input wire:model="name_teacher" type="text" name="guru_pelapor"
                     class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
                     placeholder="Masukkan nama guru pelapor">
+                @error('name_teacher')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>
                 <label class="block text-sm font-semibold text-gray-600 mb-1">Tanggal</label>
                 <input wire:model="date" type="date" name="tanggal"
                     class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200">
+                @error('date')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>
                 <label class="block text-sm font-semibold text-gray-600 mb-1">Status</label>
-                <select wire:model="status"
-                    name="status"
+                <select wire:model="status" name="status"
                     class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200">
                     <option value="Baru">Baru</option>
                     <option value="Diproses">Diproses</option>
                     <option value="Selesai">Selesai</option>
                     <option value="Konseling">Konseling</option>
                 </select>
+                @error('status')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
         </div>
 

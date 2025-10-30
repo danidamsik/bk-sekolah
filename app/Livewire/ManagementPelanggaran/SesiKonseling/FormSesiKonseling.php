@@ -21,6 +21,12 @@ class FormSesiKonseling extends Component
     #[Validate('required|in:scheduled,completed,cancelled')]
     public $status;
 
+    #[Validate('required|in:scheduled,completed,cancelled')]
+    public $rekomendasi;
+
+    #[Validate('required|in:scheduled,completed,cancelled')]
+    public $tindak_lanjut;
+
     public function createOrUpdate()
     {
         $this->validate();
@@ -40,6 +46,10 @@ class FormSesiKonseling extends Component
 
             'status.required' => 'Status wajib diisi.',
             'status.in' => 'Status hanya boleh bernilai scheduled, completed, atau cancelled.',
+
+            'rekomendasi.required' => 'Rekomendasi wajib diisi.',
+            
+            'tindak_lanjut.required' => 'Rencana Tindak Lanjut wajib diisi.',
         ];
     }
 

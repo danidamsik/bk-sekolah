@@ -12,18 +12,24 @@
         Tambah / Edit User
     </h2>
 
-    <form class="space-y-6">
+    <form wire:submit.prevent="createOrUpdate" class="space-y-6">
         <div class="grid md:grid-cols-2 gap-6">
             <div>
                 <label class="block text-gray-700 text-sm mb-2 font-semibold">Nama</label>
                 <input wire:model="nama_user" type="text" placeholder="Masukkan nama"
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md">
+                @error('nama_user')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>
                 <label class="block text-gray-700 text-sm mb-2 font-semibold">Email</label>
                 <input wire:model="email" type="email" placeholder="Masukkan email"
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md">
+                @error('email')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>
@@ -35,12 +41,18 @@
                     <option value="WaliKelas">Wali Kelas</option>
                     <option value="GuruBK">Guru BK</option>
                 </select>
+                @error('role')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>
                 <label class="block text-gray-700 text-sm mb-2 font-semibold">Nama Guru</label>
                 <input wire:model="nama_guru" type="text" placeholder="Masukkan nama guru"
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md">
+                @error('nama_guru')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
         </div>
 

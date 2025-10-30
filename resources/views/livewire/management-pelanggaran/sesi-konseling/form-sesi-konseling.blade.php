@@ -14,7 +14,7 @@
                 </h2>
             </div>
 
-            <form action="#" method="POST" class="space-y-5">
+            <form wire:submit.prevent="createOrUpdate" class="space-y-5">
                 @csrf
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
@@ -22,6 +22,9 @@
                         <input wire:model="nama_siswa" type="text" name="nama_siswa"
                             class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
                             placeholder="Masukkan nama siswa">
+                        @error('nama_siswa')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
@@ -29,12 +32,18 @@
                         <input wire:model="nama_guru" type="text" name="guru_bk"
                             class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
                             placeholder="Masukkan nama guru BK">
+                        @error('nama_guru')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Tanggal Sesi</label>
                         <input wire:model="session_date" type="date" name="tanggal"
                             class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200">
+                        @error('session_date')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
@@ -46,6 +55,9 @@
                             <option value="Selesai">Selesai</option>
                             <option value="Konseling">Konseling</option>
                         </select>
+                        @error('status')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
 
@@ -54,6 +66,9 @@
                     <textarea name="rekomendasi" rows="3"
                         class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
                         placeholder="Masukkan rekomendasi hasil konseling..."></textarea>
+                    @error('rekomendasi')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div>
@@ -61,6 +76,9 @@
                     <textarea name="tindak_lanjut" rows="3"
                         class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
                         placeholder="Masukkan rencana tindak lanjut..."></textarea>
+                    @error('tindak_lanjut')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="flex justify-end">

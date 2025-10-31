@@ -3,7 +3,6 @@
         $wire.name = $event.detail.name;
         $wire.nama_kelas = $event.detail.nama_kelas;
         $wire.wali_kelas = $event.detail.wali_kelas;
-        $wire.total_point = $event.detail.total_point;
         $wire.parent_name = $event.detail.parent_name;
         $wire.parent_contact = $event.detail.parent_contact;
         $wire.id = $event.detail.id;
@@ -39,9 +38,9 @@
             <select wire:model="nama_kelas"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none">
                 <option value="">Pilih Kelas</option>
-                <option value="X IPA 1">X IPA 1</option>
-                <option value="XI IPA 1">XI IPA 1</option>
-                <option value="XII IPA 1">XII IPA 1</option>
+                @foreach ($dataKelas as $data)
+                    <option value="{{ $data->id }}">{{ $data->name }}</option>
+                @endforeach
             </select>
 
             @error('nama_kelas')
@@ -54,10 +53,9 @@
             <select wire:model="wali_kelas"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none">
                 <option value="">Pilih Wali Kelas</option>
-                <option value="Siti Nurhaliza, S.Pd">Siti Nurhaliza, S.Pd</option>
-                <option value="Drs. Ahmad Fauzi">Bu Rini</option>
-                <option value="Pak Budi">Pak Budi</option>
-                <option value="Bu Sinta">Bu Sinta</option>
+                @foreach ($dataKelas as $data)
+                    <option value="{{$data->teacher_id}}">{{$data->teacher->name}}</option>
+                @endforeach
             </select>
 
             @error('wali_kelas')

@@ -1,4 +1,4 @@
-<div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 space-y-6 animate-slideUp">
+<div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 space-y-6 animate-slideUp" x-data="{ showDeleteModal: false, id: ''}">
 
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
@@ -42,33 +42,62 @@
             <tbody id="guruTable" class="divide-y divide-gray-100">
                 @forelse ($dataGuru as $i => $guru)
                     <tr class="hover:bg-blue-50 transition duration-150 ease-in-out">
-                        <td class="py-3 px-4">{{ $i + 1 }}</td>
-                        <td class="py-3 px-4 font-medium text-gray-800">{{ $guru['name'] }}</td>
-                        <td class="py-3 px-4 text-gray-600">{{ $guru['nip'] }}</td>
-                        <td class="py-3 px-4 text-gray-600">{{ $guru['email'] }}</td>
-                        <td class="py-3 px-4">
-                            <span
-                                class="px-3 py-1 rounded-full text-xs font-semibold
-                                    {{ $guru['role'] === 'Admin' ? 'bg-blue-100 text-blue-700' : ($guru['role'] === 'Guru BK' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700') }}">
-                                {{ $guru['role'] }}
-                            </span>
+                        <td class="py-3 px-4">{{ $dataGuru->firstItem() + $i }}</td>
+                        <td class="py-3 px-4 font-medium text-gray-800">{{ $guru->name }}</td>
+                        <td class="py-3 px-4 text-gray-600">{{ $guru->nip }}</td>
+
+                        <!-- Kolom Email -->
+                        <td class="py-3 px-4 text-gray-600">
+                            @if ($guru->email == null)
+                                <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-semibold">
+                                    belum ada email
+                                </span>
+                            @else
+                                {{ $guru->email }}
+                            @endif
                         </td>
-                        <td class="py-3 px-4 text-gray-600">{{ $guru['phone'] }}</td>
+
+                        <!-- Kolom Role -->
+                        <td class="py-3 px-4">
+                            @if ($guru->role)
+                                <span
+                                    class="px-3 py-1 rounded-full text-xs font-semibold
+                            {{ $guru->role === 'Admin'
+                                ? 'bg-blue-100 text-blue-700'
+                                : ($guru->role === 'GuruBK'
+                                    ? 'bg-green-100 text-green-700'
+                                    : ($guru->role === 'WaliKelas'
+                                        ? 'bg-yellow-100 text-yellow-700'
+                                        : 'bg-gray-100 text-gray-600')) }}">
+                                    {{ $guru->role }}
+                                </span>
+                            @else
+                                <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-semibold">
+                                    Belum Ada Role
+                                </span>
+                            @endif
+                        </td>
+
+                        <td class="py-3 px-4 text-gray-600">{{ $guru->phone }}</td>
+
+                        <!-- Tombol Aksi -->
                         <td class="py-3 px-4 text-center">
+                            <!-- Edit -->
                             <button class="text-blue-500 hover:text-blue-700 transition duration-150 mx-1"
                                 @click="$dispatch('edit-guru', {
-                                        id: {{ $guru['id'] }},
-                                        name: '{{ $guru['name'] }}',
-                                        nip: '{{ $guru['nip'] }}',
-                                        email: '{{ $guru['email'] }}',
-                                        role: '{{ $guru['role'] }}',
-                                        phone: '{{ $guru['phone'] }}'
-                                    })"
+                                    id: {{ $guru->id }},
+                                    name: '{{ $guru->name }}',
+                                    nip: '{{ $guru->nip }}',
+                                    phone: '{{ $guru->phone }}'
+                                }); $store.notif.open = false"
                                 title="Edit">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
+
+                            <!-- Hapus (buka modal) -->
                             <button class="text-red-500 hover:text-red-700 transition duration-150 mx-1"
-                                wire:click="hapus({{ $i }})" title="Hapus">
+                                @click="showDeleteModal = true; id={{ $guru->id }};"
+                                title="Hapus">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </td>
@@ -86,4 +115,6 @@
     <div class="mt-6">
         {{ $dataGuru->links('vendor.pagination.custom-white') }}
     </div>
+
+    @include('component.modal-konfirmasi')
 </div>

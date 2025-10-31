@@ -4,6 +4,7 @@ namespace App\Livewire\MasterData\DataGuru;
 
 use App\Models\Teacher;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
 
 class TableGuru extends Component
@@ -12,6 +13,12 @@ class TableGuru extends Component
 
     public $search = '';
     public $roleFilter = '';
+
+    public function delete($id) {
+        Teacher::find($id)->delete();
+
+        $this->dispatch('succses-notif', messege: "Data Guru berhasil di hapus");
+    } 
 
     public function updatingSearch()
     {
@@ -22,7 +29,8 @@ class TableGuru extends Component
     {
         $this->resetPage();
     }
-
+    
+    #[On('succses-notif')] 
     public function render()
     {
         $query = Teacher::select(
@@ -33,12 +41,12 @@ class TableGuru extends Component
             'users.role',
             'teachers.phone'
         )
-        ->join('users', 'teachers.id', '=', 'users.teacher_id');
+            ->leftJoin('users', 'teachers.id', '=', 'users.teacher_id'); // ⬅️ ubah di sini
 
         if (!empty($this->search)) {
             $query->where('teachers.name', 'like', '%' . $this->search . '%');
         }
-        
+
         if (!empty($this->roleFilter)) {
             $query->where('users.role', $this->roleFilter);
         }

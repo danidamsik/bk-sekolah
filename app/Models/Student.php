@@ -15,7 +15,7 @@ class Student extends Model
         'nisn',
         'name',
         'class_id',
-        'wali_kelas_id',
+        'teacher_id',
         'parent_name',
         'parent_contact',
         'total_points',

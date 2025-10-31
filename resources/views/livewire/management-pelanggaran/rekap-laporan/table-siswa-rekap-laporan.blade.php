@@ -9,7 +9,7 @@
 
     <!-- Table -->
     <div class="overflow-x-auto">
-        <table class="min-w-full border border-gray-200 rounded-xl overflow-hidden">
+        <table class="whitespace-nowrap min-w-full border border-gray-200 rounded-xl overflow-hidden">
             <thead class="bg-blue-600 text-white">
                 <tr>
                     <th class="py-3 px-4 text-center">No</th>

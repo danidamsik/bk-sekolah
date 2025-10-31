@@ -1,4 +1,4 @@
-<div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-100 space-y-6">
+<div x-data="{ showDeleteModal: false, id:'' }" class="bg-white shadow-lg rounded-2xl p-6 border border-gray-100 space-y-6">
     <!-- Header -->
     <div class="flex flex-col md:flex-row justify-between items-center mb-2 gap-4">
         <h2 class="text-2xl font-semibold text-gray-700 flex items-center gap-2">
@@ -12,7 +12,7 @@
 
     <!-- Table -->
     <div class="overflow-x-auto">
-        <table class="min-w-full table-fixed border border-gray-200 rounded-xl overflow-hidden">
+        <table class="whitespace-nowrap -w-full table-fixed border border-gray-200 rounded-xl overflow-hidden">
             <thead class="bg-blue-600 text-white">
                 <tr>
                     <th class="py-3 px-4 text-center w-16">No</th>
@@ -32,17 +32,22 @@
                         <td class="py-3 px-4 text-gray-700">{{ $item->description }}</td>
                         <td class="py-3 px-4 text-center">
                             <div class="flex justify-center gap-3 text-gray-600"> <button
-                                     @click="$dispatch('edit-pelanggaran', {
+                                    @click="$dispatch('edit-pelanggaran', {
                                             id: {{ $item['id'] }},
                                             name: '{{ $item['name'] }}',
                                             point: '{{ $item['point'] }}',
                                             description: '{{ $item['description'] }}',
                                     })"
                                     class="hover:text-blue-600 transition" title="Edit"> <i class="fas fa-edit"></i>
-                                </button> <button class="hover:text-red-600 transition" title="Hapus"
-                                    onclick="hapusBaris(this)"> <i class="fas fa-trash"></i> </button> <button
-                                    class="hover:text-green-600 transition" title="Lihat Detail"> <i
-                                        class="fas fa-eye"></i> </button> </div>
+                                </button>
+                                <button class="hover:text-red-600 transition"
+                                    @click="showDeleteModal = true; id={{ $item->id }};" title="Hapus"> <i
+                                        class="fas fa-trash"></i>
+                                </button>
+                                <button class="hover:text-green-600 transition" title="Lihat Detail"> <i
+                                        class="fas fa-eye"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 @empty
@@ -60,5 +65,5 @@
     <div class="mt-6">
         {{ $dataViolation->links('vendor.pagination.custom-white') }}
     </div>
-
+    @include('component.modal-konfirmasi')
 </div>

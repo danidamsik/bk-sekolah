@@ -7,7 +7,7 @@
 
          <i class="fa-solid fa-triangle-exclamation text-red-500 text-4xl"></i>
          <h2 class="text-lg font-semibold text-gray-800">Konfirmasi Hapus</h2>
-         <p class="text-gray-600 text-sm">Apakah kamu yakin ingin menghapus data guru ini?</p>
+         <p class="text-gray-600 text-sm">Apakah kamu yakin ingin menghapus data ini?</p>
 
          <div class="flex justify-center gap-3 mt-4">
              <button @click="showDeleteModal = false"

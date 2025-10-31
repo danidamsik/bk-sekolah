@@ -1,4 +1,4 @@
-<div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-100 space-y-6">
+<div x-data="{showDeleteModal:false, id:''}" class="bg-white shadow-lg rounded-2xl p-6 border border-gray-100 space-y-6">
     <!-- Header -->
     <div class="flex flex-col md:flex-row justify-between items-center mb-2 gap-4">
         <h2 class="text-2xl font-semibold text-gray-700 flex items-center gap-2">
@@ -12,7 +12,7 @@
 
     <!-- Table -->
     <div class="overflow-x-auto">
-        <table class="min-w-full border border-gray-200 rounded-xl overflow-hidden">
+        <table class="min-w-full border border-gray-200 rounded-xl overflow-hidden whitespace-nowrap">
             <thead class="bg-blue-600 text-white">
                 <tr>
                     <th class="py-3 px-4 text-left">No</th>
@@ -49,10 +49,15 @@
                                         parent_contact: '{{ $siswa['parent_contact'] }}'
                                     })"
                                     class="hover:text-blue-600 transition" title="Edit"> <i class="fas fa-edit"></i>
-                                </button> <button class="hover:text-red-600 transition" title="Hapus"> <i
-                                        class="fas fa-trash"></i> </button> <button
-                                    class="hover:text-green-600 transition" title="Lihat Detail"> <i
-                                        class="fas fa-eye"></i> </button> </div>
+                                </button>
+                                <button class="hover:text-red-600 transition"
+                                    @click="showDeleteModal = true; id={{ $siswa->id }};" title="Hapus"> <i
+                                        class="fas fa-trash"></i>
+                                </button>
+                                <button class="hover:text-green-600 transition" title="Lihat Detail"> <i
+                                        class="fas fa-eye"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 @empty
@@ -68,4 +73,5 @@
     <div class="mt-6">
         {{ $dataSiswa->links('vendor.pagination.custom-white') }}
     </div>
+    @include('component.modal-konfirmasi')
 </div>

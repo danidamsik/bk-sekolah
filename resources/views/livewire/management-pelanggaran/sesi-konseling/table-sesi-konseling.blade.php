@@ -22,7 +22,7 @@
 
 
     <div class="overflow-x-auto border border-gray-100 rounded-xl">
-        <table class="min-w-full border-collapse text-left">
+        <table class="whitespace-nowrap min-w-full border-collapse text-left">
             <thead class="bg-gray-50 text-gray-700 uppercase text-sm font-semibold">
                 <tr class="text-center">
                     <th class="py-3 px-4">No</th>

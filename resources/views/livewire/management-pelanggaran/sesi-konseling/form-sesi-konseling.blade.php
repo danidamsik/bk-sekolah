@@ -81,10 +81,25 @@
                     @enderror
                 </div>
 
-                <div class="flex justify-end">
+                <div class="flex justify-end md:col-span-2">
                     <button type="submit"
-                        class="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 flex items-center gap-2 transition-all duration-300 shadow-md hover:shadow-xl">
-                        <i class="fas fa-plus-circle"></i> Tambah Catatan
+                        class="flex items-center justify-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-xl shadow hover:bg-blue-700 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed min-w-[110px]"
+                        wire:loading.attr="disabled" wire:target="createOrUpdate">
+                        {{-- Icon dan text default --}}
+                        <span wire:loading.remove wire:target="createOrUpdate">
+                            Simpan
+                        </span>
+                        {{-- Loading state --}}
+                        <span wire:loading wire:target="createOrUpdate" class="flex items-center gap-2">
+                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                        </span>
                     </button>
                 </div>
             </form>

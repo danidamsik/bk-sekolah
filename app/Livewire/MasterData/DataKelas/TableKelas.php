@@ -4,8 +4,9 @@ namespace App\Livewire\MasterData\DataKelas;
 
 use Livewire\Component;
 use App\Models\ClassRoom;
-use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\DB;
 
 class TableKelas extends Component
 {
@@ -18,12 +19,20 @@ class TableKelas extends Component
         $this->resetPage();
     }
 
+    public function delete($id)
+    {
+        ClassRoom::find($id)->delete();
+            $this->dispatch('succses-notif', messege: 'Data Kelas berhasil dihapus.');
+    }
+
+    #[On('succses-notif')]
     public function render()
     {
         $query = ClassRoom::select(
             'classes.id',
             'classes.name as nama_kelas',
             'teachers.name as wali_kelas',
+            'teachers.id as wali_id',
             DB::raw('COUNT(students.id) as jumlah_siswa')
         )
         ->join('teachers', 'classes.teacher_id', '=', 'teachers.id')

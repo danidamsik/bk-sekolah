@@ -40,7 +40,7 @@
                                 <button @click="$dispatch('edit-kelas', {
                                             id: {{ $kelas['id'] }},
                                             nama_kelas: '{{ $kelas['nama_kelas'] }}',
-                                            wali_kelas: '{{ $kelas['wali_kelas'] }}',
+                                            wali_kelas: '{{ $kelas['wali_id'] }}',
                                             jumlah_siswa: '{{ $kelas['jumlah_siswa'] }}',
                                     })"
                                     class="hover:text-blue-600 transition" title="Edit">

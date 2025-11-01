@@ -2,25 +2,27 @@
 
 namespace App\Livewire\MasterData\DataKelas;
 
-use Livewire\Attributes\Validate;
+use App\Models\ClassRoom;
+use App\Models\Teacher;
 use Livewire\Component;
 
 class FormKelas extends Component
-{    
-    public $id;
+{
+    public $id, $nama_kelas, $wali_kelas, $dataTeacher;
 
-    #[Validate('required|string|min:2')]
-    public $nama_kelas;
-
-    #[Validate('required|string|min:3')]
-    public $wali_kelas;
-
-    #[Validate('required|integer|min:1|max:100')]
-    public $jumlah_siswa;
-
-    public function createOrUpdate()
+    public function mount()
     {
-        $this->validate();
+        $this->dataTeacher = Teacher::select('teachers.id', 'teachers.name')
+            ->join('users', 'teachers.id', '=', 'users.teacher_id')
+            ->get();
+    }
+
+    protected function rules()
+    {
+        return [
+            'nama_kelas' => 'required|min:2|max:50',
+            'wali_kelas' => 'required|exists:teachers,id',
+        ];
     }
 
     protected function messages()
@@ -28,17 +30,34 @@ class FormKelas extends Component
         return [
             'nama_kelas.required' => 'Nama kelas wajib diisi.',
             'nama_kelas.min' => 'Nama kelas minimal 2 karakter.',
-            'wali_kelas.required' => 'Nama wali kelas wajib diisi.',
-            'wali_kelas.min' => 'Nama wali kelas minimal 3 karakter.',
-            'jumlah_siswa.required' => 'Jumlah siswa wajib diisi.',
-            'jumlah_siswa.integer' => 'Jumlah siswa harus berupa angka.',
-            'jumlah_siswa.min' => 'Jumlah siswa minimal 1 orang.',
-            'jumlah_siswa.max' => 'Jumlah siswa maksimal 100 orang.',
+            'nama_kelas.max' => 'Nama kelas maksimal 50 karakter.',
+
+            'wali_kelas.required' => 'Wali kelas wajib dipilih.',
+            'wali_kelas.exists' => 'Wali kelas yang dipilih tidak valid.',
         ];
+    }
+
+    public function createOrUpdate()
+    {
+        $this->validate($this->rules(), $this->messages());
+
+        ClassRoom::updateOrCreate(
+            ['id' => $this->id],
+            [
+                'name' => $this->nama_kelas,
+                'teacher_id' => $this->wali_kelas
+            ]
+        );
+
+        $this->dispatch('succses-notif', messege: 'Data Kelas berhasil disimpan.');
+
+        $this->reset('id', 'nama_kelas', 'wali_kelas');
     }
 
     public function render()
     {
-        return view('livewire.master-data.data-kelas.form-kelas');
+        return view('livewire.master-data.data-kelas.form-kelas', [
+            'dataTeacher' => $this->dataTeacher
+        ]);
     }
 }

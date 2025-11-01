@@ -41,7 +41,7 @@ class TableGuru extends Component
             'users.role',
             'teachers.phone'
         )
-            ->leftJoin('users', 'teachers.id', '=', 'users.teacher_id'); // ⬅️ ubah di sini
+            ->leftJoin('users', 'teachers.id', '=', 'users.teacher_id');
 
         if (!empty($this->search)) {
             $query->where('teachers.name', 'like', '%' . $this->search . '%');

@@ -29,9 +29,13 @@
 
             <div>
                 <label class="block text-sm font-semibold text-gray-600 mb-1">Kelas</label>
-                <input wire:model="class_name" type="text" name="kelas"
-                    class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
-                    placeholder="Masukkan kelas">
+                <select wire:model="class_name" name="status"
+                    class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200">
+                    <option value="">pilih kelas</option>
+                    @foreach ($kelas as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                </select>
                 @error('class_name')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
@@ -47,15 +51,20 @@
                 @enderror
             </div>
 
-            <div>
+                        <div>
                 <label class="block text-sm font-semibold text-gray-600 mb-1">Guru Pelapor</label>
-                <input wire:model="name_teacher" type="text" name="guru_pelapor"
-                    class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
-                    placeholder="Masukkan nama guru pelapor">
+                <select wire:model="name_teacher" name="status"
+                    class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200">
+                    <option value="">Guru Pelapor</option>
+                    @foreach ($guru as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                </select>
                 @error('name_teacher')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
+
 
             <div>
                 <label class="block text-sm font-semibold text-gray-600 mb-1">Tanggal</label>

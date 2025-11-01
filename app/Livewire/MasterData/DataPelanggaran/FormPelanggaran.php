@@ -2,40 +2,53 @@
 
 namespace App\Livewire\MasterData\DataPelanggaran;
 
-use Livewire\Attributes\Validate;
+use App\Models\Violation;
 use Livewire\Component;
 
 class FormPelanggaran extends Component
 {
-    public $id;
+    public $id, $name, $point, $description;
 
-    #[Validate('required|string|min:3')]
-    public $name;
-
-    #[Validate('required|integer|min:1|max:100')]
-    public $point;
-
-    #[Validate('required|nullable|string|max:255')]
-    public $description;
-
-    public function createOrUpdate()
+    protected function rules()
     {
-        $this->validate();
+        return [
+            'name' => 'required|string|max:100',
+            'point' => 'required|integer|min:1',
+            'description' => 'required|nullable|string|max:255',
+        ];
     }
 
     protected function messages()
     {
         return [
             'name.required' => 'Nama pelanggaran wajib diisi.',
-            'name.min' => 'Nama pelanggaran minimal 3 karakter.',
-            'point.required' => 'Poin pelanggaran wajib diisi.',
-            'point.integer' => 'Poin pelanggaran harus berupa angka.',
-            'point.min' => 'Poin pelanggaran minimal 1.',
-            'point.max' => 'Poin pelanggaran maksimal 100.',
+            'name.string' => 'Nama pelanggaran harus berupa teks.',
+            'name.max' => 'Nama pelanggaran maksimal 100 karakter.',
+            'point.required' => 'Poin wajib diisi.',
+            'point.integer' => 'Poin harus berupa angka.',
+            'point.min' => 'Poin minimal bernilai 1.',
             'description.string' => 'Deskripsi harus berupa teks.',
-            'description.required' => 'Deskripsi tidak boleh kosong.',
             'description.max' => 'Deskripsi maksimal 255 karakter.',
+            'description.required' => "deskripsi Wajib di isi",
         ];
+    }
+
+    public function createOrUpdate()
+    {
+        $this->validate($this->rules(), $this->messages());
+
+        Violation::updateOrCreate(
+            ['id' => $this->id],
+            [
+                'name' => $this->name,
+                'point' => $this->point,
+                'description' => $this->description
+            ]
+        );
+
+        $this->dispatch('succses-notif', messege: "data pelanggaran berhasil disimpan");
+        $this->reset();
+
     }
 
     public function render()

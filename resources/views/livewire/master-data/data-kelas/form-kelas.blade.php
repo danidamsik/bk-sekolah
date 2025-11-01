@@ -32,27 +32,15 @@
              <select wire:model="wali_kelas"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 outline-none">
                  <option value="">Pilih Wali Kelas</option>
-                 <option value="Siti Nurhaliza, S.Pd">Siti Nurhaliza, S.Pd</option>
-                 <option value="Bu Rini">Bu Rini</option>
-                 <option value="Pak Agus">Pak Agus</option>
-                 <option value="Bu Sinta">Bu Sinta</option>
+                 @foreach ($dataTeacher as $item)
+                     <option value="{{$item->id}}">{{$item->name}}</option>
+                 @endforeach
              </select>
              @error('wali_kelas')
                  <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
              @enderror
 
          </div>
-
-         {{-- Input Jumlah Siswa --}}
-         <div>
-             <label class="block text-gray-600 text-sm mb-1">Jumlah Siswa</label>
-             <input wire:model="jumlah_siswa" type="number" placeholder="Masukkan jumlah siswa"
-                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 outline-none" />
-             @error('jumlah_siswa')
-                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-             @enderror
-         </div>
-         {{-- START: Tombol Tambah --}}
          {{-- Tombol Submit --}}
          <div class="flex justify-end md:col-span-2">
              <button type="submit"

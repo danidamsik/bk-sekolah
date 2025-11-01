@@ -14,6 +14,9 @@
         </h2>
     </div>
 
+    @livewire('management-pelanggaran.laporan-pelanggaran.input-box')
+
+
     <form wire:submit.prevent="createOrUpdate" class="space-y-5">
         @csrf
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -33,7 +36,7 @@
                     class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200">
                     <option value="">pilih kelas</option>
                     @foreach ($kelas as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option>
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach
                 </select>
                 @error('class_name')
@@ -51,13 +54,13 @@
                 @enderror
             </div>
 
-                        <div>
+            <div>
                 <label class="block text-sm font-semibold text-gray-600 mb-1">Guru Pelapor</label>
                 <select wire:model="name_teacher" name="status"
                     class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200">
                     <option value="">Guru Pelapor</option>
                     @foreach ($guru as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option>
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach
                 </select>
                 @error('name_teacher')

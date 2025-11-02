@@ -15,6 +15,7 @@ class TableLaporanPelanggaran extends Component
     public $kelas = '';
     public $status = '';
     public $date = '';
+    public $modal = false;
 
     public function updatingSearch() { $this->resetPage(); }
     public function updatingKelas() { $this->resetPage(); }
@@ -24,6 +25,7 @@ class TableLaporanPelanggaran extends Component
     public function delete($id)
     {
         ViolationReport::find($id)->delete();
+        $this->modal = false;
         $this->dispatch('succses-notif', messege: 'Data Pelanggaran Berhasil Dihapus');
     }
     

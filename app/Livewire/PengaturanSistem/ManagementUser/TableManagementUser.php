@@ -7,6 +7,9 @@ use Livewire\Component;
 
 class TableManagementUser extends Component
 {
+
+
+    public $modal = false;
     public function render()
     {
         $user = User::select(

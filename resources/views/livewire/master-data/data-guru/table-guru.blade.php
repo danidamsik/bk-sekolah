@@ -1,4 +1,4 @@
-<div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 space-y-6 animate-slideUp" x-data="{ showDeleteModal: false, id: '' }">
+<div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 space-y-6 animate-slideUp" x-data="{ id: '' }">
 
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
@@ -96,7 +96,7 @@
                             </button>
 
                             <button class="text-red-500 hover:text-red-700 transition duration-150 mx-1"
-                                @click="showDeleteModal = true; id={{ $guru->id }};" title="Hapus">
+                                @click="$wire.modal = true; id={{ $guru->id }};" title="Hapus">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </td>

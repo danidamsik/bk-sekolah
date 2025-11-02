@@ -13,9 +13,11 @@ class TableGuru extends Component
 
     public $search = '';
     public $roleFilter = '';
+    public $modal = false;
 
     public function delete($id) {
         Teacher::find($id)->delete();
+        $this->modal = false;
 
         $this->dispatch('succses-notif', messege: "Data Guru berhasil di hapus");
     } 

@@ -13,6 +13,7 @@ class TableKelas extends Component
     use WithPagination;
 
     public $search = '';
+    public $modal = false;
 
     public function updatingSearch()
     {
@@ -22,6 +23,7 @@ class TableKelas extends Component
     public function delete($id)
     {
         ClassRoom::find($id)->delete();
+        $this->modal = false;
             $this->dispatch('succses-notif', messege: 'Data Kelas berhasil dihapus.');
     }
 

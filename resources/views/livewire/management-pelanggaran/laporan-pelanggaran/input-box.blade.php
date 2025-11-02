@@ -1,5 +1,37 @@
     <!-- ⭐ Start: Search Box Component (autocomplete siswa - dummy data) -->
-    <div class="relative max-w-md"  @click.outside="open = false">
+    <div class="relative max-w-md" x-data="{
+        open: false,
+        query: '',
+        results: [],
+        allData: [
+            { id: 1, nama_siswa: 'Andi Pratama', class_name: 'X IPA 1' },
+            { id: 2, nama_siswa: 'Budi Santoso', class_name: 'X IPA 2' },
+            { id: 3, nama_siswa: 'Citra Lestari', class_name: 'XI IPS 1' },
+            { id: 4, nama_siswa: 'Dewi Anggraini', class_name: 'XI IPA 1' },
+            { id: 5, nama_siswa: 'Eko Nugroho', class_name: 'XII IPA 1' },
+            { id: 6, nama_siswa: 'Farhan Hakim', class_name: 'XII IPA 1' },
+            { id: 7, nama_siswa: 'Gita Sari', class_name: 'XI IPA 2' },
+            { id: 8, nama_siswa: 'Hadi Wijaya', class_name: 'X IPA 1' },
+            { id: 9, nama_siswa: 'Indah Permata', class_name: 'XI IPS 2' },
+            { id: 10, nama_siswa: 'Joko Susilo', class_name: 'XII IPS 1' }
+        ],
+        search() {
+            if (this.query.length > 0) {
+                this.results = this.allData.filter(
+                    s => s.nama_siswa.toLowerCase().includes(this.query.toLowerCase())
+                );
+                this.open = true;
+            } else {
+                this.results = [];
+                this.open = false;
+            }
+        },
+        select(item) {
+            this.query = item.nama_siswa;
+            this.open = false;
+            console.log('Siswa dipilih:', item);
+        }
+    }" @click.outside="open = false">
 
         <!-- Input -->
         <input type="text" placeholder="Cari data siswa..." x-model="query" @input.debounce.300ms="search()"

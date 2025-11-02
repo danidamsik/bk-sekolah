@@ -23,7 +23,8 @@ class FormGuru extends Component
             ]
         );
 
-        $this->dispatch('succses-notif', messege: "Data guru berhasil disimpan.");
+        $message = $this->Id ? 'Guru berhasil diupdate!' : 'Guru berhasil disimpan!';
+        $this->dispatch('succses-notif', messege: $message);
         $this->reset();
     }
 

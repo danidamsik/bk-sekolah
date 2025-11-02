@@ -43,8 +43,8 @@
                                         id: {{ $siswa['id'] }},
                                         nisn: '{{ $siswa['nisn'] }}',
                                         name: '{{ $siswa['name'] }}',
-                                        nama_kelas: '{{ $siswa['kelas_id'] }}',
-                                        wali_kelas: '{{ $siswa['wali_kelas_id'] }}',
+                                        class_id: '{{ $siswa['kelas_id'] }}',
+                                        teacher_id: '{{ $siswa['wali_kelas_id'] }}',
                                         parent_name: '{{ $siswa['parent_name'] }}',
                                         parent_contact: '{{ $siswa['parent_contact'] }}'
                                     })"

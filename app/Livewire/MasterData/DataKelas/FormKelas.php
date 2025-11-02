@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class FormKelas extends Component
 {
-    public $id, $nama_kelas, $wali_kelas, $dataTeacher;
+    public $id, $class_name, $teacher_id, $dataTeacher;
 
     public function mount()
     {
@@ -20,20 +20,20 @@ class FormKelas extends Component
     protected function rules()
     {
         return [
-            'nama_kelas' => 'required|min:2|max:50',
-            'wali_kelas' => 'required|exists:teachers,id',
+            'class_name' => 'required|min:2|max:50',
+            'teacher_id' => 'required|exists:teachers,id',
         ];
     }
 
     protected function messages()
     {
         return [
-            'nama_kelas.required' => 'Nama kelas wajib diisi.',
-            'nama_kelas.min' => 'Nama kelas minimal 2 karakter.',
-            'nama_kelas.max' => 'Nama kelas maksimal 50 karakter.',
+            'class_name.required' => 'Nama kelas wajib diisi.',
+            'class_name.min' => 'Nama kelas minimal 2 karakter.',
+            'class_name.max' => 'Nama kelas maksimal 50 karakter.',
 
-            'wali_kelas.required' => 'Wali kelas wajib dipilih.',
-            'wali_kelas.exists' => 'Wali kelas yang dipilih tidak valid.',
+            'teacher_id.required' => 'Wali kelas wajib dipilih.',
+            'teacher_id.exists' => 'Wali kelas yang dipilih tidak valid.',
         ];
     }
 
@@ -44,14 +44,16 @@ class FormKelas extends Component
         ClassRoom::updateOrCreate(
             ['id' => $this->id],
             [
-                'name' => $this->nama_kelas,
-                'teacher_id' => $this->wali_kelas
+                'name' => $this->class_name,
+                'teacher_id' => $this->teacher_id
             ]
         );
 
-        $this->dispatch('succses-notif', messege: 'Data Kelas berhasil disimpan.');
+        $message = $this->id ? 'Kelas berhasil diupdate!' : 'Kelas berhasil disimpan!';
 
-        $this->reset('id', 'nama_kelas', 'wali_kelas');
+        $this->dispatch('succses-notif', messege: $message);
+
+        $this->reset('id', 'class_name', 'teacher_id');
     }
 
     public function render()

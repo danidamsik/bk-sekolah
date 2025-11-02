@@ -32,9 +32,9 @@ class TableKelas extends Component
     {
         $query = ClassRoom::select(
             'classes.id',
-            'classes.name as nama_kelas',
-            'teachers.name as wali_kelas',
-            'teachers.id as wali_id',
+            'classes.name as class_name',
+            'teachers.name as teacher_name',
+            'teachers.id as teacher_id',
             DB::raw('COUNT(students.id) as jumlah_siswa')
         )
         ->join('teachers', 'classes.teacher_id', '=', 'teachers.id')

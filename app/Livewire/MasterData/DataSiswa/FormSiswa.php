@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 
 class FormSiswa extends Component
 {
-    public $id, $name, $nisn, $nama_kelas, $wali_kelas, $parent_name, $parent_contact;
+    public $id, $name, $nisn, $class_id, $teacher_id, $parent_name, $parent_contact;
     public $dataKelas;
 
     public function mount()
@@ -28,16 +28,17 @@ class FormSiswa extends Component
             [
                 'nisn' => $this->nisn,
                 'name' => $this->name,
-                'class_id' => $this->nama_kelas,
-                'teacher_id' => $this->wali_kelas,
+                'class_id' => $this->class_id,
+                'teacher_id' => $this->teacher_id,
                 'parent_name' => $this->parent_name,
                 'parent_contact' => $this->parent_contact,
             ]
         );
 
-        $this->dispatch('succses-notif', messege: 'Data siswa berhasil disimpan.');
+        $message = $this->id ? 'Data siswa berhasil diupdate!' : 'Data siswa berhasil disimpan!';
+        $this->dispatch('succses-notif', messege: $message);
 
-        $this->reset('id', 'name', 'nisn', 'nama_kelas', 'wali_kelas', 'parent_name', 'parent_contact');
+        $this->reset('id', 'name', 'nisn', 'class_id', 'teacher_id', 'parent_name', 'parent_contact');
     }
 
     protected function rules()

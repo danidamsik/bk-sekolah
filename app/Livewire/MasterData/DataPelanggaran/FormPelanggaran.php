@@ -46,7 +46,8 @@ class FormPelanggaran extends Component
             ]
         );
 
-        $this->dispatch('succses-notif', messege: "data pelanggaran berhasil disimpan");
+        $message = $this->id ? 'Pelanggaran berhasil diupdate!' : 'Pelanggaran berhasil disimpan!';
+        $this->dispatch('succses-notif', messege: $message);
         $this->reset();
 
     }

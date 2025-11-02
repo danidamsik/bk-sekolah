@@ -1,8 +1,8 @@
 <div @edit-siswa.window="
         $wire.nisn = $event.detail.nisn;
         $wire.name = $event.detail.name;
-        $wire.nama_kelas = $event.detail.nama_kelas;
-        $wire.wali_kelas = $event.detail.wali_kelas;
+        $wire.class_id = $event.detail.class_id;
+        $wire.teacher_id = $event.detail.teacher_id;
         $wire.parent_name = $event.detail.parent_name;
         $wire.parent_contact = $event.detail.parent_contact;
         $wire.id = $event.detail.id;
@@ -35,32 +35,26 @@
 
         <div>
             <label class="text-sm text-gray-600">Kelas</label>
-            <select wire:model="nama_kelas"
+            <select wire:model="class_id"
+                @change="$wire.teacher_id = $event.target.selectedOptions[0].dataset.teacherId"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none">
                 <option value="">Pilih Kelas</option>
                 @foreach ($dataKelas as $data)
-                    <option value="{{ $data->id }}">{{ $data->name }}</option>
+                    <option value="{{ $data->id }}" data-teacher-id="{{ $data->teacher_id }}">{{ $data->name }}
+                    </option>
                 @endforeach
             </select>
-
-            @error('nama_kelas')
-                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-            @enderror
         </div>
 
         <div>
             <label class="text-sm text-gray-600">Wali Kelas</label>
-            <select wire:model="wali_kelas"
+            <select wire:model="teacher_id"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none">
-                <option value="">Pilih Wali Kelas</option>
+                <option disabled value="">Pilih Wali Kelas</option>
                 @foreach ($dataKelas as $data)
-                    <option value="{{ $data->teacher_id }}">{{ $data->teacher->name }}</option>
+                    <option disabled value="{{ $data->teacher_id }}">{{ $data->teacher->name }}</option>
                 @endforeach
             </select>
-
-            @error('wali_kelas')
-                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-            @enderror
         </div>
 
         <div>

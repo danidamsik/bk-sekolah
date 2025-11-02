@@ -27,10 +27,10 @@
                     <tr class="hover:bg-gray-50 transition">
                         <td class="py-3 px-4 text-center">{{ $loop->iteration }}</td>
                         <td class="py-3 px-4 font-medium text-gray-800 text-left">
-                            {{ $kelas['nama_kelas'] ?? ($kelas->nama_kelas ?? '-') }}
+                            {{ $kelas['class_name'] ?? ($kelas->nama_kelas ?? '-') }}
                         </td>
                         <td class="py-3 px-4 text-left">
-                            {{ $kelas['wali_kelas'] ?? ($kelas->wali_kelas ?? '-') }}
+                            {{ $kelas['teacher_name'] ?? ($kelas->wali_kelas ?? '-') }}
                         </td>
                         <td class="py-3 px-4 text-center">
                             {{ $kelas['jumlah_siswa'] ?? ($kelas->jumlah_siswa ?? 0) }}
@@ -39,8 +39,8 @@
                             <div class="flex justify-center gap-3 text-gray-600">
                                 <button @click="$dispatch('edit-kelas', {
                                             id: {{ $kelas['id'] }},
-                                            nama_kelas: '{{ $kelas['nama_kelas'] }}',
-                                            wali_kelas: '{{ $kelas['wali_id'] }}',
+                                            class_name: '{{ $kelas['class_name'] }}',
+                                            teacher_id: '{{ $kelas['teacher_id'] }}',
                                             jumlah_siswa: '{{ $kelas['jumlah_siswa'] }}',
                                     })"
                                     class="hover:text-blue-600 transition" title="Edit">

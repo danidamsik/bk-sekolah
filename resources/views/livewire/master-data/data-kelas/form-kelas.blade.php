@@ -1,7 +1,7 @@
  <div @edit-kelas.window="
         $wire.id = $event.detail.id;
-        $wire.nama_kelas = $event.detail.nama_kelas;
-        $wire.wali_kelas = $event.detail.wali_kelas;
+        $wire.class_name = $event.detail.class_name;
+        $wire.teacher_id = $event.detail.teacher_id;
         $wire.jumlah_siswa = $event.detail.jumlah_siswa;
         "
      class="bg-white shadow-lg rounded-2xl p-6 border border-gray-100 animate-slideUp">
@@ -18,7 +18,7 @@
          {{-- Input Nama Kelas --}}
          <div>
              <label class="block text-gray-600 text-sm mb-1">Nama Kelas</label>
-             <input wire:model="nama_kelas" type="text" placeholder="Masukkan nama kelas"
+             <input wire:model="class_name" type="text" placeholder="Masukkan nama kelas"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 outline-none" />
 
              @error('nama_kelas')
@@ -29,7 +29,7 @@
          {{-- Select Wali Kelas --}}
          <div>
              <label class="block text-gray-600 text-sm mb-1">Wali Kelas</label>
-             <select wire:model="wali_kelas"
+             <select wire:model="teacher_id"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 outline-none">
                  <option value="">Pilih Wali Kelas</option>
                  @foreach ($dataTeacher as $item)

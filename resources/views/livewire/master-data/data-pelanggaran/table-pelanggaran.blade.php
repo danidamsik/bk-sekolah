@@ -1,4 +1,4 @@
-<div x-data="{ showDeleteModal: false, id:'' }" class="bg-white shadow-lg rounded-2xl p-6 border border-gray-100 space-y-6">
+<div x-data="{id:'' }" class="bg-white shadow-lg rounded-2xl p-6 border border-gray-100 space-y-6">
     <!-- Header -->
     <div class="flex flex-col md:flex-row justify-between items-center mb-2 gap-4">
         <h2 class="text-2xl font-semibold text-gray-700 flex items-center gap-2">
@@ -41,7 +41,7 @@
                                     class="hover:text-blue-600 transition" title="Edit"> <i class="fas fa-edit"></i>
                                 </button>
                                 <button class="hover:text-red-600 transition"
-                                    @click="showDeleteModal = true; id={{ $item->id }};" title="Hapus"> <i
+                                    @click="$wire.modal = true; id={{ $item->id }};" title="Hapus"> <i
                                         class="fas fa-trash"></i>
                                 </button>
                                 <button class="hover:text-green-600 transition" title="Lihat Detail"> <i

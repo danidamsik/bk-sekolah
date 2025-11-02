@@ -1,5 +1,28 @@
-    <!-- ⭐ Start: Search Box Component (autocomplete siswa - dummy data) -->
-    <div class="relative max-w-md"  @click.outside="open = false">
+<div class="relative max-w-md" x-data="{
+    open: false,
+    query: '',
+    results: [],
+    allData: @js($students),
+    search() {
+        if (this.query.length > 0) {
+            this.results = this.allData.filter(
+                s => s.name.toLowerCase().includes(this.query.toLowerCase())
+            );
+            this.open = true;
+        } else {
+            this.results = [];
+            this.open = false;
+        }
+    },
+    select(item) {
+        this.query = item.name;
+        this.open = false;
+        $dispatch('search-siswa', {
+            id: item.id,
+            class_id: item.class_id
+        })
+    }
+}" @click.outside="open = false">
 
     <!-- Input -->
     <input type="text" placeholder="Cari data siswa..." x-model="query" @input.debounce.300ms="search()"

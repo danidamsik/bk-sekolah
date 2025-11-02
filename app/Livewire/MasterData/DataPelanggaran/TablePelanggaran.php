@@ -12,10 +12,12 @@ class TablePelanggaran extends Component
     use WithPagination;
 
     public $search = '';
+    public $modal = false;
 
     public function delete($id)
     {
         Violation::find($id)->delete();
+        $this->modal = false;
     }
 
     public function updatingSearch()

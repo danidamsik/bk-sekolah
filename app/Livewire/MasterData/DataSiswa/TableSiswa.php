@@ -13,6 +13,7 @@ class TableSiswa extends Component
     use WithPagination;
 
     public $search = '';
+    public $modal = false;
 
     public function updatingSearch()
     {
@@ -22,7 +23,7 @@ class TableSiswa extends Component
     public function delete($id)
     {
         Student::find($id)->delete();
-
+        $this->modal = false;
         $this->dispatch('succses-notif', messege: "data siswa berhasil dihapus");
     }
 

@@ -1,4 +1,4 @@
-<div x-data="{ showDeleteModal: false, id: '' }">
+<div x-data="{id: '' }">
     <!-- ==================== CARD UTAMA ==================== -->
     <div
         class="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 transition-all duration-500 hover:shadow-2xl backdrop-blur-sm">
@@ -58,7 +58,7 @@
                                     <i class="fa-solid fa-pen-to-square"></i> Edit
                                 </button>
 
-                                <button @click="showDeleteModal = true; id={{ $item->id }};"
+                                <button @click="$wire.modal = true; id={{ $item->id }};"
                                     class="px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-lg text-sm flex items-center gap-2">
                                     <i class="fa-solid fa-trash"></i> Hapus
                                 </button>

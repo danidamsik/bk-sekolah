@@ -28,11 +28,11 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
                 <label class="block text-sm font-semibold text-gray-600 mb-1">Nama Siswa</label>
-                <select wire:model="student_id"
+                <select wire:model="student_id" @change="$wire.class_id = $event.target.selectedOptions[0].dataset.classId"
                     class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200">
                     <option value="">Pilih Siswa</option>
                     @foreach ($student as $item)
-                        <option @click="$wire.class_id={{$item->class_id}}" value="{{ $item->id }}">
+                        <option value="{{ $item->id }}" data-class-id="{{ $item->class_id }}">
                             {{ $item->name }}
                         </option>
                     @endforeach

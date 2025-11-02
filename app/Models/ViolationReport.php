@@ -14,7 +14,7 @@ class ViolationReport extends Model
     protected $fillable = [
         'student_id',
         'violation_id',
-        'reporter_id',
+        'teacher_id',
         'date',
         'time',
         'location',

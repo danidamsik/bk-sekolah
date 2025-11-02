@@ -78,12 +78,15 @@
                                 <button
                                     @click="$dispatch('laporan-pelanggaran', {
                                             id: {{ $laporan['id'] }},
-                                            nama_siswa: '{{ $laporan['nama_siswa'] }}',
-                                            class_name: '{{ $laporan['class_name'] }}',
-                                            name_pelanggaran: '{{ $laporan['name_pelanggaran'] }}',
-                                            name_teacher: '{{ $laporan['name_teacher'] }}',
+                                            student_id: '{{ $laporan['siswa_id'] }}',
+                                            class_id: '{{ $laporan['class_id'] }}',
+                                            violation_id: '{{ $laporan['violation_id'] }}',
+                                            teacher_id: '{{ $laporan['teacher_id'] }}',
                                             date: '{{ $laporan['date'] }}'.split(' ')[0],
-                                            status: '{{ $laporan['status'] }}'
+                                            time: '{{ $laporan['time'] }}'.split(' ')[1].slice(0, 5),
+                                            location: '{{ $laporan['location'] }}',
+                                            status: '{{ $laporan['status'] }}',
+                                            description: '{{ $laporan['description'] }}'
                                     })"
                                     class="hover:text-green-600 transition" title="Edit">
                                     <i class="fas fa-edit"></i>

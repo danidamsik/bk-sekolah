@@ -3,8 +3,9 @@
 namespace App\Livewire\ManagementPelanggaran\LaporanPelanggaran;
 
 use Livewire\Component;
-use App\Models\ViolationReport;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use App\Models\ViolationReport;
 
 class TableLaporanPelanggaran extends Component
 {
@@ -20,15 +21,29 @@ class TableLaporanPelanggaran extends Component
     public function updatingStatus() { $this->resetPage(); }
     public function updatingDate() { $this->resetPage(); }
 
+    public function delete($id)
+    {
+        ViolationReport::find($id)->delete();
+        $this->dispatch('succses-notif', messege: 'Data Pelanggaran Berhasil Dihapus');
+    }
+    
+    #[On('succses-notif')] 
     public function render()
     {
         $query = ViolationReport::select(
             'violation_reports.id',
+            'violation_reports.teacher_id as teacher_id',
             'students.name as nama_siswa',
+            'students.id as siswa_id',
             'classes.name as class_name',
+            'classes.id as class_id',
             'violations.name as name_pelanggaran',
+            'violations.id as violation_id',
             'teachers.name as name_teacher',
             'violation_reports.date',
+            'violation_reports.time',
+            'violation_reports.description',
+            'violation_reports.location',
             'violation_reports.status'
         )
         ->join('students', 'violation_reports.student_id', '=', 'students.id')

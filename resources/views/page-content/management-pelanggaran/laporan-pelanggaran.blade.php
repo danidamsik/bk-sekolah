@@ -3,10 +3,6 @@
 @section('content')
     <div class="p-6 space-y-8 animate-fade-in">
 
-        {{-- ======================================================
-        COMPONENT 1 : FILTER + TABEL DATA LAPORAN PELANGGARAN
-        Berisi filter (kelas, status, tanggal) dan tabel laporan
-    ====================================================== --}}
         @livewire('management-pelanggaran.laporan-pelanggaran.table-laporan-pelanggaran')
         {{-- ======================================================
         COMPONENT 2 : FORM INPUT LAPORAN PELANGGARAN
@@ -15,7 +11,6 @@
         @livewire('management-pelanggaran.laporan-pelanggaran.form-laporan-pelanggaran')
     </div>
 
-    {{-- Animasi sederhana --}}
     <style>
         @keyframes fade-in {
             from {

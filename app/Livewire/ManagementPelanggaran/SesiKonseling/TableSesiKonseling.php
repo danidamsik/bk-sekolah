@@ -23,8 +23,13 @@ class TableSesiKonseling extends Component
             'counseling_sessions.id',
             'students.name as nama_siswa',
             'teachers.name as nama_guru',
+            'counseling_sessions.student_id',
+            'counseling_sessions.teacher_id',
             'counseling_sessions.session_date',
-            'violation_reports.status'
+            'counseling_sessions.notes',
+            'counseling_sessions.recommendation',
+            'counseling_sessions.follow_up_plan',
+            'violation_reports.status',
         )
         ->join('students', 'counseling_sessions.student_id', '=', 'students.id')
         ->join('teachers', 'counseling_sessions.teacher_id', '=', 'teachers.id')

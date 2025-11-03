@@ -2,59 +2,65 @@
 
 namespace App\Livewire\ManagementPelanggaran\SesiKonseling;
 
-use Livewire\Attributes\Validate;
+use App\Models\Student;
+use App\Models\Teacher;
 use Livewire\Component;
 
 class FormSesiKonseling extends Component
 {
-    public $id;
+    public $id, $violation_report_id, $student_id, $teacher_id, $session_date, $status, $notes, $recommendation, $follow_up_plan;
+    public $student, $guru;
 
-    #[Validate('required|string|min:3')]
-    public $nama_siswa;
-
-    #[Validate('required|string|min:3')]
-    public $nama_guru;
-
-    #[Validate('required|date')]
-    public $session_date;
-
-    #[Validate('required|in:scheduled,completed,cancelled')]
-    public $status;
-
-    #[Validate('required|in:scheduled,completed,cancelled')]
-    public $rekomendasi;
-
-    #[Validate('required|in:scheduled,completed,cancelled')]
-    public $tindak_lanjut;
+    public function mount()
+    {
+        $this->student = Student::select('id', 'name')->get();
+        $this->guru = Teacher::select('teachers.id', 'teachers.name')
+            ->join('users', 'teachers.id', '=', 'users.teacher_id')->where('users.role', 'GuruBK')->get();
+    }
 
     public function createOrUpdate()
     {
-        $this->validate();
+        $this->validate($this->rules(), $this->messages());
+    }
+
+    protected function rules()
+    {
+        return [
+            'violation_report_id' => 'required|integer',
+            'student_id' => 'required|exists:students,id',
+            'teacher_id' => 'required|exists:teachers,id',
+            'session_date' => 'required|date',
+            'status' => 'required|string',
+            'notes' => 'nullable|string',
+            'recommendation' => 'nullable|string',
+            'follow_up_plan' => 'nullable|string',
+        ];
     }
 
     protected function messages()
     {
         return [
-            'nama_siswa.required' => 'Nama siswa wajib diisi.',
-            'nama_siswa.min' => 'Nama siswa minimal 3 karakter.',
-
-            'nama_guru.required' => 'Nama guru wajib diisi.',
-            'nama_guru.min' => 'Nama guru minimal 3 karakter.',
-
+            'violation_report_id.required' => 'Laporan pelanggaran wajib diisi.',
+            'violation_report_id.integer' => 'Laporan pelanggaran harus berupa angka.',
+            'student_id.required' => 'Siswa wajib dipilih.',
+            'student_id.exists' => 'Siswa yang dipilih tidak ditemukan.',
+            'teacher_id.required' => 'Guru BK wajib dipilih.',
+            'teacher_id.exists' => 'Guru BK yang dipilih tidak ditemukan.',
             'session_date.required' => 'Tanggal sesi wajib diisi.',
-            'session_date.date' => 'Format tanggal tidak valid.',
-
-            'status.required' => 'Status wajib diisi.',
-            'status.in' => 'Status hanya boleh bernilai scheduled, completed, atau cancelled.',
-
-            'rekomendasi.required' => 'Rekomendasi wajib diisi.',
-            
-            'tindak_lanjut.required' => 'Rencana Tindak Lanjut wajib diisi.',
+            'session_date.date' => 'Tanggal sesi tidak valid.',
+            'status.required' => 'Status sesi wajib diisi.',
+            'status.string' => 'Status sesi harus berupa teks.',
+            'notes.string' => 'Catatan harus berupa teks.',
+            'recommendation.string' => 'Rekomendasi harus berupa teks.',
+            'follow_up_plan.string' => 'Rencana tindak lanjut harus berupa teks.',
         ];
     }
 
     public function render()
     {
-        return view('livewire.management-pelanggaran.sesi-konseling.form-sesi-konseling');
+        return view('livewire.management-pelanggaran.sesi-konseling.form-sesi-konseling', [
+            'student' => $this->student,
+            'guru' => $this->guru
+        ]);
     }
 }

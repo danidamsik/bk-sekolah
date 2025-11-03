@@ -1,11 +1,12 @@
         <div @sesi-konseling.window=
-                    "
-                        $wire.nama_siswa = $event.detail.nama_siswa;
-                        $wire.nama_guru = $event.detail.nama_guru;
-                        $wire.session_date = $event.detail.session_date;
-                        $wire.status = $event.detail.status;
-                        $wire.id = $event.detail.id;
-                    "
+                    "$wire.id = $event.detail.id;
+                     $wire.student_id = $event.detail.student_id;
+                     $wire.teacher_id = $event.detail.teacher_id;
+                     $wire.session_date = $event.detail.session_date;
+                     $wire.status = $event.detail.status;
+                     $wire.notes = $event.detail.notes;
+                     $wire.recommendation = $event.detail.recommendation;
+                     $wire.follow_up_plan = $event.detail.follow_up_plan;"
             class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-xl font-bold text-gray-700 flex items-center gap-2">
@@ -19,20 +20,30 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Nama Siswa</label>
-                        <input wire:model="nama_siswa" type="text" name="nama_siswa"
-                            class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
-                            placeholder="Masukkan nama siswa">
-                        @error('nama_siswa')
+                        <select wire:model="student_id"
+                            class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200">
+                            <option value="">Pilih Siswa</option>
+                            @foreach ($student as $item)
+                                <option disabled value="{{ $item->id }}">
+                                    {{ $item->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('student_id')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1">Guru BK</label>
-                        <input wire:model="nama_guru" type="text" name="guru_bk"
-                            class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
-                            placeholder="Masukkan nama guru BK">
-                        @error('nama_guru')
+                        <label class="block text-sm font-semibold text-gray-600 mb-1">Pilih Guru BK</label>
+                        <select wire:model="teacher_id"
+                            class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200">
+                            <option value="">Pilih Guru BK</option>
+                            @foreach ($guru as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('teacher_id')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
@@ -62,21 +73,31 @@
                 </div>
 
                 <div>
+                    <label class="block text-sm font-semibold text-gray-600 mb-1">Catatan</label>
+                    <textarea wire:model="notes" name="rekomendasi" rows="3"
+                        class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
+                        placeholder="Masukkan Catatan..."></textarea>
+                    @error('notes')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div>
                     <label class="block text-sm font-semibold text-gray-600 mb-1">Rekomendasi</label>
-                    <textarea name="rekomendasi" rows="3"
+                    <textarea wire:model="recommendation" name="rekomendasi" rows="3"
                         class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
                         placeholder="Masukkan rekomendasi hasil konseling..."></textarea>
-                    @error('rekomendasi')
+                    @error('recommendation')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div>
                     <label class="block text-sm font-semibold text-gray-600 mb-1">Rencana Tindak Lanjut</label>
-                    <textarea name="tindak_lanjut" rows="3"
+                    <textarea wire:model="follow_up_plan" name="tindak_lanjut" rows="3"
                         class="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
                         placeholder="Masukkan rencana tindak lanjut..."></textarea>
-                    @error('tindak_lanjut')
+                    @error('follow_up_plan')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>

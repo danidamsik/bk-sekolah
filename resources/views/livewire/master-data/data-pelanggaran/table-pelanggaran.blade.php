@@ -37,7 +37,9 @@
                                             name: '{{ $item['name'] }}',
                                             point: '{{ $item['point'] }}',
                                             description: '{{ $item['description'] }}',
-                                    })"
+                                    });
+                                            $refs.formSection.scrollIntoView({ behavior: 'smooth' })
+                                    "
                                     class="hover:text-blue-600 transition" title="Edit"> <i class="fas fa-edit"></i>
                                 </button>
                                 <button class="hover:text-red-600 transition"

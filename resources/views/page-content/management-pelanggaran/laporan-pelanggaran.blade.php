@@ -1,14 +1,16 @@
 @extends('app')
 
 @section('content')
-    <div class="p-6 space-y-8 animate-fade-in">
+    <div x-data class="p-6 space-y-8 animate-fade-in"
+        @scroll-to-form.window="
+            // ✅ Tangkap event global dan scroll halus ke form
+            $refs.formSection.scrollIntoView({ behavior: 'smooth' })
+        ">
 
         @livewire('management-pelanggaran.laporan-pelanggaran.table-laporan-pelanggaran')
-        {{-- ======================================================
-        COMPONENT 2 : FORM INPUT LAPORAN PELANGGARAN
-        Berisi form tambah laporan baru + tombol submit
-    ====================================================== --}}
-        @livewire('management-pelanggaran.laporan-pelanggaran.form-laporan-pelanggaran')
+        <div x-ref="formSection">
+            @livewire('management-pelanggaran.laporan-pelanggaran.form-laporan-pelanggaran')
+        </div>
     </div>
 
     <style>

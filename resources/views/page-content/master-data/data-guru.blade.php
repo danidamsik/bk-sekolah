@@ -1,15 +1,20 @@
 @extends('app')
 
 @section('content')
-    <div class="p-8 bg-gray-50 min-h-screen space-y-8 animate-fadeIn">
+    <div x-data class="p-8 bg-gray-50 min-h-screen space-y-8 animate-fadeIn"
+        @scroll-to-form.window="
+            // ✅ Tangkap event global dan scroll halus ke form
+            $refs.formSection.scrollIntoView({ behavior: 'smooth' })
+        ">
 
         <!-- === COMPONENT DATA GURU (input, filter, table) === -->
         @livewire('master-data.data-guru.table-guru')
         <!-- === END COMPONENT DATA GURU === -->
 
-
         <!-- === FORM TAMBAH DATA === -->
-        @livewire('master-data.data-guru.form-guru')
+        <div x-ref="formSection">
+            @livewire('master-data.data-guru.form-guru')
+        </div>
     </div>
 
     <!-- Animasi -->

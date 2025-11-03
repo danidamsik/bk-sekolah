@@ -1,7 +1,11 @@
 @extends('app')
 
 @section('content')
-    <div class="p-6 space-y-8 animate-fade-in">
+    <div x-data class="p-6 space-y-8 animate-fade-in"
+        @scroll-to-form.window="
+            // ✅ Tangkap event global dan scroll halus ke form
+            $refs.formSection.scrollIntoView({ behavior: 'smooth' })
+        ">
 
         {{-- ======================================================
         COMPONENT 1 : FILTER + TABEL SESI KONSELING
@@ -14,7 +18,9 @@
         COMPONENT 2 : FORM TAMBAH CATATAN KONSELING
         Berisi form input rekomendasi & tindak lanjut
     ====================================================== --}}
-        @livewire('management-pelanggaran.sesi-konseling.form-sesi-konseling')
+        <div x-ref="formSection">
+            @livewire('management-pelanggaran.sesi-konseling.form-sesi-konseling')
+        </div>
         {{-- END COMPONENT 2 --}}
 
         {{-- ======================================================
@@ -43,4 +49,4 @@
             animation: fade-in 0.4s ease-out;
         }
     </style>
-@endsection 
+@endsection

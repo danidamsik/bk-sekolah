@@ -1,14 +1,21 @@
 @extends('app')
 
 @section('content')
-    <div  class="p-8 bg-gray-50 min-h-screen space-y-8 animate-fadeIn">
+    <div x-data class="p-8 bg-gray-50 min-h-screen space-y-8 animate-fadeIn"
+        @scroll-to-form.window="
+            // ✅ Tangkap event global dan scroll halus ke form
+            $refs.formSection.scrollIntoView({ behavior: 'smooth' })
+        ">
         <!-- START COMPONENT DATA PELANGGARAN -->
         @livewire('master-data.data-pelanggaran.table-pelanggaran')
         <!-- END COMPONENT DATA PELANGGARAN -->
 
-        <!-- START COMPONENT FORM INPUT -->
-        @livewire('master-data.data-pelanggaran.form-pelanggaran')
-        <!-- END COMPONENT FORM INPUT -->
+        <div x-ref="formSection">
+            <!-- START COMPONENT FORM INPUT -->
+            @livewire('master-data.data-pelanggaran.form-pelanggaran')
+            <!-- END COMPONENT FORM INPUT -->
+        </div>
+
     </div>
     <!-- ANIMASI -->
     <style>
@@ -44,5 +51,4 @@
             animation: slideUp 0.5s ease-in-out;
         }
     </style>
-
 @endsection

@@ -53,7 +53,9 @@
                                             email: '{{ $item['email'] }}',
                                             role: '{{ $item['role'] }}',
                                             nama_guru: '{{ $item['nama_guru'] }}',
-                                        })"
+                                        });
+                                             $refs.formSection.scrollIntoView({ behavior: 'smooth' })
+                                        "
                                     class="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg text-sm flex items-center gap-2 transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
                                     <i class="fa-solid fa-pen-to-square"></i> Edit
                                 </button>

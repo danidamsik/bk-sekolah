@@ -69,7 +69,9 @@
                                             notes: '{{ $item['notes'] }}',
                                             recommendation: '{{ $item['recommendation'] }}',
                                             follow_up_plan: '{{ $item['follow_up_plan'] }}',
-                                    })"
+                                    });
+                                            $refs.formSection.scrollIntoView({ behavior: 'smooth' })
+                                    "
                                 class="text-green-600 hover:text-green-800 transition-all duration-200">
                                 <i class="fas fa-edit"></i>
                             </button>

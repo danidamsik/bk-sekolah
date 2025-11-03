@@ -89,8 +89,10 @@
                                 id: {{ $guru->id }},
                                 name: '{{ $guru->name }}',
                                 nip: '{{ $guru->nip }}',
-                                phone: '{{ $guru->phone }}'
-                            }); $store.notif.open = false"
+                                phone: '{{ $guru->phone }}' });
+                                 $store.notif.open = false;
+                                 $refs.formSection.scrollIntoView({ behavior: 'smooth' })
+                                 "
                                 title="Edit">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>

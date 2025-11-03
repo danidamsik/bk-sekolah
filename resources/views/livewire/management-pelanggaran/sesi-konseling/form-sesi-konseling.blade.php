@@ -7,6 +7,8 @@
                      $wire.notes = $event.detail.notes;
                      $wire.recommendation = $event.detail.recommendation;
                      $wire.follow_up_plan = $event.detail.follow_up_plan;"
+    @search-siswa.window = "$wire.violation_report_id = $event.detail.violation_report_id;
+                            $wire.student_id = $event.detail.student_id;"
     class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300">
     <div class="flex items-center justify-between mb-6">
         <h2 class="text-xl font-bold text-gray-700 flex items-center gap-2">

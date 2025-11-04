@@ -2,9 +2,10 @@
 
 namespace App\Livewire\ManagementPelanggaran\SesiKonseling;
 
-use App\Models\CounselingSession;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use App\Models\CounselingSession;
 
 class TableSesiKonseling extends Component
 {
@@ -16,7 +17,7 @@ class TableSesiKonseling extends Component
     {
         $this->resetPage();
     }
-
+    #[On('succses-notif')] 
     public function render()
     {
         $query = CounselingSession::select(

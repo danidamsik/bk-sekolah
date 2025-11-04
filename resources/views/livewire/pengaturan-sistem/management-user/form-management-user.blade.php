@@ -1,10 +1,12 @@
 <div @edit-user.window = 
             "
-                $wire.nama_user = $event.detail.nama_user;
+                console.log($event.detail)
+                $wire.user_id = $event.detail.user_id;
+                $wire.user_name = $event.detail.user_name;
                 $wire.email = $event.detail.email;
                 $wire.role = $event.detail.role;
-                $wire.nama_guru = $event.detail.nama_guru;
-                $wire.id = $event.detail.id;
+                $wire.teacher_id = $event.detail.teacher_id;
+                $wire.teacher_name = $event.detail.teacher_name;
             "
     class="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 transition-all duration-500 hover:shadow-2xl backdrop-blur-sm">
     <h2 class="text-3xl font-extrabold text-gray-800 mb-6 flex items-center gap-3">
@@ -16,9 +18,9 @@
         <div class="grid md:grid-cols-2 gap-6">
             <div>
                 <label class="block text-gray-700 text-sm mb-2 font-semibold">Nama</label>
-                <input wire:model="nama_user" type="text" placeholder="Masukkan nama"
+                <input wire:model="user_name" type="text" placeholder="Masukkan nama"
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md">
-                @error('nama_user')
+                @error('user_name')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
@@ -48,9 +50,9 @@
 
             <div>
                 <label class="block text-gray-700 text-sm mb-2 font-semibold">Nama Guru</label>
-                <input wire:model="nama_guru" type="text" placeholder="Masukkan nama guru"
+                <input wire:model="teacher_name" type="text" placeholder="Masukkan nama guru"
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md">
-                @error('nama_guru')
+                @error('teacher_name')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>

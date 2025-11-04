@@ -18,11 +18,6 @@ class Student extends Model
         'teacher_id',
         'parent_name',
         'parent_contact',
-        'total_points',
-    ];
-
-    protected $casts = [
-        'total_points' => 'integer',
     ];
 
     // Relasi N-1: Student berada di satu class
@@ -34,7 +29,7 @@ class Student extends Model
     // Relasi N-1: Student memiliki satu wali kelas (teacher)
     public function waliKelas(): BelongsTo
     {
-        return $this->belongsTo(Teacher::class, 'wali_kelas_id');
+        return $this->belongsTo(Teacher::class, 'teacher_id');
     }
 
     // Relasi 1-N: Student memiliki banyak violation reports

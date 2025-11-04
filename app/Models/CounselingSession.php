@@ -12,12 +12,11 @@ class CounselingSession extends Model
 
     protected $fillable = [
         'student_id',
-        'report_id',
-        'counselor_id',
+        'violation_report_id',
+        'teacher_id',
         'notes',
         'recommendation',
         'follow_up_plan',
-        'status',
         'session_date',
     ];
 
@@ -34,12 +33,12 @@ class CounselingSession extends Model
     // Relasi 1-1: Counseling session terkait dengan satu violation report
     public function violationReport(): BelongsTo
     {
-        return $this->belongsTo(ViolationReport::class, 'report_id');
+        return $this->belongsTo(ViolationReport::class, 'violation_report_id');
     }
 
     // Relasi N-1: Counseling session ditangani oleh satu counselor (teacher/Guru BK)
     public function counselor(): BelongsTo
     {
-        return $this->belongsTo(Teacher::class, 'counselor_id');
+        return $this->belongsTo(Teacher::class, 'teacher_id');
     }
 }

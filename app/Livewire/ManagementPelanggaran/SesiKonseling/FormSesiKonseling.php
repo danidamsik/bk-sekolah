@@ -2,6 +2,7 @@
 
 namespace App\Livewire\ManagementPelanggaran\SesiKonseling;
 
+use App\Models\CounselingSession;
 use App\Models\Student;
 use App\Models\Teacher;
 use Livewire\Component;
@@ -21,6 +22,22 @@ class FormSesiKonseling extends Component
     public function createOrUpdate()
     {
         $this->validate($this->rules(), $this->messages());
+        CounselingSession::updateOrCreate(
+            ['id' => $this->id],
+            [
+                'student_id' => $this->student_id,
+                'violation_report_id' => $this->violation_report_id,
+                'teacher_id' => $this->teacher_id,
+                'notes' => $this->notes,
+                'recommendation' => $this->recommendation,
+                'follow_up_plan' => $this->follow_up_plan,
+                'session_date' => $this->session_date
+            ]
+        );
+
+        $message = $this->id ? 'Sesi Konseling berhasil diupdate!' : 'Sesi Konseling berhasil disimpan!';
+        $this->dispatch('succses-notif', messege: $message);
+        $this->reset('id', 'violation_report_id', 'student_id', 'teacher_id', 'session_date', 'status', 'notes', 'recommendation', 'follow_up_plan');
     }
 
     protected function rules()

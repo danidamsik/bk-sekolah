@@ -1,4 +1,4 @@
-<div x-data="{id: '' }">
+<div x-data="{ id: '' }">
     <!-- ==================== CARD UTAMA ==================== -->
     <div
         class="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 transition-all duration-500 hover:shadow-2xl backdrop-blur-sm">
@@ -33,34 +33,59 @@
                         <tr
                             class="hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 transition-all duration-300">
                             <td class="py-3 px-4"> {{ $user->firstItem() + $loop->index }}</td>
-                            <td class="py-4 px-6 font-medium">{{ $item['nama_user'] }}</td>
-                            <td class="py-4 px-6">{{ $item['email'] }}</td>
+
+                            <!-- Nama User -->
+                            <td class="py-4 px-6 font-medium">
+                                {{ $item['nama_user'] ?? 'kosong' }}
+                            </td>
+
+                            <!-- Email -->
                             <td class="py-4 px-6">
-                                @if ($item['role'] === 'Admin')
-                                    <span
-                                        class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">{{ $item['role'] }}</span>
+                                {{ $item['email'] ?? 'kosong' }}
+                            </td>
+
+                            <!-- Role -->
+                            <td class="py-4 px-6">
+                                @if (!empty($item['role']))
+                                    @if ($item['role'] === 'Admin')
+                                        <span
+                                            class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">
+                                            {{ $item['role'] }}
+                                        </span>
+                                    @else
+                                        <span
+                                            class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                                            {{ $item['role'] }}
+                                        </span>
+                                    @endif
                                 @else
                                     <span
-                                        class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">{{ $item['role'] }}</span>
+                                        class="px-3 py-1 bg-gray-100 text-gray-500 rounded-full text-sm font-medium">kosong</span>
                                 @endif
                             </td>
-                            <td class="py-4 px-6">{{ $item['nama_guru'] }}</td>
+
+                            <!-- Nama Guru -->
+                            <td class="py-4 px-6">
+                                {{ $item['nama_guru'] ?? '-' }}
+                            </td>
+
+                            <!-- Tombol Aksi -->
                             <td class="py-4 px-6 flex justify-center gap-3">
                                 <button
                                     @click="$dispatch('edit-user', {
-                                            id: {{ $item['id'] }},
-                                            nama_user: '{{ $item['nama_user'] }}',
-                                            email: '{{ $item['email'] }}',
-                                            role: '{{ $item['role'] }}',
-                                            nama_guru: '{{ $item['nama_guru'] }}',
+                                            user_id: @js($item['user_id']),
+                                            user_name: @js($item['nama_user']),
+                                            email: @js($item['email']),
+                                            role: @js($item['role']),
+                                            teacher_id: @js($item['id']),
+                                            teacher_name: @js($item['nama_guru']),
                                         });
-                                             $refs.formSection.scrollIntoView({ behavior: 'smooth' })
-                                        "
+                                        $refs.formSection.scrollIntoView({ behavior: 'smooth' })"
                                     class="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg text-sm flex items-center gap-2 transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
                                     <i class="fa-solid fa-pen-to-square"></i> Edit
                                 </button>
 
-                                <button @click="$wire.modal = true; id={{ $item->id }};"
+                                <button @click="$wire.modal = true; id={{ $item['user_id'] }};"
                                     class="px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-lg text-sm flex items-center gap-2">
                                     <i class="fa-solid fa-trash"></i> Hapus
                                 </button>
@@ -68,6 +93,7 @@
                         </tr>
                     @endforeach
                 </tbody>
+
             </table>
         </div>
 

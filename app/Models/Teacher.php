@@ -15,13 +15,12 @@ class Teacher extends Model
         'name',
         'nip',
         'phone',
-        'email',
     ];
 
     // Relasi 1-N: Teacher sebagai wali kelas untuk banyak students
     public function students(): HasMany
     {
-        return $this->hasMany(Student::class, 'wali_kelas_id');
+        return $this->hasMany(Student::class, 'teacher_id');
     }
 
     // Relasi 1-N: Teacher sebagai wali kelas untuk banyak classes
@@ -33,13 +32,13 @@ class Teacher extends Model
     // Relasi 1-N: Teacher melaporkan banyak violation reports
     public function violationReports(): HasMany
     {
-        return $this->hasMany(ViolationReport::class, 'reporter_id');
+        return $this->hasMany(ViolationReport::class, 'teacher_id');
     }
 
     // Relasi 1-N: Teacher (Guru BK) melakukan banyak counseling sessions
     public function counselingSessions(): HasMany
     {
-        return $this->hasMany(CounselingSession::class, 'counselor_id');
+        return $this->hasMany(CounselingSession::class, 'teacher_id');
     }
 
     // Relasi 1-1: Teacher memiliki satu user account (nullable)

@@ -42,13 +42,13 @@ class ViolationReport extends Model
     // Relasi N-1: Violation report dilaporkan oleh satu teacher
     public function reporter(): BelongsTo
     {
-        return $this->belongsTo(Teacher::class, 'reporter_id');
+        return $this->belongsTo(Teacher::class, 'teacher_id');
     }
 
     // Relasi 1-1: Violation report memiliki satu counseling session
     public function counselingSession(): HasOne
     {
-        return $this->hasOne(CounselingSession::class, 'report_id');
+        return $this->hasOne(CounselingSession::class, 'violation_report_id');
     }
 }
 

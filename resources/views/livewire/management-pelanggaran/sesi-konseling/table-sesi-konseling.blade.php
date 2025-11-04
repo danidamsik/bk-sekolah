@@ -61,7 +61,7 @@
                             </button>
                             <button
                                 @click="$dispatch('sesi-konseling', {
-                                            id: {{ $item['id'] }},
+                                            id: '{{ $item['id'] }}',
                                             student_id: '{{ $item['student_id'] }}',
                                             teacher_id: '{{ $item['teacher_id'] }}',
                                             session_date: '{{ $item['session_date'] }}'.split(' ')[0],

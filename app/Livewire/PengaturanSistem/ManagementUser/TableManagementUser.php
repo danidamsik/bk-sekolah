@@ -1,29 +1,43 @@
 <?php
 
 namespace App\Livewire\PengaturanSistem\ManagementUser;
-
 use App\Models\User;
+use App\Models\Teacher;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class TableManagementUser extends Component
 {
 
 
     public $modal = false;
+
+
+     public function delete($id) {
+        User::find($id)->delete();
+
+        $this->modal = false;
+
+        $this->dispatch('succses-notif', messege:"User Behasil Dihapus");
+     }
+
+    #[On('succses-notif')] 
     public function render()
     {
-        $user = User::select(
-            'users.id',
+        $users = Teacher::select(
+            'teachers.id',
+            'teachers.name as nama_guru',
+            'users.id as user_id',
             'users.name as nama_user',
             'users.email',
-            'users.role',
-            'teachers.name as nama_guru',
+            'users.role'
         )
-        ->leftJoin('teachers', 'users.teacher_id', '=', 'teachers.id')
-        ->orderBy('users.role')
-        ->orderBy('users.name')
-        ->paginate(3);
+            ->leftJoin('users', 'teachers.id', '=', 'users.teacher_id')
+            ->orderBy('users.role')
+            ->orderBy('teachers.name')
+            ->paginate(10);
 
-        return view('livewire.pengaturan-sistem.management-user.table-management-user', ['user' => $user]);
+
+        return view('livewire.pengaturan-sistem.management-user.table-management-user', ['user' => $users]);
     }
 }

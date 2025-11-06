@@ -6,11 +6,14 @@
      </h2>
 
      <div class="flex flex-wrap gap-2">
-         <button
-             class="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
-             <i class="fas fa-file-pdf"></i> Ekspor PDF
-         </button>
-         <button
+         <a href="{{ route('export.recap.class.pdf') }}" wire:navigate.external target="_blank">
+             <button
+                 class="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
+                 <i class="fas fa-file-pdf"></i> Ekspor PDF
+             </button>
+         </a>
+
+         <button wire:click="downloadExcel"
              class="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
              <i class="fas fa-file-excel"></i> Ekspor Excel
          </button>

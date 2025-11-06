@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExportController;
 
 Route::get('/dashboard', function () {
     return view('page-content.dashboard');
@@ -41,5 +42,8 @@ Route::get('/pengaturan-sitem/management-user', function () {
 Route::get('/master-data/data-kelas/detail-kelas/{id}', function ($id) {
     return view('page-content.master-data.detail-kelas', compact('id'));
 });
+
+Route::get('/export/recap-per-class-pdf', [ExportController::class, 'exportRecapPerClassPDF'])
+    ->name('export.recap.class.pdf');
 
 

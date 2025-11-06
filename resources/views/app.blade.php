@@ -10,7 +10,9 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        [x-cloak] { display: none !important; }
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -193,11 +195,14 @@
 
             <!-- Footer Sidebar -->
             <div class="border-t border-indigo-700/50 p-4">
-                <button
-                    class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-red-600/20 transition-all group">
-                    <i class="fas fa-sign-out-alt text-red-400 text-lg w-6"></i>
-                    <span x-show="sidebarOpen" class="font-medium">Logout</span>
-                </button>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit"
+                        class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-red-600/20 transition-all group">
+                        <i class="fas fa-sign-out-alt text-red-400 text-lg w-6"></i>
+                        <span x-show="sidebarOpen" class="font-medium">Logout</span>
+                    </button>
+                </form>
 
                 <div x-show="sidebarOpen" class="mt-4 px-4 py-3 bg-indigo-700/30 rounded-xl">
                     <div class="flex items-center space-x-3">
@@ -206,9 +211,10 @@
                             <i class="fas fa-user text-white"></i>
                         </div>
                         <div class="flex-1">
-                            <p class="font-semibold text-sm">Admin User</p>
-                            <p class="text-xs text-indigo-300">Administrator</p>
+                            <p class="font-semibold text-sm">{{ Auth::user()->name }}</p>
+                            <p class="text-xs text-indigo-300">{{ Auth::user()->role }}</p>
                         </div>
+
                     </div>
                 </div>
             </div>

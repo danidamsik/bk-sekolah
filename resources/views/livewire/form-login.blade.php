@@ -10,15 +10,20 @@
         </div>
 
         <!-- Login Form -->
-        <form id="loginForm" class="space-y-6">
+        <form wire:submit.prevent="login" class="space-y-6">
             <!-- Username/Email Input -->
             <div>
                 <label for="username" class="block text-sm font-semibold text-gray-700 mb-2">
                     <i class="fas fa-user mr-2 text-gray-500"></i>Username atau Email
                 </label>
-                <input type="text" id="username" name="username" placeholder="Masukkan username atau email"
+                <input type="text" id="username" wire:model.defer="email" name="username"
+                    placeholder="Masukkan username atau email"
                     class="input-focus w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none transition-all duration-300"
                     required>
+
+                @error('email')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- Password Input -->
@@ -26,42 +31,41 @@
                 <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">
                     <i class="fas fa-lock mr-2 text-gray-500"></i>Password
                 </label>
-                <div class="relative">
-                    <input type="password" id="password" name="password" placeholder="Masukkan password"
-                        class="input-focus w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none transition-all duration-300 pr-12"
-                        required>
-                    <button type="button" id="togglePassword"
-                        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700">
-                        <i class="fas fa-eye" id="eyeIcon"></i>
-                    </button>
-                </div>
+
+                <input type="password" id="password" wire:model.defer="password" name="password"
+                    placeholder="Masukkan password"
+                    class="input-focus w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none transition-all duration-300"
+                    required>
+
+                @error('password')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
-            <!-- Remember Me & Forgot Password -->
+            <!-- Remember Me -->
             <div class="flex items-center justify-between">
                 <label class="flex items-center cursor-pointer">
-                    <input type="checkbox" id="remember"
+                    <input wire:model="remember" type="checkbox" id="remember"
                         class="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500">
                     <span class="ml-2 text-sm text-gray-600">Ingat saya</span>
                 </label>
-                <a href="#" class="text-sm text-purple-600 hover:text-purple-700 font-medium">
-                    Lupa password?
-                </a>
             </div>
 
             <!-- Login Button -->
-            <button type="submit"
+            <button type="submit" wire:loading.attr="disabled"
                 class="btn-gradient w-full py-3 px-4 text-white font-semibold rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                <i class="fas fa-sign-in-alt mr-2"></i>Login
+                <span wire:loading.remove>
+                    <i class="fas fa-sign-in-alt mr-2"></i>Login
+                </span>
+                <span wire:loading>
+                    <i class="fas fa-spinner fa-spin mr-2"></i>Memproses...
+                </span>
             </button>
         </form>
 
         <!-- Footer -->
-        <!-- Additional Info -->
         <div class="mt-6 text-center text-sm text-gray-600">
             <p>© 2025 Sistem BK Sekolah. All rights reserved.</p>
         </div>
     </div>
-
-
 </div>

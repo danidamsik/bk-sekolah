@@ -99,50 +99,6 @@
         <!-- END COMPONENT: Login Form -->
 
     </div>
-
-    <script>
-        // Toggle Password Visibility
-        const togglePassword = document.getElementById('togglePassword');
-        const passwordInput = document.getElementById('password');
-        const eyeIcon = document.getElementById('eyeIcon');
-
-        togglePassword.addEventListener('click', function() {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            
-            eyeIcon.classList.toggle('fa-eye');
-            eyeIcon.classList.toggle('fa-eye-slash');
-        });
-
-        // Form Submission Handler
-        const loginForm = document.getElementById('loginForm');
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const remember = document.getElementById('remember').checked;
-
-            // Simulasi login (ganti dengan logic sebenarnya)
-            console.log('Login attempt:', { username, password, remember });
-            
-            // Tampilkan loading atau redirect ke dashboard
-            alert('Login berhasil! (Ini hanya simulasi)');
-        });
-
-        // Input Animation
-        const inputs = document.querySelectorAll('input[type="text"], input[type="password"]');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.classList.add('scale-102');
-            });
-            
-            input.addEventListener('blur', function() {
-                this.parentElement.classList.remove('scale-102');
-            });
-        });
-    </script>
-
 </body>
 
 </html>

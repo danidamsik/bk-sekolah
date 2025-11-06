@@ -47,12 +47,12 @@
             <div x-show="openExcel" x-transition @click.outside="openExcel = false"
                 class="absolute left-0 top-full mt-2 w-60 bg-white border border-gray-200 rounded-2xl shadow-xl z-50 overflow-hidden">
                 <div class="p-2">
-                    <button wire:click="downloadExcel('class'); openExcel = false"
+                    <button wire:click="downloadExcelKelas; openExcel = false"
                         class="flex items-center gap-2 w-full text-left px-3 py-2 rounded-lg text-gray-700 hover:bg-green-50 hover:text-green-600 transition-all duration-200">
                         <i class="fa-solid fa-school"></i>
                         <span>Pelanggaran per Kelas</span>
                     </button>
-                    <button wire:click="downloadExcel('student'); openExcel = false"
+                    <button wire:click="downloadExcelSiswa; openExcel = false"
                         class="flex items-center gap-2 w-full text-left px-3 py-2 rounded-lg text-gray-700 hover:bg-green-50 hover:text-green-600 transition-all duration-200">
                         <i class="fa-solid fa-user-graduate"></i>
                         <span>Pelanggaran per Siswa</span>

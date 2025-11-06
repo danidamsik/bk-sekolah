@@ -46,4 +46,8 @@ Route::get('/master-data/data-kelas/detail-kelas/{id}', function ($id) {
 Route::get('/export/recap-per-class-pdf', [ExportController::class, 'exportRecapPerClassPDF'])
     ->name('export.recap.class.pdf');
 
+Route::get('/export/recap-per-student-pdf', [ExportController::class, 'exportRecapPerStudentPDF'])
+    ->name('export.recap.student.pdf');
+
+
 

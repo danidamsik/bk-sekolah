@@ -49,5 +49,15 @@ Route::get('/export/recap-per-class-pdf', [ExportController::class, 'exportRecap
 Route::get('/export/recap-per-student-pdf', [ExportController::class, 'exportRecapPerStudentPDF'])
     ->name('export.recap.student.pdf');
 
+Route::get('/', function () {
+    return view('login');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+
+
 
 

@@ -18,6 +18,8 @@ class CounselingSession extends Model
         'recommendation',
         'follow_up_plan',
         'session_date',
+        'created_at',
+        'updated_at'
     ];
 
     protected $casts = [
@@ -37,7 +39,7 @@ class CounselingSession extends Model
     }
 
     // Relasi N-1: Counseling session ditangani oleh satu counselor (teacher/Guru BK)
-    public function counselor(): BelongsTo
+    public function teacher(): BelongsTo
     {
         return $this->belongsTo(Teacher::class, 'teacher_id');
     }

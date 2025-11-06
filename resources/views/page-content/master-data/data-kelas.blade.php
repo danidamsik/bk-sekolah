@@ -17,7 +17,7 @@
 
 
         {{-- START COMPONENT: Detail Kelas --}}
-        @livewire('master-data.data-kelas.detail-kelas')
+        {{-- @livewire('master-data.data-kelas.detail-kelas') --}}
         {{-- END COMPONENT --}}
     </div>
 

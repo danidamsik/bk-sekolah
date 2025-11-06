@@ -51,7 +51,7 @@ class TableLaporanPelanggaran extends Component
         ->join('students', 'violation_reports.student_id', '=', 'students.id')
         ->join('classes', 'students.class_id', '=', 'classes.id')
         ->join('violations', 'violation_reports.violation_id', '=', 'violations.id')
-        ->join('teachers', 'violation_reports.teacher_id', '=', 'teachers.id');
+        ->join('teachers', 'violation_reports.teacher_id', '=', 'teachers.id')->orderBy('violation_reports.updated_at', 'desc');
 
         if (!empty($this->search)) {
             $query->where('students.name', 'like', '%' . $this->search . '%');

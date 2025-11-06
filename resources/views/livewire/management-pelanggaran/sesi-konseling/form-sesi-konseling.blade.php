@@ -1,5 +1,6 @@
 <div @sesi-konseling.window=
                     "$wire.id = $event.detail.id;
+                     $wire.violation_report_id = $event.detail.violation_report_id;
                      $wire.student_id = $event.detail.student_id;
                      $wire.teacher_id = $event.detail.teacher_id;
                      $wire.session_date = $event.detail.session_date;

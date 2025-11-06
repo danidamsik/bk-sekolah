@@ -1,7 +1,6 @@
 <div class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-gray-100 p-6">
     <div class="flex justify-between items-center mb-4">
         <h3 class="font-semibold text-gray-700 text-lg">Top 10 Kelas Pelanggaran Tertinggi</h3>
-        <button class="text-sm text-indigo-600 hover:text-indigo-800 font-medium">Lihat Semua</button>
     </div>
 
     <div class="overflow-x-auto">
@@ -30,10 +29,11 @@
                         <td class="py-2 px-3">{{ $kelas->total_pelanggaran }}</td>
                         <td class="py-2 px-3">{{ $kelas->rata_rata_poin_per_siswa }}</td>
                         <td class="py-2 px-3 text-center">
-                            <button wire:click="detail('{{ $kelas['nama_kelas'] }}')"
-                                class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">
-                                Detail
-                            </button>
+                            <a href="/master-data/data-kelas/detail-kelas/{{$kelas->id}}" wire:navigate>
+                                <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">
+                                    Detail
+                                </button>
+                            </a>
                         </td>
                     </tr>
                 @empty

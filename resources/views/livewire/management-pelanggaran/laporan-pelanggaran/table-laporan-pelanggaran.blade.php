@@ -54,7 +54,7 @@
                         <td class="py-3 px-4">{{ $laporan->class_name }}</td>
                         <td class="py-3 px-4">{{ $laporan->name_pelanggaran }}</td>
                         <td class="py-3 px-4">{{ $laporan->name_teacher }}</td>
-                        <td class="py-3 px-4">{{ $laporan->date }}</td>
+                        <td class="py-3 px-4">{{ $laporan->date->format('d-m-Y') }}</td>
                         <td class="py-3 px-4">
                             @php
                                 $statusColor = match ($laporan->status) {

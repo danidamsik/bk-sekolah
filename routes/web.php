@@ -38,5 +38,8 @@ Route::get('/pengaturan-sitem/management-user', function () {
     return view('page-content.pengaturan-sistem.management-user');
 });
 
+Route::get('/master-data/data-kelas/detail-kelas/{id}', function ($id) {
+    return view('page-content.master-data.detail-kelas', compact('id'));
+});
 
 

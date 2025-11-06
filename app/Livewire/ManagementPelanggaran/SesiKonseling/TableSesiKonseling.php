@@ -26,6 +26,7 @@ class TableSesiKonseling extends Component
             'teachers.name as nama_guru',
             'counseling_sessions.student_id',
             'counseling_sessions.teacher_id',
+            'counseling_sessions.violation_report_id',
             'counseling_sessions.session_date',
             'counseling_sessions.notes',
             'counseling_sessions.recommendation',

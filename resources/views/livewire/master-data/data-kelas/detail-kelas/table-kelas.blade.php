@@ -9,14 +9,20 @@
             </tr>
         </thead>
         <tbody class="divide-y divide-gray-100">
-            @foreach ($students as $item)
+            @forelse ($students as $index => $item)
                 <tr class="hover:bg-gray-50 transition">
-                    <td class="py-3 px-4">1</td>
-                    <td class="py-3 px-4">{{$item->nisn}}</td>
-                    <td class="py-3 px-4">{{$item->name}}</td>
-                    <td class="py-3 px-4">{{$item->total_point}}</td>
+                    <td class="py-3 px-4">{{ $index + 1 }}</td>
+                    <td class="py-3 px-4">{{ $item->nisn }}</td>
+                    <td class="py-3 px-4">{{ $item->name }}</td>
+                    <td class="py-3 px-4">{{ $item->total_point }}</td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="4" class="py-4 px-4 text-center text-gray-500">
+                        Tidak ada data siswa.
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

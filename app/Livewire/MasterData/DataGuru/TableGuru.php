@@ -15,12 +15,20 @@ class TableGuru extends Component
     public $roleFilter = '';
     public $modal = false;
 
-    public function delete($id) {
+    public function delete($id)
+    {
+
+        if (!auth()->user()->isAdmin()) {
+            $this->dispatch('toast', messege: 'Hanya admin yang dapat menghapus data guru.');
+            $this->modal = false;
+            return;
+        }
+
         Teacher::find($id)->delete();
         $this->modal = false;
 
         $this->dispatch('succses-notif', messege: "Data Guru berhasil di hapus");
-    } 
+    }
 
     public function updatingSearch()
     {
@@ -31,8 +39,8 @@ class TableGuru extends Component
     {
         $this->resetPage();
     }
-    
-    #[On('succses-notif')] 
+
+    #[On('succses-notif')]
     public function render()
     {
         $query = Teacher::select(

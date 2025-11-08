@@ -22,6 +22,10 @@ class FormSesiKonseling extends Component
 
     public function createOrUpdate()
     {
+        if (!auth()->user()->isAdmin() && !auth()->user()->isGuruBK()) {
+            $this->dispatch('toast', messege: 'Hanya admin dan guru BK yang dapat menambah atau mengubah Sesi Konseling.');
+            return;
+        }
         $this->validate($this->rules(), $this->messages());
 
         CounselingSession::updateOrCreate(

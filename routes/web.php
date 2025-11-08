@@ -2,18 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
+use App\Models\ClassRoom;
 use Illuminate\Support\Facades\Auth;
-
-/*
-|--------------------------------------------------------------------------
-| Protected Routes (Hanya bisa diakses setelah login)
-|--------------------------------------------------------------------------
-*/
 
 Route::middleware(['auth'])->group(function () {
     // Dashboard
     Route::get('/dashboard', function () {
-        return view('page-content.dashboard');
+        $teacher = Auth::user()->teacher_id;
+        $id = ClassRoom::where('teacher_id', $teacher)->value('id');
+
+        return view('page-content.dashboard', compact('id'));
     })->name('dashboard');
 
     // Master Data
@@ -46,11 +44,6 @@ Route::middleware(['auth'])->group(function () {
         return view('page-content.management-pelanggaran.rekap-laporan');
     });
 
-    // Pengaturan Sistem
-    Route::get('/pengaturan-sistem/management-user', function () {
-        return view('page-content.pengaturan-sistem.management-user');
-    });
-
     // Detail kelas dengan parameter ID
     Route::get('/master-data/data-kelas/detail-kelas/{id}', function ($id) {
         return view('page-content.master-data.detail-kelas', compact('id'));
@@ -63,9 +56,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/export/recap-per-student-pdf', [ExportController::class, 'exportRecapPerStudentPDF'])
         ->name('export.recap.student.pdf');
 
-    Route::get('/pengaturan-sitem/management-user', function () {
+    Route::get('/pengaturan-sistem/management-user', function () {
         return view('page-content.pengaturan-sistem.management-user');
-    });
+    })->middleware('role:Admin');
 
     // Logout (pakai GET, sesuai permintaan kamu)
     Route::post('/logout', function () {
@@ -76,17 +69,12 @@ Route::middleware(['auth'])->group(function () {
     })->name('logout');
 });
 
-/*
-|--------------------------------------------------------------------------
-| Guest Routes (Hanya untuk user belum login)
-|--------------------------------------------------------------------------
-*/
-Route::middleware('guest')->group(function () {
-    Route::get('/', function () {
-        return view('login');
-    })->name('login');
+// Route::middleware('guest')->group(function () {
+//     Route::get('/', function () {
+//         return view('login');
+//     })->name('login');
 
-    Route::get('/login', function () {
-        return view('login');
-    });
-});
+//     Route::get('/login', function () {
+//         return view('login');
+//     });
+// });

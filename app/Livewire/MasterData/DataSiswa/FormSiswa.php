@@ -21,6 +21,11 @@ class FormSiswa extends Component
 
     public function createOrUpdate()
     {
+        if (!auth()->user()->isAdmin()) {
+            $this->dispatch('toast', messege: 'Hanya admin yang dapat menambah atau mengubah data siswa.');
+            return;
+        }
+
         $this->validate($this->rules(), $this->messages());
 
         Student::updateOrCreate(

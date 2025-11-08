@@ -10,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 
 class FormLogin extends Component
 {
-    public $email = ''; // Bisa berisi email atau name
+    public $email = ''; 
     public $password = '';
     public $remember = false;
 
@@ -31,7 +31,6 @@ class FormLogin extends Component
 
         $throttleKey = Str::lower($this->email) . '|' . request()->ip();
 
-        // Batasi percobaan login
         if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
             $seconds = RateLimiter::availableIn($throttleKey);
 
@@ -53,10 +52,9 @@ class FormLogin extends Component
             RateLimiter::clear($throttleKey);
             request()->session()->regenerate();
 
-            return redirect()->intended('/dashboard');
+            return $this->redirect('/dashboard', navigate: true);
         }
 
-        // Tambah hit jika gagal
         RateLimiter::hit($throttleKey, 60);
 
         throw ValidationException::withMessages([

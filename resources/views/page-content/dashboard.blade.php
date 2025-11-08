@@ -14,15 +14,21 @@
             </button>
         </div>
         {{-- Card --}}
-        @livewire('dashboard.top-card')
-        <!-- Charts -->
-        @livewire('dashboard.chart')
+        @auth
+            @if (auth()->user()->isWaliKelas())
+                @livewire('master-data.data-kelas.detail-kelas.card-kelas', ['classId' => $id])
+                @livewire('master-data.data-kelas.detail-kelas.table-kelas', ['classId' => $id])
+            @else
+                @livewire('dashboard.top-card')
+                <!-- Charts -->
+                @livewire('dashboard.chart')
 
-        <!-- Top 10 Siswa -->
-        @livewire('dashboard.top-siswa')
-
-        <!-- Top 10 Kelas -->
-        @livewire('dashboard.top-kelas')
+                <!-- Top 10 Siswa -->
+                @livewire('dashboard.top-siswa')
+                <!-- Top 10 Kelas -->
+                @livewire('dashboard.top-kelas')
+            @endif
+        @endauth
     </div>
 
     <!-- Fade animation -->
@@ -47,9 +53,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // LINE CHART
-          
+
             // TABLE SISWA
-           
+
 
             // TABLE KELAS
 

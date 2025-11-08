@@ -13,6 +13,76 @@
         [x-cloak] {
             display: none !important;
         }
+
+        @keyframes slideInBounce {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            60% {
+                transform: translateX(-10px);
+                opacity: 1;
+            }
+
+            80% {
+                transform: translateX(5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideOut {
+            0% {
+                transform: translateX(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(120%) scale(0.9);
+                opacity: 0;
+            }
+        }
+
+        .toast-enter {
+            animation: slideInBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .toast-leave {
+            animation: slideOut 0.4s cubic-bezier(0.4, 0, 1, 1);
+        }
+
+        .progress-bar {
+            animation: progress 5s linear;
+        }
+
+        @keyframes progress {
+            from {
+                width: 100%;
+            }
+
+            to {
+                width: 0%;
+            }
+        }
+
+        .icon-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .7;
+            }
+        }
     </style>
 </head>
 
@@ -184,7 +254,7 @@
                 </div>
 
                 <!-- Pengaturan Sistem -->
-                <a href="/pengaturan-sitem/management-user" wire:navigate @click="setActiveMenu('user')"
+                <a href="/pengaturan-sistem/management-user" wire:navigate @click="setActiveMenu('user')"
                     :class="activeMenu === 'user' ? 'bg-indigo-700 shadow-lg' : 'hover:bg-indigo-700/50'"
                     class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all group">
                     <i class="fas fa-users-cog text-violet-400 text-lg w-6"></i>
@@ -262,11 +332,48 @@
             </div>
         </div>
 
+        <!-- Toast Notification -->
+        <div x-cloak x-show="$store.notifToast.open" x-transition:enter="toast-enter" x-transition:leave="toast-leave"
+            class="max-w-md w-full bg-white shadow-2xl rounded-2xl overflow-hidden fixed top-6 right-6 z-50">
+
+            <!-- Progress Bar -->
+            <div class="h-1 bg-gray-100">
+                <div x-show="$store.notifToast.open" class="h-full bg-red-500 progress-bar"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-5 flex items-start gap-4">
+                <!-- Icon dengan background -->
+                <div class="flex-shrink-0">
+                    <div class="w-12 h-12 rounded-full flex items-center justify-center bg-red-100">
+                        <i class="fas fa-exclamation-circle text-red-500 text-xl icon-pulse"></i>
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="flex-1 pt-1">
+                    <p class="text-sm font-bold text-gray-900 mb-1">Akses Ditolak</p>
+                    <p x-text="$store.notifToast.messege" class="text-sm text-gray-600 leading-relaxed"></p>
+                </div>
+
+                <!-- Close Button -->
+                <button @click="$store.notifToast.open = false"
+                    class="flex-shrink-0 w-8 h-8 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-all duration-200 flex items-center justify-center group">
+                    <i class="fas fa-times group-hover:rotate-90 transition-transform duration-200"></i>
+                </button>
+            </div>
+        </div>
+
     </div>
     <script>
         document.addEventListener('alpine:init', () => {
 
             Alpine.store('notif', {
+                open: false,
+                messege: '',
+            })
+
+            Alpine.store('notifToast', {
                 open: false,
                 messege: '',
             })
@@ -280,6 +387,15 @@
                 setTimeout(() => {
                     Alpine.store('notif').open = false
                 }, 2000);
+            })
+
+            Livewire.on('toast', (messege) => {
+                Alpine.store('notifToast').open = true
+                Alpine.store('notifToast').messege = messege.messege
+
+                setTimeout(() => {
+                    Alpine.store('notifToast').open = false
+                }, 4900);
             })
         })
     </script>

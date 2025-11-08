@@ -16,6 +16,12 @@ class TablePelanggaran extends Component
 
     public function delete($id)
     {
+        if (!auth()->user()->isAdmin()) {
+            $this->dispatch('toast', messege: 'Hanya admin yang dapat menghapus data pelanggran.');
+            $this->modal = false;
+            return;
+        }
+
         Violation::find($id)->delete();
         $this->modal = false;
     }

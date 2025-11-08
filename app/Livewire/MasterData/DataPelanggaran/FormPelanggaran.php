@@ -35,6 +35,11 @@ class FormPelanggaran extends Component
 
     public function createOrUpdate()
     {
+        if (!auth()->user()->isAdmin()) {
+            $this->dispatch('toast', messege: 'Hanya admin yang dapat menambah atau mengubah data pelanggaran.');
+            return;
+        }
+        
         $this->validate($this->rules(), $this->messages());
 
         Violation::updateOrCreate(

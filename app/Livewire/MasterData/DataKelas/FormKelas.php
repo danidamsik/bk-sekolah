@@ -39,6 +39,11 @@ class FormKelas extends Component
 
     public function createOrUpdate()
     {
+        if (!auth()->user()->isAdmin()) {
+            $this->dispatch('toast', messege: 'Hanya admin yang dapat menambah atau mengubah data kelas.');
+            return;
+        }
+        
         $this->validate($this->rules(), $this->messages());
 
         ClassRoom::updateOrCreate(

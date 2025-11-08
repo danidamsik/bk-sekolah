@@ -22,6 +22,12 @@ class TableSiswa extends Component
 
     public function delete($id)
     {
+        if (!auth()->user()->isAdmin()) {
+            $this->dispatch('toast', messege: 'Hanya admin yang dapat menghapus data siswa.');
+            $this->modal = false;
+            return;
+        }
+
         Student::find($id)->delete();
         $this->modal = false;
         $this->dispatch('succses-notif', messege: "data siswa berhasil dihapus");

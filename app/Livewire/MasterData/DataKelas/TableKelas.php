@@ -22,9 +22,15 @@ class TableKelas extends Component
 
     public function delete($id)
     {
+        if (!auth()->user()->isAdmin()) {
+            $this->dispatch('toast', messege: 'Hanya admin yang dapat menghapus data kelas.');
+            $this->modal = false;
+            return;
+        }
+
         ClassRoom::find($id)->delete();
         $this->modal = false;
-            $this->dispatch('succses-notif', messege: 'Data Kelas berhasil dihapus.');
+        $this->dispatch('succses-notif', messege: 'Data Kelas berhasil dihapus.');
     }
 
     #[On('succses-notif')]
@@ -37,13 +43,13 @@ class TableKelas extends Component
             'teachers.id as teacher_id',
             DB::raw('COUNT(students.id) as jumlah_siswa')
         )
-        ->join('teachers', 'classes.teacher_id', '=', 'teachers.id')
-        ->leftJoin('students', 'classes.id', '=', 'students.class_id')
-        ->groupBy('classes.id', 'classes.name', 'teachers.name');
+            ->join('teachers', 'classes.teacher_id', '=', 'teachers.id')
+            ->leftJoin('students', 'classes.id', '=', 'students.class_id')
+            ->groupBy('classes.id', 'classes.name', 'teachers.name');
 
         if (!empty($this->search)) {
             $query->where('classes.name', 'like', '%' . $this->search . '%')
-                  ->orWhere('teachers.name', 'like', '%' . $this->search . '%');
+                ->orWhere('teachers.name', 'like', '%' . $this->search . '%');
         }
 
         $dataKelas = $query->paginate(10);

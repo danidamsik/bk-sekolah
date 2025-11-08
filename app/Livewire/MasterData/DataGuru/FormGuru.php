@@ -12,6 +12,11 @@ class FormGuru extends Component
 
     public function createOrUpdate()
     {
+        if (!auth()->user()->isAdmin()) {
+            $this->dispatch('toast', messege: 'Hanya admin yang dapat menambah atau mengubah data guru.');
+            return;
+        }
+
         $this->validate($this->rules(), $this->messages());
 
         Teacher::updateOrCreate(
@@ -27,6 +32,8 @@ class FormGuru extends Component
         $this->dispatch('succses-notif', messege: $message);
         $this->reset();
     }
+
+
 
     protected function rules()
     {

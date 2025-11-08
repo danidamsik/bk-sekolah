@@ -69,12 +69,12 @@ Route::middleware(['auth'])->group(function () {
     })->name('logout');
 });
 
-// Route::middleware('guest')->group(function () {
-//     Route::get('/', function () {
-//         return view('login');
-//     })->name('login');
+Route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        return view('login');
+    })->name('login');
 
-//     Route::get('/login', function () {
-//         return view('login');
-//     });
-// });
+    Route::get('/login', function () {
+        return view('login');
+    });
+});

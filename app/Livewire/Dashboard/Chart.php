@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Livewire\Dashboard;
-
-use App\Models\Violation;
 use Livewire\Component;
 use App\Models\ViolationReport;
 use Carbon\Carbon;

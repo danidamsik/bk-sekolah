@@ -1,4 +1,4 @@
-<div x-data="{ id: '' }">
+<div x-data="{ id: ''}">
     <!-- ==================== CARD UTAMA ==================== -->
     <div
         class="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 transition-all duration-500 hover:shadow-2xl backdrop-blur-sm">
@@ -9,7 +9,7 @@
             </h2>
 
             {{-- Tombol Reset Password --}}
-            <button
+            <button @click="$wire.isOpen = true"
                 class="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
                 <i class="fa-solid fa-key"></i> Reset Password
             </button>
@@ -105,4 +105,5 @@
 
     <!-- ==================== MODAL KONFIRMASI ==================== -->
     @include('component.modal-konfirmasi')
+    @include('component.modal-reset-pw')
 </div>

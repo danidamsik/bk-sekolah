@@ -53,11 +53,7 @@
                                     @click="$wire.modal = true; id={{ $kelas->id }};" title="Hapus">
                                     <i class="fas fa-trash"></i>
                                 </button>
-                                <a href="/master-data/data-kelas/detail-kelas/{{$kelas->id}}" wire:navigate>
-                                    <button
-                                        class="hover:text-green-600 transition" title="Lihat Detail">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
+                                <a href="/master-data/data-kelas/detail-kelas/{{ $kelas->id }}" wire:navigate>
                                 </a>
                             </div>
                         </td>

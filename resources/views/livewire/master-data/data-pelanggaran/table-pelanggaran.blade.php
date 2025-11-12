@@ -46,9 +46,6 @@
                                     @click="$wire.modal = true; id={{ $item->id }};" title="Hapus"> <i
                                         class="fas fa-trash"></i>
                                 </button>
-                                <button class="hover:text-green-600 transition" title="Lihat Detail"> <i
-                                        class="fas fa-eye"></i>
-                                </button>
                             </div>
                         </td>
                     </tr>

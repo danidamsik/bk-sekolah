@@ -71,10 +71,6 @@
                         </td>
                         <td class="py-3 px-4">
                             <div class="flex justify-center gap-3 text-gray-600">
-                                <button wire:click="lihat({{ $laporan->id }})" class="hover:text-blue-600 transition"
-                                    title="Lihat">
-                                    <i class="fas fa-eye"></i>
-                                </button>
                                 <button
                                     @click="$dispatch('laporan-pelanggaran', {
                                             id: {{ $laporan['id'] }},
@@ -114,5 +110,5 @@
         {{ $violationReport->links('vendor.pagination.custom-white') }}
     </div>
 
-    @include('component.modal-konfirmasi')
+    @include('components.modal-confirm')
 </div>

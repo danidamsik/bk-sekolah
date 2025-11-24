@@ -26,19 +26,16 @@ class CounselingSession extends Model
         'session_date' => 'date',
     ];
 
-    // Relasi N-1: Counseling session untuk satu student
     public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class, 'student_id');
     }
 
-    // Relasi 1-1: Counseling session terkait dengan satu violation report
     public function violationReport(): BelongsTo
     {
         return $this->belongsTo(ViolationReport::class, 'violation_report_id');
     }
 
-    // Relasi N-1: Counseling session ditangani oleh satu counselor (teacher/Guru BK)
     public function teacher(): BelongsTo
     {
         return $this->belongsTo(Teacher::class, 'teacher_id');

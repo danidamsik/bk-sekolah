@@ -18,13 +18,11 @@ class ClassRoom extends Model
         'teacher_id',
     ];
 
-    // Relasi N-1: Class dimiliki oleh satu teacher (wali kelas)
     public function teacher(): BelongsTo
     {
         return $this->belongsTo(Teacher::class, 'teacher_id');
     }
 
-    // Relasi 1-N: Class memiliki banyak students
     public function students(): HasMany
     {
         return $this->hasMany(Student::class, 'class_id');

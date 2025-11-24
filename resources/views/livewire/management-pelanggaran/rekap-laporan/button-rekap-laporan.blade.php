@@ -9,28 +9,32 @@
     <div class="flex flex-wrap gap-2">
         <!-- 🔴 Ekspor PDF -->
         <div class="relative">
-            <a href="{{ route('export.recap.class.pdf') }}" wire:navigate.external target="_blank"
-                @click.prevent="openPdf = !openPdf">
-                <button
-                    class="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
+            <button @click.prevent="openPdf = !openPdf"
+                class="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 relative">
+                <span wire:loading.remove wire:target="downloadPdfKelas,downloadPdfSiswa" class="flex items-center gap-2">
                     <i class="fas fa-file-pdf"></i> Ekspor PDF
                     <i class="fa-solid fa-chevron-down text-xs"></i>
-                </button>
-            </a>
+                </span>
+                <!-- Loading Indicator PDF -->
+                <span wire:loading wire:target="downloadPdfKelas,downloadPdfSiswa" class="flex items-center gap-2">
+                    <i class="fas fa-spinner fa-spin"></i> Memproses...
+                </span>
+            </button>
 
             <!-- 🔽 Dropdown PDF -->
             <div x-show="openPdf" x-transition @click.outside="openPdf = false"
                 class="absolute left-0 top-full mt-2 w-60 bg-white border border-gray-200 rounded-2xl shadow-xl z-50 overflow-hidden">
                 <div class="p-2">
-                    <a href="{{ route('export.recap.class.pdf') }}" target="_blank"
-                        class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-700 hover:bg-red-50 hover:text-red-600 transition-all duration-200">
+                    <button wire:click="downloadPdfKelas; openPdf = false"
+                        class="flex items-center gap-2 w-full text-left px-3 py-2 rounded-lg text-gray-700 hover:bg-red-50 hover:text-red-600 transition-all duration-200">
                         <i class="fa-solid fa-school"></i>
                         <span>Pelanggaran per Kelas</span>
-                    </a>
-                    <a href="{{ route('export.recap.student.pdf') }}" target="_blank"
-                        class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-700 hover:bg-red-50 hover:text-red-600 transition-all duration-200">
-                        <i class="fa-solid fa-user-graduate"></i <span>Pelanggaran per Siswa</span>
-                    </a>
+                    </button>
+                    <button wire:click="downloadPdfSiswa; openPdf = false"
+                        class="flex items-center gap-2 w-full text-left px-3 py-2 rounded-lg text-gray-700 hover:bg-red-50 hover:text-red-600 transition-all duration-200">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        <span>Pelanggaran per Siswa</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -38,9 +42,16 @@
         <!-- 🟢 Ekspor Excel -->
         <div class="relative">
             <button @click.prevent="openExcel = !openExcel"
-                class="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
-                <i class="fas fa-file-excel"></i> Ekspor Excel
-                <i class="fa-solid fa-chevron-down text-xs"></i>
+                class="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 relative">
+                <span wire:loading.remove wire:target="downloadExcelKelas,downloadExcelSiswa"
+                    class="flex items-center gap-2">
+                    <i class="fas fa-file-excel"></i> Ekspor Excel
+                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                </span>
+                <!-- Loading Indicator Excel -->
+                <span wire:loading wire:target="downloadExcelKelas,downloadExcelSiswa" class="flex items-center gap-2">
+                    <i class="fas fa-spinner fa-spin"></i> Memproses...
+                </span>
             </button>
 
             <!-- 🔽 Dropdown Excel -->

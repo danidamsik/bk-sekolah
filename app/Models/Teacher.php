@@ -17,31 +17,26 @@ class Teacher extends Model
         'phone',
     ];
 
-    // Relasi 1-N: Teacher sebagai wali kelas untuk banyak students
     public function students(): HasMany
     {
         return $this->hasMany(Student::class, 'teacher_id');
     }
 
-    // Relasi 1-N: Teacher sebagai wali kelas untuk banyak classes
     public function classes(): HasMany
     {
         return $this->hasMany(ClassRoom::class, 'teacher_id');
     }
 
-    // Relasi 1-N: Teacher melaporkan banyak violation reports
     public function violationReports(): HasMany
     {
         return $this->hasMany(ViolationReport::class, 'teacher_id');
     }
 
-    // Relasi 1-N: Teacher (Guru BK) melakukan banyak counseling sessions
     public function counselingSessions(): HasMany
     {
         return $this->hasMany(CounselingSession::class, 'teacher_id');
     }
 
-    // Relasi 1-1: Teacher memiliki satu user account (nullable)
     public function user(): HasOne
     {
         return $this->hasOne(User::class, 'teacher_id');

@@ -64,5 +64,5 @@
     <div class="mt-6">
         {{ $dataViolation->links('vendor.pagination.custom-white') }}
     </div>
-    @include('component.modal-konfirmasi')
+    @include('components.modal-confirm')
 </div>

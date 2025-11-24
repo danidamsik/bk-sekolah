@@ -27,25 +27,21 @@ class ViolationReport extends Model
         'time' => 'datetime',
     ];
 
-    // Relasi N-1: Violation report dimiliki oleh satu student
     public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class, 'student_id');
     }
 
-    // Relasi N-1: Violation report mengacu pada satu violation
     public function violation(): BelongsTo
     {
         return $this->belongsTo(Violation::class, 'violation_id');
     }
 
-    // Relasi N-1: Violation report dilaporkan oleh satu teacher
     public function reporter(): BelongsTo
     {
         return $this->belongsTo(Teacher::class, 'teacher_id');
     }
 
-    // Relasi 1-1: Violation report memiliki satu counseling session
     public function counselingSession(): HasOne
     {
         return $this->hasOne(CounselingSession::class, 'violation_report_id');

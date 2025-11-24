@@ -20,7 +20,6 @@ class Violation extends Model
         'point' => 'integer',
     ];
 
-    // Relasi 1-N: Violation memiliki banyak violation reports
     public function violationReports(): HasMany
     {
         return $this->hasMany(ViolationReport::class, 'violation_id');

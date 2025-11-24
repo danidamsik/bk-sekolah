@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['Admin', 'GuruBK', 'WaliKelas'])->default('WaliKelas');
-            $table->foreignId('teacher_id')->nullable()->constrained('teachers')->onDelete('cascade');
+            $table->foreignId('teacher_id')->nullable()->unique()->constrained('teachers')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

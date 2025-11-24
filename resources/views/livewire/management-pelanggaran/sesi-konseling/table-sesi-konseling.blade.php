@@ -17,10 +17,6 @@
             </select>
         </div>
     </div>
-
-
-
-
     <div class="overflow-x-auto border border-gray-100 rounded-xl">
         <table class="whitespace-nowrap min-w-full border-collapse text-left">
             <thead class="bg-gray-50 text-gray-700 uppercase text-sm font-semibold">
@@ -56,9 +52,6 @@
                             @endif
                         </td>
                         <td class="py-3 px-4 text-center space-x-3">
-                            <button class="text-blue-600 hover:text-blue-800 transition-all duration-200">
-                                <i class="fas fa-eye"></i>
-                            </button>
                             <button
                                 @click="$dispatch('sesi-konseling', {
                                             id: '{{ $item['id'] }}',

@@ -64,6 +64,6 @@ class FormLogin extends Component
 
     public function render()
     {
-        return view('livewire.form-login');
+        return view('livewire.form-login')->layout('components.layouts.login');
     }
 }
